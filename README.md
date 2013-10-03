@@ -1,5 +1,5 @@
-Exception
-=========
+Phar
+====
 
 [![Build Status][]](https://travis-ci.org/phine/lib-phar)
 [![Coverage Status][]](https://coveralls.io/r/phine/lib-phar)
