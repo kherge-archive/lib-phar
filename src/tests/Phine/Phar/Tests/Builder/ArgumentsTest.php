@@ -21,7 +21,7 @@ class ArgumentsTest extends TestCase
     private $arguments;
 
     /**
-     * The overriding argumen values.
+     * The overriding argument values.
      *
      * @var array
      */
