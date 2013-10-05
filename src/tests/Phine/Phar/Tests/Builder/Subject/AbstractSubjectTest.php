@@ -6,7 +6,6 @@ use Phine\Observer\Exception\ReasonException;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Arguments;
 use Phine\Phar\Test\Observer;
-use Phine\Phar\Test\Phar;
 use Phine\Phar\Test\Subject;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -131,7 +130,11 @@ class AbstractSubjectTest extends TestCase
      */
     protected function setUp()
     {
-        $this->builder = new Builder(new Phar('test.phar'));
+        $this->builder = $this
+            ->getMockBuilder('Phine\\Phar\\Builder')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->subject = new Subject($this->builder);
     }
 }
