@@ -23,13 +23,6 @@ class BuilderTest extends TestCase
     private $builder;
 
     /**
-     * The test PHP archive file path.
-     *
-     * @var string
-     */
-    private $file;
-
-    /**
      * The test PHP archive instance.
      *
      * @var Phar
@@ -185,9 +178,11 @@ class BuilderTest extends TestCase
      */
     public function testCreate()
     {
+        unlink($tmp = tempnam(sys_get_temp_dir(), 'phar'));
+
         $this->assertInstanceOf(
             'Phine\\Phar\\Builder',
-            Builder::create($this->file),
+            Builder::create($tmp . '.phar'),
             'Make sure we get a new builder instance.'
         );
     }
@@ -209,27 +204,11 @@ class BuilderTest extends TestCase
      */
     protected function setUp()
     {
-        unlink($this->file = tempnam(sys_get_temp_dir(), 'phar'));
-
-        $this->file .= '.phar';
-
         $this->phar = $this
             ->getMockBuilder('Phine\\Phar\\Test\\Phar')
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->builder = new Builder($this->phar);
-    }
-
-    /**
-     * Cleans up the temporary PHP archive.
-     */
-    protected function tearDown()
-    {
-        $this->phar = null;
-
-        if (file_exists($this->file)) {
-            unlink($this->file);
-        }
     }
 }
