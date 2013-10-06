@@ -17,6 +17,13 @@ use Phine\Phar\Builder\Subject\BuildIterator;
  * Manages an event-driven process for building a PHP archive.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @todo Add offsetSet() method (alias of addFromString()).
+ * @todo Add setAlias() method.
+ * @todo Add setDefaultStub() method.
+ * @todo Add setMetadata() method.
+ * @todo Add setSignatureAlgorithm() method.
+ * @todo Add setStub() method.
  */
 class Builder extends Collection
 {
