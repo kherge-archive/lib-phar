@@ -25,12 +25,10 @@ class AddDirectoryTest extends AbstractTestCase
             )
         );
 
-        /** @var PharFileInfo $dir */
-        $dir = $this->phar['test'];
-
-        $this->assertTrue(
-            $dir->isDir(),
-            'Make sure that the directory is added.'
+        $this->assertEquals(
+            'test',
+            $this->subject->getArguments()->offsetGet('name'),
+            'Make sure the directory name is provided.'
         );
     }
 }

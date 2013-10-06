@@ -28,13 +28,18 @@ class AddStringTest extends AbstractTestCase
             )
         );
 
-        /** @var PharFileInfo $file */
-        $file = $this->phar['test.php'];
+        $args = $this->subject->getArguments();
+
+        $this->assertEquals(
+            'test.php',
+            $args['local'],
+            'Make sure the local name is provided.'
+        );
 
         $this->assertEquals(
             $contents,
-            file_get_contents($file),
-            'Make sure that the string is added.'
+            $args['contents'],
+            'Make sure the contents are provided.'
         );
     }
 }

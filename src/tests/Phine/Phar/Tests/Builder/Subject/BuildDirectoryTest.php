@@ -21,39 +21,25 @@ class BuildDirectoryTest extends AbstractTestCase
      */
     public function testDoLastStep()
     {
-        $path = realpath(__DIR__ . '/../../../../../../lib');
-
         $this->invokeSubject(
             array(
-                'dir' => $path,
+                'dir' => __DIR__,
                 'regex' => '/Add/'
             )
         );
 
-        $this->assertCount(
-            3,
-            $this->phar,
-            'Make sure only 3 files were added.'
+        $args = $this->subject->getArguments();
+
+        $this->assertEquals(
+            __DIR__,
+            $args['dir'],
+            'Make sure the directory path is provided.'
         );
 
-        $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($path)
+        $this->assertEquals(
+            '/Add/',
+            $args['regex'],
+            'Make sure the regular expression is provided.'
         );
-
-        /** @var PharFileInfo $info */
-        foreach ($iterator as $file => $info) {
-            if (('.' === $info->getBasename())
-                || ('..' === $info->getBasename())
-                || !preg_match('/Add/', $file)) {
-                continue;
-            }
-
-            $local = str_replace($path . DIRECTORY_SEPARATOR, '', $file);
-
-            $this->assertTrue(
-                isset($this->phar[$local]),
-                'Make sure the file is in the archive: ' . $local
-            );
-        }
     }
 }

@@ -21,38 +21,29 @@ class BuildIteratorTest extends AbstractTestCase
      */
     public function testDoLastStep()
     {
-        $path = realpath(__DIR__ . '/../../../../../../lib');
-
         $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator(
-                $path,
-                RecursiveDirectoryIterator::KEY_AS_PATHNAME
-                    | RecursiveDirectoryIterator::CURRENT_AS_FILEINFO
-                    | RecursiveDirectoryIterator::SKIP_DOTS
-            )
+            new RecursiveDirectoryIterator(__DIR__)
         );
 
         $this->invokeSubject(
             array(
                 'iterator' => $iterator,
-                'base' => $path
+                'base' => __DIR__
             )
         );
 
-        /** @var PharFileInfo $info */
-        foreach ($iterator as $file => $info) {
-            if (('.' === $info->getBasename())
-                || ('..' === $info->getBasename())
-                || !preg_match('/Add/', $file)) {
-                continue;
-            }
+        $args = $this->subject->getArguments();
 
-            $local = str_replace($path . DIRECTORY_SEPARATOR, '', $file);
+        $this->assertSame(
+            $iterator,
+            $args['iterator'],
+            'Make sure the iterator is provided.'
+        );
 
-            $this->assertTrue(
-                isset($this->phar[$local]),
-                'Make sure the file is in the archive: ' . $local
-            );
-        }
+        $this->assertEquals(
+            __DIR__,
+            $args['base'],
+            'Make sure the base directory path is provided.'
+        );
     }
 }

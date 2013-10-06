@@ -28,13 +28,6 @@ abstract class AbstractTestCase extends TestCase
     protected $builder;
 
     /**
-     * The test PHP archive file path.
-     *
-     * @var string
-     */
-    protected $file;
-
-    /**
      * The test PHP archive instance.
      *
      * @var Phar
@@ -64,24 +57,12 @@ abstract class AbstractTestCase extends TestCase
      */
     protected function setUp()
     {
-        unlink($this->file = tempnam(sys_get_temp_dir(), 'phar'));
+        $this->phar = $this
+            ->getMockBuilder('Phine\\Phar\\Test\\Phar')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $this->file .= '.phar';
-
-        $this->phar = new Phar($this->file);
         $this->builder = new Builder($this->phar);
         $this->subject = $this->builder->getSubject(static::SUBJECT_ID);
-    }
-
-    /**
-     * Cleans up the temporary PHP archive.
-     */
-    protected function tearDown()
-    {
-        $this->phar = null;
-
-        if (file_exists($this->file)) {
-            unlink($this->file);
-        }
     }
 }

@@ -26,16 +26,18 @@ class AddFileTest extends AbstractTestCase
             )
         );
 
-        /** @var PharFileInfo $file */
-        $file = $this->phar[__FILE__];
+        $args = $this->subject->getArguments();
 
         $this->assertEquals(
-            file_get_contents(__FILE__),
-            file_get_contents($file),
-            'Make sure that the file is added.'
+            __FILE__,
+            $args['file'],
+            'Make sure the file name is provided.'
         );
 
-        unset($this->phar[__FILE__]);
+        $this->assertNull(
+            $args['local'],
+            'Make sure no local name is provided.'
+        );
 
         $this->invokeSubject(
             array(
@@ -44,13 +46,18 @@ class AddFileTest extends AbstractTestCase
             )
         );
 
-        /** @var PharFileInfo $file */
-        $file = $this->phar['test.php'];
+        $args = $this->subject->getArguments();
 
         $this->assertEquals(
-            file_get_contents(__FILE__),
-            file_get_contents($file),
-            'Make sure that the file is added using a different local path.'
+            __FILE__,
+            $args['file'],
+            'Make sure the file name is provided.'
+        );
+
+        $this->assertEquals(
+            'test.php',
+            $args['local'],
+            'Make sure the local name is provided.'
         );
     }
 }
