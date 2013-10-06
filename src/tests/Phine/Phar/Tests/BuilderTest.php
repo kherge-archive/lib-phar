@@ -213,7 +213,11 @@ class BuilderTest extends TestCase
 
         $this->file .= '.phar';
 
-        $this->phar = new Phar($this->file);
+        $this->phar = $this
+            ->getMockBuilder('Phine\\Phar\\Test\\Phar')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->builder = new Builder($this->phar);
     }
 
