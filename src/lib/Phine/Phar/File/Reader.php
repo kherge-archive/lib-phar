@@ -77,7 +77,7 @@ class Reader
     public function getHandle()
     {
         if (null === $this->handle) {
-            if (false === ($this->handle = @fopen($this->file, 'r'))) {
+            if (false === ($this->handle = @fopen($this->file, 'rb'))) {
                 throw FileException::createUsingLastError();
             }
         }
