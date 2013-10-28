@@ -8,7 +8,6 @@
   <logging>
     <log type="coverage-clover" target="coverage.xml"/>
     <log type="coverage-html" target="coverage"/>
-    <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
   </logging>
   <testsuites>
     <testsuite name="Phine Phar Test Suite">
