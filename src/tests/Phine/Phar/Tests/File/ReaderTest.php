@@ -2,6 +2,7 @@
 
 namespace Phine\Phar\Tests\File;
 
+use Phine\Phar\Exception\FileException;
 use Phine\Phar\File\Reader;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -101,6 +102,41 @@ class ReaderTest extends TestCase
     }
 
     /**
+     * Make sure we can get the position of the file handle.
+     */
+    public function testGetPosition()
+    {
+        $this->assertEquals(
+            0,
+            $this->reader->getPosition(),
+            'Make sure we get the current position.'
+        );
+    }
+
+    /**
+     * Make sure an exception is thrown if we can't get the position.
+     */
+    public function testGetPositionError()
+    {
+        set($this->reader, 'handle', 'test');
+
+        try {
+            $this->reader->getPosition();
+        } catch (FileException $exception) {
+        }
+
+        set($this->reader, 'handle', null);
+
+        $this->setExpectedException(
+            'Phine\\Phar\\Exception\\FileException',
+            'expects parameter 1 to be resource, string given'
+        );
+
+        /** @noinspection PhpUndefinedVariableInspection */
+        throw $exception;
+    }
+
+    /**
      * Make sure that we can get the size of a file.
      */
     public function testGetSize()
@@ -125,6 +161,24 @@ class ReaderTest extends TestCase
         );
 
         $this->reader->getSize();
+    }
+
+    /**
+     * Make sure we can check if we reached the end of the file.
+     */
+    public function testIsEndOfFile()
+    {
+        $this->assertFalse(
+            $this->reader->isEndOfFile(),
+            'Make sure we are not at the end of the file.'
+        );
+
+        fseek(get($this->reader, 'handle'), 0, SEEK_END);
+
+        $this->assertTrue(
+            $this->reader->isEndOfFile(),
+            'Make sure we are at the end of the file.'
+        );
     }
 
     /**

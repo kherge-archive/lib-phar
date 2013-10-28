@@ -86,6 +86,23 @@ class Reader
     }
 
     /**
+     * Returns the current position of the file pointer.
+     *
+     * @return integer The current position.
+     *
+     * @throws Exception
+     * @throws FileException If the size could not be read.
+     */
+    public function getPosition()
+    {
+        if (false === ($position = @ftell($this->getHandle()))) {
+            throw FileException::createUsingLastError();
+        }
+
+        return $position;
+    }
+
+    /**
      * Returns the size of the file.
      *
      * @return integer The size of the file.
@@ -103,6 +120,32 @@ class Reader
     }
 
     /**
+     * Checks if the end of the file has been reached.
+     *
+     * Before `feof()` is called, an attempt is made to reach a single byte
+     * from the file. If the read fails, then the `feof()` is made to actually
+     * determine the if the end of the file has been reached. If the EOF is not
+     * reached, the file handle will be seeked back the one byte that was read.
+     *
+     * @return boolean If the end of the file has been reached, `false` is
+     *                 returned. If the end of the file has not been reached,
+     *                 `true` is returned.
+     */
+    public function isEndOfFile()
+    {
+        $handle = $this->getHandle();
+
+        if (false === @fgetc($handle)) {
+
+            return feof($handle);
+        } else {
+            fseek($handle, -1, SEEK_CUR);
+        }
+
+        return false;
+    }
+
+    /**
      * Reads a specific number of bytes from the file.
      *
      * @param integer $bytes The number of bytes.
@@ -117,7 +160,7 @@ class Reader
         $read = '';
         $total = $bytes;
 
-        while (!feof($this->getHandle()) && $bytes) {
+        while (!$this->isEndOfFile() && $bytes) {
             if (false === ($chunk = @fread($this->getHandle(), $bytes))) {
                 throw FileException::createUsingLastError();
             }
