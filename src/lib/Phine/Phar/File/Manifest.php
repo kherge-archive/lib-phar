@@ -242,6 +242,16 @@ class Manifest
     }
 
     /**
+     * Returns the archive file reader.
+     *
+     * @return Reader The archive file reader.
+     */
+    public function getReader()
+    {
+        return $this->reader;
+    }
+
+    /**
      * Returns the size of the manifest in bytes.
      *
      * @return integer The size of the manifest in bytes.

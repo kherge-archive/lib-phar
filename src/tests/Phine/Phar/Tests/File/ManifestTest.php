@@ -294,6 +294,30 @@ class ManifestTest extends TestCase
     }
 
     /**
+     * Make sure we can get back the file reader.
+     */
+    public function testGetReader()
+    {
+        $this->assertSame(
+            $this->reader,
+            $this->manifest->getReader(),
+            'The reader should be returned.'
+        );
+    }
+
+    /**
+     * Make sure we can get the size of the manifest.
+     */
+    public function testGetSize()
+    {
+        $this->assertEquals(
+            166,
+            $this->manifest->getSize(),
+            'The manifest size should be 166.'
+        );
+    }
+
+    /**
      * Creates a new instance of `Manifest` for testing.
      */
     protected function setUp()
