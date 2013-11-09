@@ -183,7 +183,7 @@ class ManifestTest extends TestCase
             array(
                 array(
                     'crc32'=> 4091535927,
-                    'flags' => 438,
+                    'flags' => 0,
                     'metadata' => array(
                         'size' => 0,
                     ),
@@ -200,7 +200,7 @@ class ManifestTest extends TestCase
                 ),
                 array(
                     'crc32'=> 2063568359,
-                    'flags' => 438,
+                    'flags' => 0,
                     'metadata' => array(
                         'data' => array(
                             'rand' => 1317613458
@@ -230,7 +230,7 @@ class ManifestTest extends TestCase
     public function testGetGlobalFlags()
     {
         $this->assertEquals(
-            65536,
+            0,
             $this->manifest->getGlobalFlags(),
             'The global flags should be returned.'
         );

@@ -12,6 +12,13 @@ use Phine\Phar\Exception\ManifestException;
 class Manifest
 {
     /**
+     * The bzip2 compression flag.
+     *
+     * @var integer
+     */
+    const BZ2 = 0x2000;
+
+    /**
      * The gzip compression flag.
      *
      * @var integer
@@ -19,11 +26,11 @@ class Manifest
     const GZ = 0x1000;
 
     /**
-     * The bzip2 compression flag.
+     * The flag mask.
      *
      * @var integer
      */
-    const BZ2 = 0x2000;
+    const MASK = 0x3000;
 
     /**
      * The starting offset of the manifest.
@@ -200,7 +207,7 @@ class Manifest
     {
         $this->reader->seek($this->offset + 10);
 
-        return $this->readLong();
+        return $this->readLong() & self::MASK;
     }
 
     /**
@@ -313,7 +320,7 @@ class Manifest
             $file['time'] = $this->readLong();
             $file['size']['compressed'] = $this->readLong();
             $file['crc32'] = $this->readLong();
-            $file['flags'] = $this->readLong();
+            $file['flags'] = $this->readLong() & self::MASK;
             $file['metadata']['size'] = $this->readLong();
 
             if ($file['metadata']['size']) {
