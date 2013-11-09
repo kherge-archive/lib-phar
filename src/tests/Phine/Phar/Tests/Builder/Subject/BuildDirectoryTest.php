@@ -2,10 +2,7 @@
 
 namespace Phine\Phar\Tests\Builder\Subject;
 
-use PharFileInfo;
 use Phine\Phar\Builder;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
 
 /**
  * Tests the methods in the {@link BuildDirectoryTest} class.

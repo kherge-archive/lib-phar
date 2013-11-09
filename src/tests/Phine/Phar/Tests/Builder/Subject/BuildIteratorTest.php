@@ -2,7 +2,6 @@
 
 namespace Phine\Phar\Tests\Builder\Subject;
 
-use PharFileInfo;
 use Phine\Phar\Builder;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
