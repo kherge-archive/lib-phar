@@ -204,6 +204,16 @@ class Manifest
     }
 
     /**
+     * Returns the byte offset of the manifest.
+     *
+     * @return integer The byte offset.
+     */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    /**
      * Return the unserialized metadata of the manifest.
      *
      * @return mixed The unserialized metadata.

@@ -237,6 +237,18 @@ class ManifestTest extends TestCase
     }
 
     /**
+     * Make sure we can get the offset for the manifest.
+     */
+    public function testGetOffset()
+    {
+        $this->assertEquals(
+            94,
+            $this->manifest->getOffset(),
+            'The offset for the manifest should be 94.'
+        );
+    }
+
+    /**
      * Make sure we can retrieve the metadata.
      */
     public function testGetMetadata()
