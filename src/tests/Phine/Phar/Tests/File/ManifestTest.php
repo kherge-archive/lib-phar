@@ -191,7 +191,7 @@ class ManifestTest extends TestCase
                         'data' => 'bin/main',
                         'size' => 8,
                     ),
-                    'offset' => 260,
+                    'offset' => 264,
                     'size' => array(
                         'compressed' => 77,
                         'uncompressed' => 77,
@@ -211,7 +211,7 @@ class ManifestTest extends TestCase
                         'data' => 'src/Put.php',
                         'size' => 11,
                     ),
-                    'offset' => 337,
+                    'offset' => 341,
                     'size' => array(
                         'compressed' => 104,
                         'uncompressed' => 104,

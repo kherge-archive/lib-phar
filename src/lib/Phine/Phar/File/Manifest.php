@@ -286,7 +286,7 @@ class Manifest
     private function readFileList($expected, $size)
     {
         $files = array();
-        $offset = $this->offset + $size;
+        $offset = $this->offset + $size + 4;
 
         for ($i = 0; $i < $expected; $i++) {
             $file = array(
