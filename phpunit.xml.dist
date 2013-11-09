@@ -7,7 +7,6 @@
   </filter>
   <logging>
     <log type="coverage-clover" target="coverage.xml"/>
-    <log type="coverage-html" target="coverage"/>
   </logging>
   <testsuites>
     <testsuite name="Phine Phar Test Suite">
