@@ -3,6 +3,7 @@
 namespace Phine\Phar\Tests\Signature\Algorithm;
 
 use Phine\Phar\Signature\Algorithm\SHA256;
+use Phine\Test\Method;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -38,7 +39,7 @@ class SHA256Test extends TestCase
     {
         $this->assertEquals(
             'sha256',
-            call($this->algorithm, 'getAlgorithm'),
+            Method::invoke($this->algorithm, 'getAlgorithm'),
             'Make sure we get the right algorithm.'
         );
     }
@@ -50,7 +51,7 @@ class SHA256Test extends TestCase
     {
         $this->assertEquals(
             'SHA-256',
-            call($this->algorithm, 'getName'),
+            Method::invoke($this->algorithm, 'getName'),
             'Make sure we get the right name.'
         );
     }
@@ -62,7 +63,7 @@ class SHA256Test extends TestCase
     {
         $this->assertSame(
             32,
-            call($this->algorithm, 'getSize'),
+            Method::invoke($this->algorithm, 'getSize'),
             'Make sure we get the right size.'
         );
     }

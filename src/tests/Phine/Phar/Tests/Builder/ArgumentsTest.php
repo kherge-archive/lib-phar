@@ -4,6 +4,7 @@ namespace Phine\Phar\Tests\Builder;
 
 use DateTime;
 use Phine\Phar\Builder\Arguments;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -136,8 +137,8 @@ class ArgumentsTest extends TestCase
 
         $this->arguments['random'] = $rand;
 
-        $original = get($this->arguments, 'original');
-        $override = get($this->arguments, 'override');
+        $original = Property::get($this->arguments, 'original');
+        $override = Property::get($this->arguments, 'override');
 
         $this->assertNotSame(
             $rand,
@@ -174,7 +175,7 @@ class ArgumentsTest extends TestCase
 
         $this->assertSame(
             array(),
-            get($this->arguments, 'override'),
+            Property::get($this->arguments, 'override'),
             'Make sure we can unset the override value.'
         );
     }
@@ -210,7 +211,7 @@ class ArgumentsTest extends TestCase
 
         $this->arguments = new Arguments($this->values);
 
-        set(
+        Property::set(
             $this->arguments,
             'override',
             $this->override

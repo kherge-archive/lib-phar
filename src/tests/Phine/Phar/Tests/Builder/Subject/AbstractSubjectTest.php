@@ -7,6 +7,7 @@ use Phine\Phar\Builder;
 use Phine\Phar\Builder\Arguments;
 use Phine\Phar\Test\Observer;
 use Phine\Phar\Test\Subject;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -37,7 +38,7 @@ class AbstractSubjectTest extends TestCase
     {
         $arguments = new Arguments(array());
 
-        set($this->subject, 'arguments', $arguments);
+        Property::set($this->subject, 'arguments', $arguments);
 
         $this->assertSame(
             $arguments,
@@ -56,7 +57,7 @@ class AbstractSubjectTest extends TestCase
             'Make sure that no update is in progress.'
         );
 
-        set($this->subject, 'updating', true);
+        Property::set($this->subject, 'updating', true);
 
         $this->assertTrue(
             $this->subject->isUpdating(),
@@ -77,7 +78,7 @@ class AbstractSubjectTest extends TestCase
         );
 
         $this->assertFalse(
-            get($this->subject, 'updating'),
+            Property::get($this->subject, 'updating'),
             'Make sure the updating flag is reset.'
         );
     }
@@ -95,7 +96,7 @@ class AbstractSubjectTest extends TestCase
         }
 
         $this->assertFalse(
-            get($this->subject, 'updating'),
+            Property::get($this->subject, 'updating'),
             'Make sure the updating flag is reset.'
         );
     }
@@ -111,11 +112,11 @@ class AbstractSubjectTest extends TestCase
 
         $this->assertSame(
             $arguments,
-            get($this->subject, 'arguments'),
+            Property::get($this->subject, 'arguments'),
             'Make sure the new arguments are set.'
         );
 
-        set($this->subject, 'updating', true);
+        Property::set($this->subject, 'updating', true);
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\BuilderException',

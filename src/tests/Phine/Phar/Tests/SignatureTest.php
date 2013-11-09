@@ -7,6 +7,7 @@ use Phine\Phar\Signature;
 use Phine\Phar\Signature\Algorithm\AlgorithmInterface;
 use Phine\Phar\Signature\Algorithm\SHA1;
 use Phine\Phar\Test\Algorithm;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -46,7 +47,7 @@ class SignatureTest extends TestCase
 
         $this->signature->addAlgorithm($algorithm);
 
-        $algorithms = get($this->signature, 'algorithms');
+        $algorithms = Property::get($this->signature, 'algorithms');
 
         $this->assertSame(
             $algorithm,
@@ -65,10 +66,10 @@ class SignatureTest extends TestCase
         $signature = Signature::create($this->file);
 
         /** @var AlgorithmInterface[] $algorithms */
-        $algorithms = get($signature, 'algorithms');
+        $algorithms = Property::get($signature, 'algorithms');
 
         /** @var Reader $reader */
-        $reader = get($signature, 'reader');
+        $reader = Property::get($signature, 'reader');
 
         $this->assertEquals(
             $this->file,
@@ -125,7 +126,7 @@ class SignatureTest extends TestCase
      */
     public function testGetAlgorithmNotRecognized()
     {
-        set($this->signature, 'algorithms', array());
+        Property::set($this->signature, 'algorithms', array());
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\SignatureException',
@@ -182,7 +183,7 @@ class SignatureTest extends TestCase
 
         $this->signature = new Signature(new Reader($this->file));
 
-        set($this->signature, 'algorithms', array(new Algorithm()));
+        Property::set($this->signature, 'algorithms', array(new Algorithm()));
     }
 
     /**

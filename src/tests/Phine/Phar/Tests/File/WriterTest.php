@@ -4,6 +4,7 @@ namespace Phine\Phar\Tests\File;
 
 use Phine\Phar\Exception\FileException;
 use Phine\Phar\File\Writer;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -34,7 +35,7 @@ class WriterTest extends TestCase
     {
         $this->assertEquals(
             $this->file,
-            get($this->writer, 'file'),
+            Property::get($this->writer, 'file'),
             'Make sure the file is what we set it to be.'
         );
     }
@@ -98,7 +99,7 @@ class WriterTest extends TestCase
      */
     public function testGetHandleError()
     {
-        set($this->writer, 'file', '/does/not/exist');
+        Property::set($this->writer, 'file', '/does/not/exist');
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\FileException',
@@ -139,7 +140,7 @@ class WriterTest extends TestCase
         try {
             $this->writer->write('test');
         } catch (FileException $exception) {
-            set($this->writer, 'handle', null);
+            Property::set($this->writer, 'handle', null);
 
             throw $exception;
         }
@@ -150,7 +151,7 @@ class WriterTest extends TestCase
      */
     public function testWriteBytesShort()
     {
-        set($this->writer, 'handle', opendir(__DIR__));
+        Property::set($this->writer, 'handle', opendir(__DIR__));
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\FileException',
@@ -162,7 +163,7 @@ class WriterTest extends TestCase
         } catch (FileException $exception) {
             closedir($this->writer->getHandle());
 
-            set($this->writer, 'handle', null);
+            Property::set($this->writer, 'handle', null);
 
 
             throw $exception;

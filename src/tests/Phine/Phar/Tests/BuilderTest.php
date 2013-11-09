@@ -6,6 +6,7 @@ use ArrayIterator;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Subject\AbstractSubject;
 use Phine\Phar\Test\Phar;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -36,7 +37,7 @@ class BuilderTest extends TestCase
     {
         $this->assertSame(
             $this->phar,
-            get($this->builder, 'phar'),
+            Property::get($this->builder, 'phar'),
             'Make sure the Phar instance is set.'
         );
 

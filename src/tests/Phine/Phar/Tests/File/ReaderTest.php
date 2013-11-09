@@ -4,6 +4,7 @@ namespace Phine\Phar\Tests\File;
 
 use Phine\Phar\Exception\FileException;
 use Phine\Phar\File\Reader;
+use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -27,7 +28,7 @@ class ReaderTest extends TestCase
     {
         $this->assertEquals(
             __FILE__,
-            get($this->reader, 'file'),
+            Property::get($this->reader, 'file'),
             'Make sure we can set the file to read.'
         );
     }
@@ -91,7 +92,7 @@ class ReaderTest extends TestCase
      */
     public function testGetHandleError()
     {
-        set($this->reader, 'file', '/does/not/exist');
+        Property::set($this->reader, 'file', '/does/not/exist');
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\FileException',
@@ -118,14 +119,14 @@ class ReaderTest extends TestCase
      */
     public function testGetPositionError()
     {
-        set($this->reader, 'handle', 'test');
+        Property::set($this->reader, 'handle', 'test');
 
         try {
             $this->reader->getPosition();
         } catch (FileException $exception) {
         }
 
-        set($this->reader, 'handle', null);
+        Property::set($this->reader, 'handle', null);
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\FileException',
@@ -153,7 +154,7 @@ class ReaderTest extends TestCase
      */
     public function testGetSizeError()
     {
-        set($this->reader, 'file', '/does/not/exist');
+        Property::set($this->reader, 'file', '/does/not/exist');
 
         $this->setExpectedException(
             'Phine\\Phar\\Exception\\FileException',
@@ -173,7 +174,7 @@ class ReaderTest extends TestCase
             'Make sure we are not at the end of the file.'
         );
 
-        fseek(get($this->reader, 'handle'), 0, SEEK_END);
+        fseek(Property::get($this->reader, 'handle'), 0, SEEK_END);
 
         $this->assertTrue(
             $this->reader->isEndOfFile(),
@@ -238,7 +239,7 @@ class ReaderTest extends TestCase
 
         $this->assertEquals(
             $offset,
-            ftell(get($this->reader, 'handle')),
+            ftell(Property::get($this->reader, 'handle')),
             'Make sure we seek to the point specified.'
         );
     }
