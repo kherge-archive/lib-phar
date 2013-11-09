@@ -185,7 +185,7 @@ class Manifest
     {
 
         $count = $this->getFileCount();
-        $size = $this->getSize();
+        $size = $this->getSize() + 4;
 
         $this->reader->seek(
             $this->offset
@@ -293,7 +293,7 @@ class Manifest
     private function readFileList($expected, $size)
     {
         $files = array();
-        $offset = $this->offset + $size + 4;
+        $offset = $this->offset + $size;
 
         for ($i = 0; $i < $expected; $i++) {
             $file = array(
