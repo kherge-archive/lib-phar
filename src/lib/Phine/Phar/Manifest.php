@@ -1,8 +1,9 @@
 <?php
 
-namespace Phine\Phar\File;
+namespace Phine\Phar;
 
 use Phine\Phar\Exception\ManifestException;
+use Phine\Phar\File\Reader;
 
 /**
  * Reads the manifest of a PHP archive file.

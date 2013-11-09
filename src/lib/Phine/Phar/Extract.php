@@ -5,7 +5,6 @@ namespace Phine\Phar;
 use Phine\Exception\Exception;
 use Phine\Path\Path;
 use Phine\Phar\Exception\FileException;
-use Phine\Phar\File\Manifest;
 use Phine\Phar\File\Reader;
 use Phine\Phar\File\Writer;
 

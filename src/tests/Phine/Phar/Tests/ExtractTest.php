@@ -4,7 +4,7 @@ namespace Phine\Phar\Tests;
 
 use Exception;
 use Phine\Phar\Extract;
-use Phine\Phar\File\Manifest;
+use Phine\Phar\Manifest;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
 use Phine\Test\Temp;

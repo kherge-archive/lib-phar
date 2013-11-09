@@ -1,8 +1,8 @@
 <?php
 
-namespace Phine\Phar\Tests\File;
+namespace Phine\Phar\Tests;
 
-use Phine\Phar\File\Manifest;
+use Phine\Phar\Manifest;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
@@ -322,7 +322,7 @@ class ManifestTest extends TestCase
      */
     protected function setUp()
     {
-        $this->file = realpath(__DIR__ . '/../../../../../../res/example.phar');
+        $this->file = realpath(__DIR__ . '/../../../../../res/example.phar');
         $this->reader = new Reader($this->file);
         $this->manifest = new Manifest($this->reader);
     }
