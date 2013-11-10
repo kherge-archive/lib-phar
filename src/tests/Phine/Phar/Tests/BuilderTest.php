@@ -3,9 +3,9 @@
 namespace Phine\Phar\Tests;
 
 use ArrayIterator;
+use Phar;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Subject\AbstractSubject;
-use Phine\Phar\Test\Phar;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -227,7 +227,7 @@ class BuilderTest extends TestCase
     protected function setUp()
     {
         $this->phar = $this
-            ->getMockBuilder('Phine\\Phar\\Test\\Phar')
+            ->getMockBuilder('Phar')
             ->disableOriginalConstructor()
             ->getMock();
 
