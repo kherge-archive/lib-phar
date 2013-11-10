@@ -5,7 +5,7 @@ namespace Phine\Phar\Test;
 use Phine\Phar\Signature\Algorithm\AbstractHashAlgorithm;
 
 /**
- * An test algorithm using {@link AbstractHashAlgorithm}.
+ * A test algorithm using {@link AbstractHashAlgorithm}.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
