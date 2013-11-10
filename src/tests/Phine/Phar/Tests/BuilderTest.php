@@ -47,6 +47,7 @@ class BuilderTest extends TestCase
             Builder::ADD_STRING => 'Phine\\Phar\\Builder\\Subject\\AddString',
             Builder::BUILD_DIR => 'Phine\\Phar\\Builder\\Subject\\BuildDirectory',
             Builder::BUILD_ITERATOR => 'Phine\\Phar\\Builder\\Subject\\BuildIterator',
+            Builder::SET_STUB => 'Phine\\Phar\\Builder\\Subject\\SetStub'
         );
 
         foreach ($subjects as $id => $class) {
@@ -197,6 +198,26 @@ class BuilderTest extends TestCase
             $this->phar,
             $this->builder->getPhar(),
             'Make sure we get back the same Phar instance we put in.'
+        );
+    }
+
+    /**
+     * Make sure that the SET_STUB event is fired properly.
+     */
+    public function testSetStub()
+    {
+        $stub = '<?php __HALT__COMPILER();';
+
+        $this->builder->setStub($stub);
+
+        /** @var AbstractSubject $subject */
+        $subject = $this->builder->getSubject(Builder::SET_STUB);
+        $arguments = $subject->getArguments();
+
+        $this->assertEquals(
+            $stub,
+            $arguments['stub'],
+            'Make sure the stub is passed on.'
         );
     }
 

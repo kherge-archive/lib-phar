@@ -12,18 +12,12 @@ use Phine\Phar\Builder\Subject\AddFile;
 use Phine\Phar\Builder\Subject\AddString;
 use Phine\Phar\Builder\Subject\BuildDirectory;
 use Phine\Phar\Builder\Subject\BuildIterator;
+use Phine\Phar\Builder\Subject\SetStub;
 
 /**
  * Manages an event-driven process for building a PHP archive.
  *
  * @author Kevin Herrera <kevin@herrera.io>
- *
- * @todo Add offsetSet() method (alias of addFromString()).
- * @todo Add setAlias() method.
- * @todo Add setDefaultStub() method.
- * @todo Add setMetadata() method.
- * @todo Add setSignatureAlgorithm() method.
- * @todo Add setStub() method.
  */
 class Builder extends Collection
 {
@@ -51,6 +45,11 @@ class Builder extends Collection
      * The event ID for building using an iterator.
      */
     const BUILD_ITERATOR = 'build.iterator';
+
+    /**
+     * The event ID for settings the stub.
+     */
+    const SET_STUB = 'set.stub';
 
     /**
      * The PHP archive being built.
@@ -177,6 +176,21 @@ class Builder extends Collection
     }
 
     /**
+     * Sets the stub used to bootstrap the archive.
+     *
+     * @param string $stub The archive stub.
+     */
+    public function setStub($stub)
+    {
+        $this->invokeEvent(
+            self::SET_STUB,
+            array(
+                'stub' => $stub
+            )
+        );
+    }
+
+    /**
      * Invokes an event after setting new method argument values.
      *
      * @param string $id     The event subject identifier.
@@ -200,5 +214,6 @@ class Builder extends Collection
         $this->registerSubject(self::ADD_STRING, new AddString($this));
         $this->registerSubject(self::BUILD_DIR, new BuildDirectory($this));
         $this->registerSubject(self::BUILD_ITERATOR, new BuildIterator($this));
+        $this->registerSubject(self::SET_STUB, new SetStub($this));
     }
 }

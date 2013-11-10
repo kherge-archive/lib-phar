@@ -57,6 +57,14 @@ class Phar extends \Phar
     }
 
     /**
+     * @override
+     */
+    public function setStub($sub, $len = -1)
+    {
+        $this->called(__FUNCTION__, func_get_args());
+    }
+
+    /**
      * Tracks a method call.
      *
      * @param string $name The method name.
