@@ -6,6 +6,7 @@ use Phar;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Arguments;
 use Phine\Phar\Builder\Subject\AbstractSubject;
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -30,7 +31,7 @@ abstract class AbstractTestCase extends TestCase
     /**
      * The test PHP archive instance.
      *
-     * @var Phar
+     * @var MockObject|Phar
      */
     protected $phar;
 
@@ -58,7 +59,7 @@ abstract class AbstractTestCase extends TestCase
     protected function setUp()
     {
         $this->phar = $this
-            ->getMockBuilder('Phine\\Phar\\Test\\Phar')
+            ->getMockBuilder('Phar')
             ->disableOriginalConstructor()
             ->getMock();
 

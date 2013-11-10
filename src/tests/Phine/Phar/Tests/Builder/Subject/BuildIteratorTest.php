@@ -7,7 +7,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
 /**
- * Tests the methods in the {@link BuildIteratorTest} class.
+ * Tests the methods in the {@link BuildIterator} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
@@ -24,25 +24,20 @@ class BuildIteratorTest extends AbstractTestCase
             new RecursiveDirectoryIterator(__DIR__)
         );
 
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('buildFromIterator')
+            ->with(
+                $this->equalTo($iterator),
+                $this->equalTo(__DIR__)
+            );
+
         $this->invokeSubject(
             array(
                 'iterator' => $iterator,
                 'base' => __DIR__
             )
-        );
-
-        $args = $this->subject->getArguments();
-
-        $this->assertSame(
-            $iterator,
-            $args['iterator'],
-            'Make sure the iterator is provided.'
-        );
-
-        $this->assertEquals(
-            __DIR__,
-            $args['base'],
-            'Make sure the base directory path is provided.'
         );
     }
 }

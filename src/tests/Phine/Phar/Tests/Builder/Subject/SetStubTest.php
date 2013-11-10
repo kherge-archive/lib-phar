@@ -20,18 +20,18 @@ class SetStubTest extends AbstractTestCase
     {
         $stub = '<?php __HALT_COMPILER();';
 
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('setStub')
+            ->with(
+                $this->equalTo($stub)
+            );
+
         $this->invokeSubject(
             array(
                 'stub' => $stub
             )
-        );
-
-        $args = $this->subject->getArguments();
-
-        $this->assertEquals(
-            $stub,
-            $args['stub'],
-            'Make sure the stub is provided.'
         );
     }
 }

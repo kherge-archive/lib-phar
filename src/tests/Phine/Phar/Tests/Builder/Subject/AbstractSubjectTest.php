@@ -11,7 +11,7 @@ use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * Tests the methods in the {@link AbstractSubjectTest} class.
+ * Tests the methods in the {@link AbstractSubject} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */

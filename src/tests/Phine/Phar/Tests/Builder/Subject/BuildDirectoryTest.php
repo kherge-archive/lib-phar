@@ -5,7 +5,7 @@ namespace Phine\Phar\Tests\Builder\Subject;
 use Phine\Phar\Builder;
 
 /**
- * Tests the methods in the {@link BuildDirectoryTest} class.
+ * Tests the methods in the {@link BuildDirectory} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
@@ -18,25 +18,20 @@ class BuildDirectoryTest extends AbstractTestCase
      */
     public function testDoLastStep()
     {
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('buildFromDirectory')
+            ->with(
+                $this->equalTo(__DIR__),
+                $this->equalTo('/Add/')
+            );
+
         $this->invokeSubject(
             array(
                 'dir' => __DIR__,
                 'regex' => '/Add/'
             )
-        );
-
-        $args = $this->subject->getArguments();
-
-        $this->assertEquals(
-            __DIR__,
-            $args['dir'],
-            'Make sure the directory path is provided.'
-        );
-
-        $this->assertEquals(
-            '/Add/',
-            $args['regex'],
-            'Make sure the regular expression is provided.'
         );
     }
 }

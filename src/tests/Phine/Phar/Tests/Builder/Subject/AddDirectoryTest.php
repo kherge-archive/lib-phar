@@ -5,7 +5,7 @@ namespace Phine\Phar\Tests\Builder\Subject;
 use Phine\Phar\Builder;
 
 /**
- * Tests the methods in the {@link AddDirectoryTest} class.
+ * Tests the methods in the {@link AddDirectory} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
@@ -18,16 +18,18 @@ class AddDirectoryTest extends AbstractTestCase
      */
     public function testDoLastStep()
     {
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('addEmptyDir')
+            ->with(
+                $this->equalTo('test')
+            );
+
         $this->invokeSubject(
             array(
                 'name' => 'test'
             )
-        );
-
-        $this->assertEquals(
-            'test',
-            $this->subject->getArguments()->offsetGet('name'),
-            'Make sure the directory name is provided.'
         );
     }
 }

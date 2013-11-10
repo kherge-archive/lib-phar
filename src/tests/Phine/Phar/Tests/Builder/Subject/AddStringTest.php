@@ -5,7 +5,7 @@ namespace Phine\Phar\Tests\Builder\Subject;
 use Phine\Phar\Builder;
 
 /**
- * Tests the methods in the {@link AddStringTest} class.
+ * Tests the methods in the {@link AddString} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
@@ -20,25 +20,20 @@ class AddStringTest extends AbstractTestCase
     {
         $contents = file_get_contents(__FILE__);
 
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('addFromString')
+            ->with(
+                $this->equalTo('test.php'),
+                $this->equalTo($contents)
+            );
+
         $this->invokeSubject(
             array(
                 'local' => 'test.php',
                 'contents' => $contents
             )
-        );
-
-        $args = $this->subject->getArguments();
-
-        $this->assertEquals(
-            'test.php',
-            $args['local'],
-            'Make sure the local name is provided.'
-        );
-
-        $this->assertEquals(
-            $contents,
-            $args['contents'],
-            'Make sure the contents are provided.'
         );
     }
 }

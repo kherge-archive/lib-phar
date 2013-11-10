@@ -5,7 +5,7 @@ namespace Phine\Phar\Tests\Builder\Subject;
 use Phine\Phar\Builder;
 
 /**
- * Tests the methods in the {@link AddFileTest} class.
+ * Tests the methods in the {@link AddFile} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
@@ -18,6 +18,24 @@ class AddFileTest extends AbstractTestCase
      */
     public function testDoLastStep()
     {
+        $this
+            ->phar
+            ->expects($this->at(0))
+            ->method('addFile')
+            ->with(
+                $this->equalTo(__FILE__),
+                $this->isNull()
+            );
+
+        $this
+            ->phar
+            ->expects($this->at(1))
+            ->method('addFile')
+            ->with(
+                $this->equalTo(__FILE__),
+                $this->equalTo('test.php')
+            );
+
         $this->invokeSubject(
             array(
                 'file' => __FILE__,
@@ -25,38 +43,11 @@ class AddFileTest extends AbstractTestCase
             )
         );
 
-        $args = $this->subject->getArguments();
-
-        $this->assertEquals(
-            __FILE__,
-            $args['file'],
-            'Make sure the file name is provided.'
-        );
-
-        $this->assertNull(
-            $args['local'],
-            'Make sure no local name is provided.'
-        );
-
         $this->invokeSubject(
             array(
                 'file' => __FILE__,
                 'local' => 'test.php'
             )
-        );
-
-        $args = $this->subject->getArguments();
-
-        $this->assertEquals(
-            __FILE__,
-            $args['file'],
-            'Make sure the file name is provided.'
-        );
-
-        $this->assertEquals(
-            'test.php',
-            $args['local'],
-            'Make sure the local name is provided.'
         );
     }
 }
