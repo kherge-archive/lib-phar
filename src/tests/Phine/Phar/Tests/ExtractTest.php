@@ -5,6 +5,7 @@ namespace Phine\Phar\Tests;
 use Exception;
 use Phine\Phar\Extract;
 use Phine\Phar\Manifest;
+use Phine\Phar\Manifest\FileInfo;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
 use Phine\Test\Temp;
@@ -94,6 +95,79 @@ class ExtractTest extends TestCase
     }
 
     /**
+     * Make sure we can read the contents of a file.
+     *
+     * If the file is compressed, it must be decompressed before it is returned.
+     * If the compression algorithm used does not have the supporting extension
+     * available, an exception should be thrown.
+     */
+    public function testExtractFile()
+    {
+        $file = realpath(__DIR__ . '/../../../../../res/compressed.phar');
+        $reader = new Reader($file);
+        $manifest = new Manifest($reader);
+        $extract = new Extract($manifest);
+
+        $files = $manifest->getFileList();
+
+        $this->assertEquals(
+            <<<CONTENTS
+<?php
+
+echo "This file was compressed using bzip2.\\n";
+CONTENTS
+            ,
+            $extract->extractFile($files[0]),
+            'The decompressed contents should be returned.'
+        );
+
+        $this->assertEquals(
+            <<<CONTENTS
+<?php
+
+echo "This file was compressed using gzip.\\n";
+CONTENTS
+            ,
+            $extract->extractFile($files[1]),
+            'The decompressed contents should be returned.'
+        );
+
+        Property::set(
+            $extract,
+            'compression',
+            array(
+                'bzip2' => false,
+                'gzip' => true,
+            )
+        );
+
+        $this->expectException(
+            'Phine\\Phar\\Exception\\FileException',
+            'The "bz2" extension is required to decompress "bzip2.php".',
+            function () use ($extract, $files) {
+                $extract->extractFile($files[0]);
+            }
+        );
+
+        Property::set(
+            $extract,
+            'compression',
+            array(
+                'bzip2' => true,
+                'gzip' => false,
+            )
+        );
+
+        $this->expectException(
+            'Phine\\Phar\\Exception\\FileException',
+            'The "zlib" extension is required to decompress "gzip.php".',
+            function () use ($extract, $files) {
+                $extract->extractFile($files[1]);
+            }
+        );
+    }
+
+    /**
      * Make sure we can extract the files of an archive.
      *
      * Also make sure that we can be selective about the files we choose. A
@@ -149,7 +223,8 @@ FILE
         $this->extract->extractTo(
             $this->dir,
             function ($file) use ($want) {
-                if ($file['name']['data'] !== $want) {
+                /** @var FileInfo $file */
+                if ($file->getName() !== $want) {
                     return true;
                 }
 
@@ -172,79 +247,6 @@ FILE
         );
 
         $this->extract->extractTo('/does/not/exist');
-    }
-
-    /**
-     * Make sure we can read the contents of a file.
-     *
-     * If the file is compressed, it must be decompressed before it is returned.
-     * If the compression algorithm used does not have the supporting extension
-     * available, an exception should be thrown.
-     */
-    public function testGetFile()
-    {
-        $file = realpath(__DIR__ . '/../../../../../res/compressed.phar');
-        $reader = new Reader($file);
-        $manifest = new Manifest($reader);
-        $extract = new Extract($manifest);
-
-        $files = $manifest->getFileList();
-
-        $this->assertEquals(
-            <<<CONTENTS
-<?php
-
-echo "This file was compressed using bzip2.\\n";
-CONTENTS
-            ,
-            $extract->getFile($files[0]),
-            'The decompressed contents should be returned.'
-        );
-
-        $this->assertEquals(
-            <<<CONTENTS
-<?php
-
-echo "This file was compressed using gzip.\\n";
-CONTENTS
-            ,
-            $extract->getFile($files[1]),
-            'The decompressed contents should be returned.'
-        );
-
-        Property::set(
-            $extract,
-            'compression',
-            array(
-                'bzip2' => false,
-                'gzip' => true,
-            )
-        );
-
-        $this->expectException(
-            'Phine\\Phar\\Exception\\FileException',
-            'The "bz2" extension is required to decompress "bzip2.php".',
-            function () use ($extract, $files) {
-                $extract->getFile($files[0]);
-            }
-        );
-
-        Property::set(
-            $extract,
-            'compression',
-            array(
-                'bzip2' => true,
-                'gzip' => false,
-            )
-        );
-
-        $this->expectException(
-            'Phine\\Phar\\Exception\\FileException',
-            'The "zlib" extension is required to decompress "gzip.php".',
-            function () use ($extract, $files) {
-                $extract->getFile($files[1]);
-            }
-        );
     }
 
     /**

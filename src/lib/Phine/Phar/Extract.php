@@ -3,10 +3,10 @@
 namespace Phine\Phar;
 
 use Phine\Exception\Exception;
-use Phine\Path\Path;
 use Phine\Phar\Exception\FileException;
 use Phine\Phar\File\Reader;
 use Phine\Phar\File\Writer;
+use Phine\Phar\Manifest\FileInfo;
 
 /**
  * Extracts the contents of an archive.
@@ -51,6 +51,45 @@ class Extract
     }
 
     /**
+     * Returns the contents of a file from the manifest.
+     *
+     * @param FileInfo $file The file information from the manifest.
+     *
+     * @return string The decompressed file contents.
+     *
+     * @throws Exception
+     * @throws FileException If the file could not be decompressed.
+     */
+    public function extractFile(FileInfo $file)
+    {
+        $this->reader->seek($file->getOffset());
+
+        $contents = $this->reader->read($file->getCompressedSize());
+
+        if ($file->isCompressed(Manifest::BZ2)) {
+            if (!$this->compression['bzip2']) {
+                throw FileException::createUsingFormat(
+                    'The "bz2" extension is required to decompress "%s".',
+                    $file->getName()
+                );
+            }
+
+            $contents = bzdecompress($contents);
+        } elseif ($file->isCompressed(Manifest::GZ)) {
+            if (!$this->compression['gzip']) {
+                throw FileException::createUsingFormat(
+                    'The "zlib" extension is required to decompress "%s".',
+                    $file->getName()
+                );
+            }
+
+            $contents = gzinflate($contents);
+        }
+
+        return $contents;
+    }
+
+    /**
      * Extracts one or more files to an output directory.
      *
      * If a `$filter` callable is provided, it will be called with each file
@@ -69,14 +108,6 @@ class Extract
     public function extractTo($dir, $filter = null)
     {
         $files = $this->manifest->getFileList();
-
-        array_walk(
-            $files,
-            function (&$file) {
-                $file['name']['data'] = Path::canonical($file['name']['data']);
-            }
-        );
-
         $count = 0;
 
         foreach ($files as $file) {
@@ -84,7 +115,7 @@ class Extract
                 continue;
             }
 
-            $path = "$dir/{$file['name']['data']}";
+            $path = $dir . '/' . $file->getName();
             $base = dirname($path);
 
             if (!is_dir($base)) {
@@ -93,53 +124,14 @@ class Extract
                 }
             }
 
-            $writer = new Writer("$dir/{$file['name']['data']}");
+            $writer = new Writer($path);
 
-            $writer->write($this->getFile($file));
+            $writer->write($this->extractFile($file));
 
             $count++;
         }
 
         return $count;
-    }
-
-    /**
-     * Returns the contents of a file from the manifest.
-     *
-     * @param array $file The file information from the manifest.
-     *
-     * @return string The decompressed file contents.
-     *
-     * @throws Exception
-     * @throws FileException If the file could not be decompressed.
-     */
-    public function getFile(array $file)
-    {
-        $this->reader->seek($file['offset']);
-
-        $contents = $this->reader->read($file['size']['compressed']);
-
-        if ($file['flags'] & Manifest::BZ2) {
-            if (!$this->compression['bzip2']) {
-                throw FileException::createUsingFormat(
-                    'The "bz2" extension is required to decompress "%s".',
-                    $file['name']['data']
-                );
-            }
-
-            $contents = bzdecompress($contents);
-        } elseif ($file['flags'] & Manifest::GZ) {
-            if (!$this->compression['gzip']) {
-                throw FileException::createUsingFormat(
-                    'The "zlib" extension is required to decompress "%s".',
-                    $file['name']['data']
-                );
-            }
-
-            $contents = gzinflate($contents);
-        }
-
-        return $contents;
     }
 
     /**

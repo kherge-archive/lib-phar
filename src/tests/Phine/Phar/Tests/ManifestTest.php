@@ -179,49 +179,30 @@ class ManifestTest extends TestCase
      */
     public function testGetFileList()
     {
-        $this->assertEquals(
-            array(
-                array(
-                    'crc32'=> 4091535927,
-                    'flags' => 0,
-                    'metadata' => array(
-                        'size' => 0,
-                    ),
-                    'name' => array(
-                        'data' => 'bin/main',
-                        'size' => 8,
-                    ),
-                    'offset' => 264,
-                    'size' => array(
-                        'compressed' => 77,
-                        'uncompressed' => 77,
-                    ),
-                    'time' => 1383980172,
-                ),
-                array(
-                    'crc32'=> 2063568359,
-                    'flags' => 0,
-                    'metadata' => array(
-                        'data' => array(
-                            'rand' => 1317613458
-                        ),
-                        'size' => 30,
-                    ),
-                    'name' => array(
-                        'data' => 'src/Put.php',
-                        'size' => 11,
-                    ),
-                    'offset' => 341,
-                    'size' => array(
-                        'compressed' => 104,
-                        'uncompressed' => 104,
-                    ),
-                    'time' => 1383980172,
-                ),
-            ),
-            $this->manifest->getFileList(),
-            'There should be two files with the appropriate details.'
-        );
+        $files = $this->manifest->getFileList();
+
+        $this->assertEquals(4091535927, $files[0]->getCrc32());
+        $this->assertEquals(0, $files[0]->getFlags());
+        $this->assertEquals(0, $files[0]->getMetadataSize());
+        $this->assertNull($files[0]->getMetadata());
+        $this->assertEquals('bin/main', $files[0]->getName());
+        $this->assertEquals(8, $files[0]->getNameSize());
+        $this->assertEquals(264, $files[0]->getOffset());
+        $this->assertEquals(77, $files[0]->getCompressedSize());
+        $this->assertEquals(77, $files[0]->getSize());
+        $this->assertEquals(1383980172, $files[0]->getTimestamp());
+        $this->assertFalse($files[0]->hasMetadata());
+
+        $this->assertEquals(2063568359, $files[1]->getCrc32());
+        $this->assertEquals(0, $files[1]->getFlags());
+        $this->assertEquals(30, $files[1]->getMetadataSize());
+        $this->assertEquals(array('rand' => 1317613458), $files[1]->getMetadata());
+        $this->assertEquals('src/Put.php', $files[1]->getName());
+        $this->assertEquals(11, $files[1]->getNameSize());
+        $this->assertEquals(341, $files[1]->getOffset());
+        $this->assertEquals(104, $files[1]->getCompressedSize());
+        $this->assertEquals(104, $files[1]->getSize());
+        $this->assertEquals(1383980172, $files[1]->getTimestamp());
     }
 
     /**

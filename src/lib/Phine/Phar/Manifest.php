@@ -2,8 +2,10 @@
 
 namespace Phine\Phar;
 
+use Phine\Path\Path;
 use Phine\Phar\Exception\ManifestException;
 use Phine\Phar\File\Reader;
+use Phine\Phar\Manifest\FileInfo;
 
 /**
  * Reads the manifest of a PHP archive file.
@@ -180,7 +182,7 @@ class Manifest
     /**
      * Returns the list of files in the manifest.
      *
-     * @return array The list of files in the manifest.
+     * @return FileInfo[] The list of files in the manifest.
      */
     public function getFileList()
     {
@@ -301,6 +303,7 @@ class Manifest
                 'crc32'=> null,
                 'flags' => null,
                 'metadata' => array(
+                    'data' => null,
                     'size' => null,
                 ),
                 'name' => array(
@@ -330,8 +333,19 @@ class Manifest
                 );
             }
 
-            $files[] = $file;
             $offset += $file['size']['compressed'];
+            $files[] = new FileInfo(
+                $file['offset'],
+                $file['name']['size'],
+                Path::canonical($file['name']['data']),
+                $file['size']['uncompressed'],
+                $file['time'],
+                $file['size']['compressed'],
+                $file['crc32'],
+                $file['flags'],
+                $file['metadata']['size'],
+                $file['metadata']['data']
+            );
         }
 
         return $files;
