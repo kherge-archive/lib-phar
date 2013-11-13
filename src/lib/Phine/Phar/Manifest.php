@@ -110,8 +110,16 @@ class Manifest
             }
         }
 
+        $reader->seek(1, SEEK_CUR);
+
         if ($offset === (count(self::$sequence) - 1)) {
-            return $reader->getPosition() + 3;
+            $position = $reader->getPosition();
+
+            if ("\r\n" === $reader->read(2)) {
+                return $position + 2;
+            }
+
+            return $position;
         }
 
         return null;

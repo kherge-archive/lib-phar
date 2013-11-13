@@ -81,6 +81,7 @@ class ManifestTest extends TestCase
      */
     public function testFindOffset()
     {
+        // using a custom stub
         $this->assertEquals(
             94,
             Manifest::findOffset(new Reader($this->file)),
@@ -90,6 +91,13 @@ class ManifestTest extends TestCase
         $this->assertNull(
             Manifest::findOffset(new Reader(__FILE__)),
             'No offset should be found in non-archive files.'
+        );
+
+        // using the default stub
+        $this->assertEquals(
+            6683,
+            Manifest::findOffset(new Reader(dirname($this->file) . '/default.phar')),
+            'The offset returned should be 6683.'
         );
     }
 
