@@ -333,11 +333,14 @@ class Manifest
                 );
             }
 
+            $file['name']['data'] = Path::split($file['name']['data']);
+            $file['name']['data'] = join('/', $file['name']['data']);
+
             $offset += $file['size']['compressed'];
             $files[] = new FileInfo(
                 $file['offset'],
                 $file['name']['size'],
-                Path::canonical($file['name']['data']),
+                $file['name']['data'],
                 $file['size']['uncompressed'],
                 $file['time'],
                 $file['size']['compressed'],
