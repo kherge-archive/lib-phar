@@ -44,6 +44,28 @@ class StubTest extends TestCase
     }
 
     /**
+     * Make sure that we can add source code to embed.
+     */
+    public function testAddSource()
+    {
+        $source = 'echo "Hello, world!\n";';
+
+        $this->assertSame(
+            $this->stub,
+            $this->stub->addSource($source),
+            'The method should return its object.'
+        );
+
+        $this->assertEquals(
+            array(
+                array($source, true)
+            ),
+            Property::get($this->stub, 'source'),
+            'The source code should be added.'
+        );
+    }
+
+    /**
      * Make sure we can create a new instance of the class.
      */
     public function testCreate()
@@ -124,6 +146,16 @@ BANNER
             )
         );
 
+        // inject a list of source code to embed
+        Property::set(
+            $this->stub,
+            'source',
+            array(
+                array('echo "before\n";', false),
+                array('echo "after\n";', true)
+            )
+        );
+
         $this->assertEquals(
             <<<STUB
 #!/usr/bin/env php
@@ -148,8 +180,12 @@ Phar::mungServer(array (
 Phar::mount('internal/file.php', '/external/file.php');
 Phar::loadPhar('/path/to/file.phar', 'file.phar');
 
+echo "before\\n";
+
 require 'phar://' . __FILE__ . '/path/to/require.php';
 require '/path/to/require.php';
+
+echo "after\\n";
 
 __HALT_COMPILER();
 STUB

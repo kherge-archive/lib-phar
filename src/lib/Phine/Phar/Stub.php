@@ -66,6 +66,13 @@ class Stub
     private $shebang = '#!/usr/bin/env php';
 
     /**
+     * The source code to embed.
+     *
+     * @var array
+     */
+    private $source = array();
+
+    /**
      * The web archive settings.
      *
      * @var array
@@ -83,6 +90,25 @@ class Stub
     public function addRequire($path, $internal = true)
     {
         $this->require[] = array($path, $internal);
+
+        return $this;
+    }
+
+    /**
+     * Adds source code to embed.
+     *
+     * If `$after` is `true`, the source code will be embedded after all of
+     * the `require`s have been added to the stub. If it is `false`, it will
+     * be embedded before the `require`s.
+     *
+     * @param string  $source The source code.
+     * @param boolean $after  Embed after the require(s)?
+     *
+     * @return Stub The stub generator.
+     */
+    public function addSource($source, $after = true)
+    {
+        $this->source[] = array($source, $after);
 
         return $this;
     }
@@ -171,6 +197,16 @@ class Stub
             );
         }
 
+        if ($this->source) {
+            $stub .= "\n";
+        }
+
+        foreach ($this->source as $source) {
+            if (!$source[1]) {
+                $stub .= "{$source[0]}\n";
+            }
+        }
+
         if ($this->require
             && ($this->mapPhar
                 || $this->webPhar
@@ -194,6 +230,16 @@ class Stub
             }
 
             $stub .= "require $file;\n";
+        }
+
+        if ($this->source) {
+            $stub .= "\n";
+        }
+
+        foreach ($this->source as $source) {
+            if ($source[1]) {
+                $stub .= "{$source[0]}\n";
+            }
         }
 
         $stub .= "\n__HALT_COMPILER();";
