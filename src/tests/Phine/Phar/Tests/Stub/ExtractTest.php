@@ -4,9 +4,11 @@ namespace Phine\Phar\Tests\Stub;
 
 use Exception;
 use Phine\Phar\Stub\Extract;
+use Phine\Test\Method;
 use Phine\Test\Property;
 use Phine\Test\Temp;
 use PHPUnit_Framework_TestCase as TestCase;
+use RuntimeException;
 
 /**
  * Performs unit tests on the `Extract` class.
@@ -14,8 +16,6 @@ use PHPUnit_Framework_TestCase as TestCase;
  * @see Extract
  *
  * @author Kevin Herrera <kevin@herrera.io>
- *
- * @todo Create tests for error handling.
  */
 class ExtractTest extends TestCase
 {
@@ -95,6 +95,49 @@ class ExtractTest extends TestCase
     }
 
     /**
+     * Make sure that file extraction errors are properly handled.
+     */
+    public function testExtractFileErrors()
+    {
+        $extract = $this->extract;
+        $temp = $this->temp;
+
+        Property::set(
+            $extract,
+            'compression',
+            array(
+                'bzip2' => false,
+                'gzip' => true,
+            )
+        );
+
+        $this->expectException(
+            'RuntimeException',
+            'The "bz2" extension is required to decompress "bzip2.php".',
+            function () use ($extract, $temp) {
+                $extract->to($temp->createDir());
+            }
+        );
+
+        Property::set(
+            $extract,
+            'compression',
+            array(
+                'bzip2' => true,
+                'gzip' => false,
+            )
+        );
+
+        $this->expectException(
+            'RuntimeException',
+            'The "zlib" extension is required to decompress "gzip.php".',
+            function () use ($extract, $temp) {
+                $extract->to($temp->createDir());
+            }
+        );
+    }
+
+    /**
      * Make sure a new instance is returned for the file.
      */
     public function testFrom()
@@ -115,6 +158,56 @@ class ExtractTest extends TestCase
     }
 
     /**
+     * Make sure we can support a variety of stub formats, or none at all.
+     */
+    public function testFindOffset()
+    {
+        // using a custom stub
+        $extract = new Extract(
+            realpath(__DIR__ . '/../../../../../../res/example.phar')
+        );
+
+        $this->assertEquals(
+            94,
+            Method::invoke($extract, 'findOffset'),
+            'The offset returned should be 94.'
+        );
+
+        $extract = new Extract(__FILE__);
+
+        $this->assertNull(
+            Method::invoke($extract, 'findOffset'),
+            'No offset should be found in non-archive files.'
+        );
+
+        // using the default stub
+        $extract = new Extract(
+            realpath(__DIR__ . '/../../../../../../res/default.phar')
+        );
+
+        $this->assertEquals(
+            6683,
+            Method::invoke($extract, 'findOffset'),
+            'The offset returned should be 6683.'
+        );
+    }
+
+    /**
+     * Make sure an exception is thrown if we can't open the file.
+     */
+    public function testGetHandleError()
+    {
+        Property::set($this->extract, 'file', '/does/not/exist');
+
+        $this->setExpectedException(
+            'RuntimeException',
+            'failed to open stream'
+        );
+
+        Method::invoke($this->extract, 'getHandle');
+    }
+
+    /**
      * Make sure we can get a semi-compacted version of the class's source.
      */
     public function testGetSource()
@@ -123,6 +216,56 @@ class ExtractTest extends TestCase
             '/^final class Extract/',
             Extract::getSource(),
             'The source code should be returned.'
+        );
+    }
+
+    /**
+     * Make sure an exception is thrown if we can't get the position.
+     */
+    public function testGetPositionError()
+    {
+        Property::set($this->extract, 'handle', 'test');
+
+        try {
+            Method::invoke($this->extract, 'getPosition');
+        } catch (RuntimeException $exception) {
+        }
+
+        Property::set($this->extract, 'handle', null);
+
+        $this->setExpectedException(
+            'RuntimeException',
+            'expects parameter 1 to be resource, string given'
+        );
+
+        /** @noinspection PhpUndefinedVariableInspection */
+        throw $exception;
+    }
+
+    /**
+     * Make sure that error handling for reading is properly done.
+     */
+    public function testReadError()
+    {
+        $extract = $this->extract;
+
+        $this->expectException(
+            'RuntimeException',
+            'fread(): Length parameter must be greater than 0',
+            function () use ($extract) {
+                Method::invoke($extract, 'read', -4);
+            }
+        );
+
+        $size = filesize($this->file);
+        $up = $size + 1;
+
+        $this->expectException(
+            'RuntimeException',
+            "Only read $size bytes of $up from \"{$this->file}\".",
+            function () use ($extract, $up) {
+                Method::invoke($extract, 'read', $up);
+            }
         );
     }
 
