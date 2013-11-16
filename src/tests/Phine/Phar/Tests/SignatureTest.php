@@ -8,6 +8,7 @@ use Phine\Phar\Signature\Algorithm\AlgorithmInterface;
 use Phine\Phar\Signature\Algorithm\SHA1;
 use Phine\Phar\Test\Algorithm;
 use Phine\Test\Property;
+use Phine\Test\Temp;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -37,6 +38,13 @@ class SignatureTest extends TestCase
      * @var Signature
      */
     private $signature;
+
+    /**
+     * The temporary file manager.
+     *
+     * @var Temp
+     */
+    private $temp;
 
     /**
      * Make sure we can add an algorithm to use.
@@ -167,7 +175,8 @@ class SignatureTest extends TestCase
      */
     protected function setUp()
     {
-        $this->file = tempnam(sys_get_temp_dir(), 'phar');
+        $this->temp = new Temp();
+        $this->file = $this->temp->createFile();
         $this->hash = strtoupper(hash('crc32', 'This is the test content.'));
 
         file_put_contents(
@@ -191,6 +200,6 @@ class SignatureTest extends TestCase
      */
     protected function tearDown()
     {
-        unlink($this->file);
+        $this->temp->purgePaths();
     }
 }

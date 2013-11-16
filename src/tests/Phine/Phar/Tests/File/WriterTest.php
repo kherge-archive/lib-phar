@@ -5,6 +5,7 @@ namespace Phine\Phar\Tests\File;
 use Phine\Phar\Exception\FileException;
 use Phine\Phar\File\Writer;
 use Phine\Test\Property;
+use Phine\Test\Temp;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -20,6 +21,13 @@ class WriterTest extends TestCase
      * @var string
      */
     private $file;
+
+    /**
+     * The temporary file manager.
+     *
+     * @var Temp
+     */
+    private $temp;
 
     /**
      * The writer instance being tested.
@@ -175,8 +183,17 @@ class WriterTest extends TestCase
      */
     protected function setUp()
     {
-        unlink($this->file = tempnam(sys_get_temp_dir(), 'phar-'));
+        $this->temp = new Temp();
+        $this->file = $this->temp->createFile();
 
         $this->writer = new Writer($this->file);
+    }
+
+    /**
+     * Cleans up the temporary paths.
+     */
+    protected function tearDown()
+    {
+        $this->temp->purgePaths();
     }
 }

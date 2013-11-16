@@ -5,6 +5,7 @@ namespace Phine\Phar\Tests\Signature\Algorithm;
 use Phine\Phar\File\Reader;
 use Phine\Phar\Signature\Algorithm\AbstractHashAlgorithm;
 use Phine\Phar\Test\Algorithm;
+use Phine\Test\Temp;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -43,6 +44,13 @@ class AbstractHashAlgorithmTest extends TestCase
     private $reader;
 
     /**
+     * The temporary file manager.
+     *
+     * @var Temp
+     */
+    private $temp;
+
+    /**
      * Make sure we can read the hash from the archive file.
      */
     public function testReadSignature()
@@ -65,7 +73,8 @@ class AbstractHashAlgorithmTest extends TestCase
     protected function setUp()
     {
         $this->algorithm = new Algorithm();
-        $this->file = tempnam(sys_get_temp_dir(), 'phar');
+        $this->temp = new Temp();
+        $this->file = $this->temp->createFile();
         $this->hash = strtoupper(hash('crc32', 'This is the test contents.'));
         $this->reader = new Reader($this->file);
 
@@ -86,6 +95,6 @@ class AbstractHashAlgorithmTest extends TestCase
      */
     protected function tearDown()
     {
-        unlink($this->file);
+        $this->temp->purgePaths();
     }
 }

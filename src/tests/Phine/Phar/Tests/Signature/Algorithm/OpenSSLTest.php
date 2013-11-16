@@ -4,6 +4,7 @@ namespace Phine\Phar\Tests\Signature\Algorithm;
 
 use Phine\Phar\File\Reader;
 use Phine\Phar\Signature\Algorithm\OpenSSL;
+use Phine\Test\Temp;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -78,6 +79,13 @@ KEY;
     private $reader;
 
     /**
+     * The temporary file manager.
+     *
+     * @var Temp
+     */
+    private $temp;
+
+    /**
      * Make sure that we get back the expected flag.
      */
     public function testGetFlag()
@@ -136,7 +144,11 @@ KEY;
     protected function setUp()
     {
         $this->algorithm = new OpenSSL();
-        $this->file = tempnam(sys_get_temp_dir(), 'phar');
+        $this->temp = new Temp();
+        $this->file = $this->temp->createDir() . '/test';
+
+        touch($this->file);
+
         $this->reader = new Reader($this->file);
 
         $resource = openssl_pkey_get_private($this->key);
@@ -175,10 +187,6 @@ KEY;
      */
     protected function tearDown()
     {
-        unlink($this->file);
-
-        if (file_exists($this->file . '.pubkey')) {
-            unlink($this->file . '.pubkey');
-        }
+        $this->temp->purgePaths();
     }
 }
