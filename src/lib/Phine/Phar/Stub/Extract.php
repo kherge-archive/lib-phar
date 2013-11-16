@@ -121,6 +121,37 @@ final class Extract
     }
 
     /**
+     * Returns the embeddable source for this class.
+     *
+     * @return string The source code.
+     *
+     * @throws RuntimeException If the file could not be read.
+     */
+    public static function getSource()
+    {
+        if (false === ($code = @file(__FILE__))) {
+            $error = error_get_last();
+
+            throw new RuntimeException($error['message']);
+        }
+
+        $code = array_slice($code, 6);
+
+        foreach ($code as $i => $line) {
+            if ('' === trim($line)) {
+                unset($code[$i]);
+                continue;
+            }
+
+            if (preg_match('{^\s*(/\*+|\*+)}', $line)) {
+                unset($code[$i]);
+            }
+        }
+
+        return join('', $code);
+    }
+
+    /**
      * Extracts one or more files to an output directory.
      *
      * @param string $dir The output directory path.

@@ -115,6 +115,18 @@ class ExtractTest extends TestCase
     }
 
     /**
+     * Make sure we can get a semi-compacted version of the class's source.
+     */
+    public function testGetSource()
+    {
+        $this->assertRegExp(
+            '/^final class Extract/',
+            Extract::getSource(),
+            'The source code should be returned.'
+        );
+    }
+
+    /**
      * Make sure we can extract the files of an archive.
      *
      * If a directory path is not provided, make sure that the standard
