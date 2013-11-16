@@ -2,6 +2,8 @@
 
 namespace Phine\Phar;
 
+use Phine\Phar\Stub\Extract as Embed;
+
 /**
  * Generates a new PHP archive stub.
  *
@@ -57,6 +59,13 @@ class Stub
      * @var array
      */
     private $require = array();
+
+    /**
+     * The "self extracting" flag.
+     *
+     * @var boolean
+     */
+    private $selfExtract = false;
 
     /**
      * The archive shebang line.
@@ -152,6 +161,10 @@ class Stub
             );
         }
 
+        if ($this->selfExtract) {
+            $stub .= "if (class_exists('Phar')) {\n";
+        }
+
         if ($this->mapPhar) {
             $stub .= sprintf(
                 "Phar::mapPhar(%s);\n",
@@ -197,6 +210,15 @@ class Stub
             );
         }
 
+        if ($this->selfExtract) {
+            $stub .= <<<STUB
+} else {
+    set_include_path(Extract::from(__FILE__)->to() . PATH_SEPARATOR . get_include_path());
+}
+
+STUB;
+        }
+
         if ($this->source) {
             $stub .= "\n";
         }
@@ -240,6 +262,10 @@ class Stub
             if ($source[1]) {
                 $stub .= "{$source[0]}\n";
             }
+        }
+
+        if ($this->selfExtract) {
+            $stub .= "\n" . trim(Embed::getSource()) . "\n";
         }
 
         $stub .= "\n__HALT_COMPILER();";
@@ -315,6 +341,20 @@ class Stub
     public function mungServer(array $vars)
     {
         $this->mungServer = $vars;
+
+        return $this;
+    }
+
+    /**
+     * Toggles making the archive self extracting.
+     *
+     * @param boolean $extract Make archive self extracting?
+     *
+     * @return boolean The stub generator.
+     */
+    public function selfExtracting($extract = true)
+    {
+        $this->selfExtract = $extract;
 
         return $this;
     }

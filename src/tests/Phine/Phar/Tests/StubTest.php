@@ -4,6 +4,7 @@ namespace Phine\Phar\Tests;
 
 use Phar;
 use Phine\Phar\Stub;
+use Phine\Phar\Stub\Extract;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -156,6 +157,11 @@ BANNER
             )
         );
 
+        // enable self extraction
+        Property::set($this->stub, 'selfExtract', true);
+
+        $code = trim(Extract::getSource());
+
         $this->assertEquals(
             <<<STUB
 #!/usr/bin/env php
@@ -169,6 +175,7 @@ BANNER
  *     including the indentation.
  */
 
+if (class_exists('Phar')) {
 Phar::mapPhar('test.phar');
 Phar::webPhar('web.phar', 'index.php', '404.php', array (
   'phps' => 1,
@@ -179,6 +186,9 @@ Phar::mungServer(array (
 ));
 Phar::mount('internal/file.php', '/external/file.php');
 Phar::loadPhar('/path/to/file.phar', 'file.phar');
+} else {
+    set_include_path(Extract::from(__FILE__)->to() . PATH_SEPARATOR . get_include_path());
+}
 
 echo "before\\n";
 
@@ -186,6 +196,8 @@ require 'phar://' . __FILE__ . '/path/to/require.php';
 require '/path/to/require.php';
 
 echo "after\\n";
+
+$code
 
 __HALT_COMPILER();
 STUB
