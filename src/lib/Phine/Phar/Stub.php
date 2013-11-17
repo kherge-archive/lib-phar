@@ -162,7 +162,11 @@ class Stub
         }
 
         if ($this->selfExtract) {
-            $stub .= "if (class_exists('Phar')) {\n";
+            $stub .= <<<STUB
+if (class_exists('Phar')) {
+\$include = 'phar://' . __FILE__;
+
+STUB;
         }
 
         if ($this->mapPhar) {
@@ -213,7 +217,8 @@ class Stub
         if ($this->selfExtract) {
             $stub .= <<<STUB
 } else {
-    set_include_path(Extract::from(__FILE__)->to() . PATH_SEPARATOR . get_include_path());
+\$include = Extract::from(__FILE__)->to();
+set_include_path(\$include . PATH_SEPARATOR . get_include_path());
 }
 
 STUB;
@@ -246,7 +251,7 @@ STUB;
                     $file[0] = '/' . $file[0];
                 }
 
-                $file = '\'phar://\' . __FILE__ . ' . $export($file[0]);
+                $file = '$include . ' . $export($file[0]);
             } else {
                 $file = $export($file[0]);
             }

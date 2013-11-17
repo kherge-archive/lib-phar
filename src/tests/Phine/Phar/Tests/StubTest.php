@@ -176,6 +176,7 @@ BANNER
  */
 
 if (class_exists('Phar')) {
+\$include = 'phar://' . __FILE__;
 Phar::mapPhar('test.phar');
 Phar::webPhar('web.phar', 'index.php', '404.php', array (
   'phps' => 1,
@@ -187,12 +188,13 @@ Phar::mungServer(array (
 Phar::mount('internal/file.php', '/external/file.php');
 Phar::loadPhar('/path/to/file.phar', 'file.phar');
 } else {
-    set_include_path(Extract::from(__FILE__)->to() . PATH_SEPARATOR . get_include_path());
+\$include = Extract::from(__FILE__)->to();
+set_include_path(\$include . PATH_SEPARATOR . get_include_path());
 }
 
 echo "before\\n";
 
-require 'phar://' . __FILE__ . '/path/to/require.php';
+require \$include . '/path/to/require.php';
 require '/path/to/require.php';
 
 echo "after\\n";
