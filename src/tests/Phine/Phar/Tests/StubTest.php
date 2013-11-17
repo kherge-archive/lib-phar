@@ -308,6 +308,30 @@ STUB
     }
 
     /**
+     * Make sure we can set the self extract flag.
+     */
+    public function testSelfExtracting()
+    {
+        $this->assertSame(
+            $this->stub,
+            $this->stub->selfExtracting(),
+            'The method should return its object.'
+        );
+
+        $this->assertTrue(
+            Property::get($this->stub, 'selfExtract'),
+            'The self extract flag should be set to true by default.'
+        );
+
+        $this->stub->selfExtracting(false);
+
+        $this->assertFalse(
+            Property::get($this->stub, 'selfExtract'),
+            'The self extract flag should now be false.'
+        );
+    }
+
+    /**
      * Make sure we can set the banner comment.
      */
     public function testSetBanner()
