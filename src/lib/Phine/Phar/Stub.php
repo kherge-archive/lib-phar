@@ -350,7 +350,7 @@ STUB;
      *
      * @param boolean $extract Make archive self extracting?
      *
-     * @return boolean The stub generator.
+     * @return Stub The stub generator.
      */
     public function selfExtracting($extract = true)
     {
