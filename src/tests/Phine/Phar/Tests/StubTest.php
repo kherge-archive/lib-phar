@@ -224,6 +224,11 @@ STUB
         );
 
         $this->stub->interceptFileFuncs(false);
+
+        $this->assertFalse(
+            Property::get($this->stub, 'interceptFileFuncs'),
+            'The intercept flag should now be false.'
+        );
     }
 
     /**
