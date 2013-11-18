@@ -70,7 +70,7 @@ Via [Composer][]:
 Documentation
 -------------
 
-You can find the documentation in the [`docs/`](docs/) directory.
+You can find the [documentation here][].
 
 License
 -------
@@ -85,3 +85,4 @@ This library is available under the [MIT license](LICENSE).
 [Phine Observer]: https://github.com/phine/lib-observer
 [Phine Path]: https://github.com/phine/lib-path
 [Composer]: http://getcomposer.org/
+[documentation here]: https://phine.github.com/lib-phar
