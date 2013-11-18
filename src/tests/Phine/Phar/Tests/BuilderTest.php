@@ -5,6 +5,7 @@ namespace Phine\Phar\Tests;
 use ArrayIterator;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Subject\AbstractSubject;
+use Phine\Phar\Test\Observer;
 use Phine\Test\Property;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit_Framework_TestCase as TestCase;
@@ -218,6 +219,21 @@ class BuilderTest extends TestCase
             $this->phar,
             $this->builder->getPhar(),
             'Make sure we get back the same Phar instance we put in.'
+        );
+    }
+
+    /**
+     * Make sure the observer registration shortcut works.
+     */
+    public function testObserve()
+    {
+        $observer = new Observer();
+
+        $this->builder->observe(Builder::ADD_DIR, $observer);
+
+        $this->assertTrue(
+            $this->builder->getSubject(Builder::ADD_DIR)->hasObserver($observer),
+            'The observer should be registered to the correct subject.'
         );
     }
 

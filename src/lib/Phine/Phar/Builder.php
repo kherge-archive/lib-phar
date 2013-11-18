@@ -189,13 +189,13 @@ class Builder extends Collection
     }
 
     /**
-     * Registers a new event listener for a subject.
+     * Registers a new event observer for a subject.
      *
      * @param string            $id       The event subject identifier.
      * @param ObserverInterface $observer The event subject observer.
      * @param integer           $priority The priority of the observer.
      */
-    public function listenTo(
+    public function observe(
         $id,
         ObserverInterface $observer,
         $priority = SubjectInterface::FIRST_PRIORITY
