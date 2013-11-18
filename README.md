@@ -8,49 +8,41 @@ Phar
 
 A PHP library for accessing and creating PHP archives.
 
-Usage
+Example
 -----
 
 ```php
 use Phine\Observer\ObserverInterface;
 use Phine\Observer\SubjectInterface;
 use Phine\Phar\Builder;
-use Phine\Phar\Builder\Subject\AddString;
-use Phine\Phar\Stub;
 
 class Replace implements ObserverInterface
 {
     public function receiveUpdate(SubjectInterface $subject)
     {
-        /** @var AddString $subject */
+        /** @var Builder\Arguments $args */
+        $args = $subject->getArguments();
 
-        $arguments = $subject->getArguments();
-        $arguments['contents'] = str_replace(
-            '@name@',
+        $args['contents'] = str_replace(
+            '{name}',
             'world',
-            $arguments['contents']
+            $args['contents']
         );
     }
 }
 
-$phar = Builder::create('example.phar');
-
-$phar
-    ->getSubject(Builder::ADD_STRING)
-    ->registerObserver(new Replace());
-
-$phar->addFromString(
-    'hello.php',
-    '<?php echo "Hello, @name@!\n";'
+$builder = Builder::create('example.phar');
+$builder->observe(Builder::ADD_STRING, new Replace());
+$builder->addFromString(
+    'index.php',
+    '<?php echo "Hello, {name}!\n";'
 );
-
-$phar->setStub(
-    Stub::create()
-        ->addRequire('hello.php')
-        ->getStub()
-);
-
 ```
+
+Documentation
+-------------
+
+You can find the [documentation here][].
 
 Requirement
 -----------
@@ -66,11 +58,6 @@ Installation
 Via [Composer][]:
 
     $ composer require "phine/phar=~1.0"
-
-Documentation
--------------
-
-You can find the [documentation here][].
 
 License
 -------
