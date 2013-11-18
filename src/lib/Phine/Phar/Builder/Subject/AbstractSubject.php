@@ -83,7 +83,7 @@ abstract class AbstractSubject extends Subject
 
         $this->updating = false;
 
-        $this->doLastStep();
+        return $this->doLastStep();
     }
 
     /**
@@ -108,6 +108,8 @@ abstract class AbstractSubject extends Subject
      * This method will only be called if all observers have been successfully
      * notified. If an error is triggered or the update process is interrupted,
      * this method will not be called.
+     *
+     * @return mixed Any value, if available.
      */
     abstract protected function doLastStep();
 }

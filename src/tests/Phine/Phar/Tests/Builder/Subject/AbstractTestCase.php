@@ -50,7 +50,8 @@ abstract class AbstractTestCase extends TestCase
     protected function invokeSubject(array $args)
     {
         $this->subject->setArguments(new Arguments($args));
-        $this->subject->notifyObservers();
+
+        return $this->subject->notifyObservers();
     }
 
     /**

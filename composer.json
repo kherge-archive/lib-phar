@@ -17,7 +17,7 @@
     "require": {
         "php": ">=5.3.3",
         "phine/exception": "~1.0",
-        "phine/observer": "~1.0",
+        "phine/observer": "~1.0.1",
         "phine/path": "~1.0"
     },
     "require-dev": {

@@ -31,13 +31,18 @@ class BuildIteratorTest extends AbstractTestCase
             ->with(
                 $this->equalTo($iterator),
                 $this->equalTo(__DIR__)
-            );
-
-        $this->invokeSubject(
-            array(
-                'iterator' => $iterator,
-                'base' => __DIR__
             )
+            ->will($this->returnValue('returned'));
+
+        $this->assertEquals(
+            'returned',
+            $this->invokeSubject(
+                array(
+                    'iterator' => $iterator,
+                    'base' => __DIR__
+                )
+            ),
+            'The value should be returned.'
         );
     }
 }

@@ -14,7 +14,7 @@ class BuildIterator extends AbstractSubject
      */
     protected function doLastStep()
     {
-        $this->builder->getPhar()->buildFromIterator(
+        return $this->builder->getPhar()->buildFromIterator(
             $this->arguments['iterator'],
             $this->arguments['base']
         );

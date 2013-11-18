@@ -25,13 +25,18 @@ class BuildDirectoryTest extends AbstractTestCase
             ->with(
                 $this->equalTo(__DIR__),
                 $this->equalTo('/Add/')
-            );
-
-        $this->invokeSubject(
-            array(
-                'dir' => __DIR__,
-                'regex' => '/Add/'
             )
+            ->will($this->returnValue('returned'));
+
+        $this->assertEquals(
+            'returned',
+            $this->invokeSubject(
+                array(
+                    'dir' => __DIR__,
+                    'regex' => '/Add/'
+                )
+            ),
+            'The value should be returned.'
         );
     }
 }

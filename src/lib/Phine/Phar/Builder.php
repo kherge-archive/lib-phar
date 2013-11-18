@@ -5,6 +5,8 @@ namespace Phine\Phar;
 use Iterator;
 use Phar;
 use Phine\Observer\Collection;
+use Phine\Observer\ObserverInterface;
+use Phine\Observer\SubjectInterface;
 use Phine\Phar\Builder\Arguments;
 use Phine\Phar\Builder\Subject\AbstractSubject;
 use Phine\Phar\Builder\Subject\AddDirectory;
@@ -59,7 +61,14 @@ class Builder extends Collection
     private $phar;
 
     /**
-     * Sets the PHP archive to be built.
+     * Sets the PHP archive instance to build with.
+     *
+     * Once the archive instance has been set, the default event subjects are
+     * registered with the builder by calling `registerDefaultSubjects()`, a
+     * protected instance method. This method can be overridden to register new
+     * or different events.
+     *
+     * @see Builder::registerDefaultSubjects
      *
      * @param Phar $phar The PHP archive.
      */
@@ -124,10 +133,12 @@ class Builder extends Collection
      *
      * @param string $dir   The directory path.
      * @param string $regex The regular expression filter.
+     *
+     * @return array An array mapping internal paths to external files.
      */
     public function buildFromDirectory($dir, $regex = null)
     {
-        $this->invokeEvent(
+        return $this->invokeEvent(
             self::BUILD_DIR,
             array(
                 'dir' => $dir,
@@ -141,10 +152,12 @@ class Builder extends Collection
      *
      * @param Iterator $iterator An iterator.
      * @param string   $base     The base directory path.
+     *
+     * @return array An array mapping internal paths to external files.
      */
     public function buildFromIterator(Iterator $iterator, $base = null)
     {
-        $this->invokeEvent(
+        return $this->invokeEvent(
             self::BUILD_ITERATOR,
             array(
                 'iterator' => $iterator,
@@ -176,6 +189,21 @@ class Builder extends Collection
     }
 
     /**
+     * Registers a new event listener for a subject.
+     *
+     * @param string            $id       The event subject identifier.
+     * @param ObserverInterface $observer The event subject observer.
+     * @param integer           $priority The priority of the observer.
+     */
+    public function listenTo(
+        $id,
+        ObserverInterface $observer,
+        $priority = SubjectInterface::FIRST_PRIORITY
+    ) {
+        $this->getSubject($id)->registerObserver($observer, $priority);
+    }
+
+    /**
      * Sets the stub used to bootstrap the archive.
      *
      * @param string $stub The archive stub.
@@ -195,13 +223,16 @@ class Builder extends Collection
      *
      * @param string $id     The event subject identifier.
      * @param array  $values The new method argument values.
+     *
+     * @return mixed Any value, if available.
      */
     protected function invokeEvent($id, array $values)
     {
         /** @var AbstractSubject $subject */
         $subject = $this->getSubject($id);
         $subject->setArguments(new Arguments($values));
-        $subject->notifyObservers();
+
+        return $subject->notifyObservers();
     }
 
     /**

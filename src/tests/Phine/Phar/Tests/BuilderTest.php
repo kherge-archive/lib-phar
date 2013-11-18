@@ -3,10 +3,10 @@
 namespace Phine\Phar\Tests;
 
 use ArrayIterator;
-use Phar;
 use Phine\Phar\Builder;
 use Phine\Phar\Builder\Subject\AbstractSubject;
 use Phine\Test\Property;
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
@@ -26,7 +26,7 @@ class BuilderTest extends TestCase
     /**
      * The test PHP archive instance.
      *
-     * @var Phar
+     * @var MockObject
      */
     private $phar;
 
@@ -130,7 +130,17 @@ class BuilderTest extends TestCase
      */
     public function testBuildFromDirectory()
     {
-        $this->builder->buildFromDirectory('/path/to/dir', '/regex/');
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('buildFromDirectory')
+            ->will($this->returnValue('returned'));
+
+        $this->assertEquals(
+            'returned',
+            $this->builder->buildFromDirectory('/path/to/dir', '/regex/'),
+            'The value should be returned.'
+        );
 
         /** @var AbstractSubject $subject */
         $subject = $this->builder->getSubject(Builder::BUILD_DIR);
@@ -156,7 +166,17 @@ class BuilderTest extends TestCase
     {
         $iterator = new ArrayIterator(array());
 
-        $this->builder->buildFromIterator($iterator, '/path/to/base');
+        $this
+            ->phar
+            ->expects($this->once())
+            ->method('buildFromIterator')
+            ->will($this->returnValue('returned'));
+
+        $this->assertEquals(
+            'returned',
+            $this->builder->buildFromIterator($iterator, '/path/to/base'),
+            'The value should be returned.'
+        );
 
         /** @var AbstractSubject $subject */
         $subject = $this->builder->getSubject(Builder::BUILD_ITERATOR);

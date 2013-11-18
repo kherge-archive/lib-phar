@@ -14,7 +14,7 @@ class BuildDirectory extends AbstractSubject
      */
     protected function doLastStep()
     {
-        $this->builder->getPhar()->buildFromDirectory(
+        return $this->builder->getPhar()->buildFromDirectory(
             $this->arguments['dir'],
             $this->arguments['regex']
         );
