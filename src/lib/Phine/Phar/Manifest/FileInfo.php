@@ -2,6 +2,8 @@
 
 namespace Phine\Phar\Manifest;
 
+use Phine\Phar\Manifest;
+
 /**
  * Manages the information of an individual manifest file entry.
  *
@@ -29,6 +31,13 @@ class FileInfo
      * @var integer
      */
     private $flags;
+
+    /**
+     * The manifest the file was read from.
+     *
+     * @var Manifest
+     */
+    private $manifest;
 
     /**
      * The metadata for the file.
@@ -82,18 +91,20 @@ class FileInfo
     /**
      * Sets the information for the file.
      *
-     * @param integer $offset         The offset for the file data.
-     * @param integer $nameSize       The byte size of the name.
-     * @param string  $name           The name.
-     * @param integer $size           The uncompressed byte size.
-     * @param integer $timestamp      The Unix timestamp.
-     * @param integer $compressedSize The compressed byte size.
-     * @param integer $crc32          The CRC32 checksum.
-     * @param integer $flags          The bitwise flags.
-     * @param integer $metadataSize   The byte size of the metadata.
-     * @param mixed   $metadata       The metadata.
+     * @param Manifest $manifest       The manifest the file was read from.
+     * @param integer  $offset         The offset for the file data.
+     * @param integer  $nameSize       The byte size of the name.
+     * @param string   $name           The name.
+     * @param integer  $size           The uncompressed byte size.
+     * @param integer  $timestamp      The Unix timestamp.
+     * @param integer  $compressedSize The compressed byte size.
+     * @param integer  $crc32          The CRC32 checksum.
+     * @param integer  $flags          The bitwise flags.
+     * @param integer  $metadataSize   The byte size of the metadata.
+     * @param mixed    $metadata       The metadata.
      */
     public function __construct(
+        Manifest $manifest,
         $offset,
         $nameSize,
         $name,
@@ -108,6 +119,7 @@ class FileInfo
         $this->compressedSize = $compressedSize;
         $this->crc32 = $crc32;
         $this->flags = $flags;
+        $this->manifest = $manifest;
         $this->metadata = $metadata;
         $this->metadataSize = $metadataSize;
         $this->name = $name;
@@ -145,6 +157,16 @@ class FileInfo
     public function getFlags()
     {
         return $this->flags;
+    }
+
+    /**
+     * Returns the manifest the file was read from.
+     *
+     * @return Manifest The manifest.
+     */
+    public function getManifest()
+    {
+        return $this->manifest;
     }
 
     /**

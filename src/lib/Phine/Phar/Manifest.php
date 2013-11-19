@@ -346,6 +346,7 @@ class Manifest
 
             $offset += $file['size']['compressed'];
             $files[] = new FileInfo(
+                $this,
                 $file['offset'],
                 $file['name']['size'],
                 $file['name']['data'],

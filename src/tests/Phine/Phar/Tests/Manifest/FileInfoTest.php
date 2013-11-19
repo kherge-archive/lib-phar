@@ -7,6 +7,7 @@ use Phine\Phar\Manifest\FileInfo;
 use Phine\Phar\Manifest;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**
  * Performs unit tests on the `FileInfo` class.
@@ -23,6 +24,13 @@ class FileInfoTest extends TestCase
      * @var FileInfo
      */
     private $file;
+
+    /**
+     * The mock manifest.
+     *
+     * @var Manifest|MockObject
+     */
+    private $manifest;
 
     /**
      * Make sure we can get the compressed file size.
@@ -57,6 +65,18 @@ class FileInfoTest extends TestCase
             Manifest::BZ2,
             $this->file->getFlags(),
             'The bitwise flags should be returned.'
+        );
+    }
+
+    /**
+     * Make sure we can get the manifest.
+     */
+    public function testGetManifest()
+    {
+        $this->assertSame(
+            $this->manifest,
+            $this->file->getManifest(),
+            'The manifest should be returned.'
         );
     }
 
@@ -183,7 +203,13 @@ class FileInfoTest extends TestCase
      */
     protected function setUp()
     {
+        $this->manifest = $this
+            ->getMockBuilder('Phine\\Phar\\Manifest')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->file = new FileInfo(
+            $this->manifest,
             1,
             2,
             Path::canonical('src/lib/test.php'),
