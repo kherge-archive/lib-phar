@@ -1,0 +1,7 @@
+<map id="Phine\Phar\Signature\Algorithm\AbstractHashAlgorithm" name="Phine\Phar\Signature\Algorithm\AbstractHashAlgorithm">
+<area shape="rect" id="node5" href="$d6/ddc/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_m_d5.html" title="Provides support for the MD5 algorithm. " alt="" coords="5,413,149,568"/>
+<area shape="rect" id="node7" href="$d5/d90/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a1.html" title="Provides support for the SHA1 algorithm. " alt="" coords="173,413,317,568"/>
+<area shape="rect" id="node9" href="$db/da4/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a256.html" title="Provides support for the SHA256 algorithm. " alt="" coords="341,413,485,568"/>
+<area shape="rect" id="node11" href="$dc/dae/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a512.html" title="Provides support for the SHA512 algorithm. " alt="" coords="509,413,653,568"/>
+<area shape="rect" id="node2" href="$db/d94/interface_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_algorithm_interface.html" title="Defines how a signature algorithm class must be implemented. " alt="" coords="235,6,424,143"/>
+</map>

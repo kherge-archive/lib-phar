@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node3" href="$dd/d16/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_abstract_subject.html" title="Provides the basis for a builder event subject. " alt="" coords="121,178,287,225"/>
+<area shape="rect" id="node5" href="$d8/d55/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_directory.html" title="Adds a empty directory to the archive. " alt="" coords="340,5,489,51"/>
+<area shape="rect" id="node7" href="$d3/d57/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_file.html" title="Adds a file from the disk to the archive. " alt="" coords="349,74,480,121"/>
+<area shape="rect" id="node9" href="$d7/d6d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_string.html" title="Adds a file from a string to the archive. " alt="" coords="349,143,480,190"/>
+<area shape="rect" id="node11" href="$da/d7d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_build_directory.html" title="Builds the archive using a directory path. " alt="" coords="337,213,492,259"/>
+<area shape="rect" id="node13" href="$d1/d40/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_build_iterator.html" title="Builds the archive using an iterator. " alt="" coords="343,282,487,329"/>
+<area shape="rect" id="node15" href="$dd/d9d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_set_stub.html" title="Sets the stub for the archive. " alt="" coords="349,351,480,398"/>
+</map>

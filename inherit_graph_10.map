@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$db/d94/interface_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_algorithm_interface.html" title="Defines how a signature algorithm class must be implemented. " alt="" coords="7,143,196,190"/>
+<area shape="rect" id="node3" href="$d2/dd2/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_abstract_hash_algorithm.html" title="Provides the basis for a hash() supported signature algorithm. " alt="" coords="247,109,465,155"/>
+<area shape="rect" id="node13" href="$d3/db2/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_open_s_s_l.html" title="Provides support for OpenSSL signed archives. " alt="" coords="284,178,428,225"/>
+<area shape="rect" id="node5" href="$d6/ddc/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_m_d5.html" title="Provides support for the MD5 algorithm. " alt="" coords="516,5,660,51"/>
+<area shape="rect" id="node7" href="$d5/d90/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a1.html" title="Provides support for the SHA1 algorithm. " alt="" coords="516,74,660,121"/>
+<area shape="rect" id="node9" href="$db/da4/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a256.html" title="Provides support for the SHA256 algorithm. " alt="" coords="516,143,660,190"/>
+<area shape="rect" id="node11" href="$dc/dae/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_s_h_a512.html" title="Provides support for the SHA512 algorithm. " alt="" coords="516,213,660,259"/>
+</map>

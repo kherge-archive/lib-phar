@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node3" href="$d2/d21/class_phine_1_1_phar_1_1_exception_1_1_builder_exception.html" title="Exception thrown for build errors. " alt="" coords="135,5,281,51"/>
+<area shape="rect" id="node5" href="$d0/dfe/class_phine_1_1_phar_1_1_exception_1_1_file_exception.html" title="Exception thrown for file errors. " alt="" coords="135,74,281,121"/>
+<area shape="rect" id="node7" href="$df/df0/class_phine_1_1_phar_1_1_exception_1_1_manifest_exception.html" title="Exception thrown for manifest related errors. " alt="" coords="135,143,281,190"/>
+<area shape="rect" id="node9" href="$d0/d7f/class_phine_1_1_phar_1_1_exception_1_1_signature_exception.html" title="Exception thrown for signature errors. " alt="" coords="135,213,281,259"/>
+</map>

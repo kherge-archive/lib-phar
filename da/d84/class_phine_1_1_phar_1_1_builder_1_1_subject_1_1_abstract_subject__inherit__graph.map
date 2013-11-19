@@ -1,0 +1,8 @@
+<map id="Phine\Phar\Builder\Subject\AbstractSubject" name="Phine\Phar\Builder\Subject\AbstractSubject">
+<area shape="rect" id="node5" href="$d8/d55/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_directory.html" title="Adds a empty directory to the archive. " alt="" coords="5,395,155,498"/>
+<area shape="rect" id="node7" href="$d3/d57/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_file.html" title="Adds a file from the disk to the archive. " alt="" coords="179,395,309,498"/>
+<area shape="rect" id="node9" href="$d7/d6d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_add_string.html" title="Adds a file from a string to the archive. " alt="" coords="333,395,464,498"/>
+<area shape="rect" id="node11" href="$da/d7d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_build_directory.html" title="Builds the archive using a directory path. " alt="" coords="488,395,643,498"/>
+<area shape="rect" id="node13" href="$d1/d40/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_build_iterator.html" title="Builds the archive using an iterator. " alt="" coords="667,395,811,498"/>
+<area shape="rect" id="node15" href="$dd/d9d/class_phine_1_1_phar_1_1_builder_1_1_subject_1_1_set_stub.html" title="Sets the stub for the archive. " alt="" coords="835,395,965,498"/>
+</map>
