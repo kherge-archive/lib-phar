@@ -63,12 +63,7 @@ class ExtractTest extends TestCase
     private $temp;
 
     /**
-     * Make sure that the manifest and reader are set.
-     *
-     * Also make sure that a quick check is performed to see what compression
-     * functions are available. This will allow us to save some cycles every
-     * time a file is extracted, since a compression function check will only
-     * be performed once.
+     * Make sure that the manifest is set.
      */
     public function testConstruct()
     {
@@ -76,21 +71,6 @@ class ExtractTest extends TestCase
             $this->manifest,
             Property::get($this->extract, 'manifest'),
             'The manifest should be set.'
-        );
-
-        $this->assertSame(
-            $this->reader,
-            Property::get($this->extract, 'reader'),
-            'The reader should be set.'
-        );
-
-        $this->assertEquals(
-            array(
-                'bzip2' => function_exists('bzdecompress'),
-                'gzip' => function_exists('gzinflate')
-            ),
-            Property::get($this->extract, 'compression'),
-            'The compression function checks should be done.'
         );
     }
 
@@ -106,7 +86,6 @@ class ExtractTest extends TestCase
         $file = realpath(__DIR__ . '/../../../../../res/compressed.phar');
         $reader = new Reader($file);
         $manifest = new Manifest($reader);
-        $extract = new Extract($manifest);
 
         $files = $manifest->getFileList();
 
@@ -117,7 +96,7 @@ class ExtractTest extends TestCase
 echo "This file was compressed using bzip2.\\n";
 CONTENTS
             ,
-            $extract->extractFile($files[0]),
+            Extract::extractFile($files[0]),
             'The decompressed contents should be returned.'
         );
 
@@ -128,12 +107,21 @@ CONTENTS
 echo "This file was compressed using gzip.\\n";
 CONTENTS
             ,
-            $extract->extractFile($files[1]),
+            Extract::extractFile($files[1]),
             'The decompressed contents should be returned.'
         );
 
+        $this->assertEquals(
+            array(
+                'bzip2' => function_exists('bzdecompress'),
+                'gzip' => function_exists('gzinflate')
+            ),
+            Property::get('Phine\\Phar\\Extract', 'compression'),
+            'The compression function checks should be done.'
+        );
+
         Property::set(
-            $extract,
+            'Phine\\Phar\\Extract',
             'compression',
             array(
                 'bzip2' => false,
@@ -144,13 +132,13 @@ CONTENTS
         $this->expectException(
             'Phine\\Phar\\Exception\\FileException',
             'The "bz2" extension is required to decompress "bzip2.php".',
-            function () use ($extract, $files) {
-                $extract->extractFile($files[0]);
+            function () use ($files) {
+                Extract::extractFile($files[0]);
             }
         );
 
         Property::set(
-            $extract,
+            'Phine\\Phar\\Extract',
             'compression',
             array(
                 'bzip2' => true,
@@ -161,8 +149,8 @@ CONTENTS
         $this->expectException(
             'Phine\\Phar\\Exception\\FileException',
             'The "zlib" extension is required to decompress "gzip.php".',
-            function () use ($extract, $files) {
-                $extract->extractFile($files[1]);
+            function () use ($files) {
+                Extract::extractFile($files[1]);
             }
         );
     }

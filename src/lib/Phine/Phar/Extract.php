@@ -4,7 +4,6 @@ namespace Phine\Phar;
 
 use Phine\Exception\Exception;
 use Phine\Phar\Exception\FileException;
-use Phine\Phar\File\Reader;
 use Phine\Phar\File\Writer;
 use Phine\Phar\Manifest\FileInfo;
 
@@ -20,7 +19,7 @@ class Extract
      *
      * @var array
      */
-    private $compression = array();
+    private static $compression;
 
     /**
      * The manifest of the archive file.
@@ -30,13 +29,6 @@ class Extract
     private $manifest;
 
     /**
-     * The archive file reader.
-     *
-     * @var Reader
-     */
-    private $reader;
-
-    /**
      * Sets the archive manifest.
      *
      * @param Manifest $manifest The archive manifest.
@@ -44,10 +36,6 @@ class Extract
     public function __construct(Manifest $manifest)
     {
         $this->manifest = $manifest;
-        $this->reader = $manifest->getReader();
-
-        $this->compression['bzip2'] = function_exists('bzdecompress');
-        $this->compression['gzip'] = function_exists('gzinflate');
     }
 
     /**
@@ -60,14 +48,23 @@ class Extract
      * @throws Exception
      * @throws FileException If the file could not be decompressed.
      */
-    public function extractFile(FileInfo $file)
+    public static function extractFile(FileInfo $file)
     {
-        $this->reader->seek($file->getOffset());
+        if (null === self::$compression) {
+            self::$compression = array(
+                'bzip2' => function_exists('bzdecompress'),
+                'gzip' => function_exists('gzinflate'),
+            );
+        }
 
-        $contents = $this->reader->read($file->getCompressedSize());
+        $reader = $file->getManifest()->getReader();
+
+        $reader->seek($file->getOffset());
+
+        $contents = $reader->read($file->getCompressedSize());
 
         if ($file->isCompressed(Manifest::BZ2)) {
-            if (!$this->compression['bzip2']) {
+            if (!self::$compression['bzip2']) {
                 throw FileException::createUsingFormat(
                     'The "bz2" extension is required to decompress "%s".',
                     $file->getName()
@@ -76,7 +73,7 @@ class Extract
 
             $contents = bzdecompress($contents);
         } elseif ($file->isCompressed(Manifest::GZ)) {
-            if (!$this->compression['gzip']) {
+            if (!self::$compression['gzip']) {
                 throw FileException::createUsingFormat(
                     'The "zlib" extension is required to decompress "%s".',
                     $file->getName()
@@ -125,8 +122,7 @@ class Extract
             }
 
             $writer = new Writer($path);
-
-            $writer->write($this->extractFile($file));
+            $writer->write(self::extractFile($file));
 
             $count++;
         }
