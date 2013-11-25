@@ -1,4 +1,5 @@
 /.idea/
+/docs/
 /src/vendors/
 
 /*.iml

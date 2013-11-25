@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <files>
+    <directory>./src/lib</directory>
+    <directory>./src/vendors/phine</directory>
+    <ignore>*/test/*</ignore>
+    <ignore>*/tests/*</ignore>
+  </files>
+  <parser>
+    <target>docs/cache</target>
+  </parser>
+  <title>Phar API</title>
+  <transformations>
+    <template name="clean"/>
+  </transformations>
+  <transformer>
+    <external-class-documentation>
+      <prefix>Phar</prefix>
+      <uri>http://php.net/class.{CLASS}</uri>
+    </external-class-documentation>
+    <target>docs</target>
+  </transformer>
+</phpdoc>
