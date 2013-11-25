@@ -299,7 +299,7 @@ class Manifest
      * @param integer $expected The expected number of files.
      * @param integer $size     The size of the manifest.
      *
-     * @return array The list of files.
+     * @return FileInfo[] The list of files.
      */
     private function readFileList($expected, $size)
     {
