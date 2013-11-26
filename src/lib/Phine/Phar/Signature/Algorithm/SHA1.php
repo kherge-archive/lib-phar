@@ -6,6 +6,8 @@ namespace Phine\Phar\Signature\Algorithm;
  * Provides support for the SHA1 algorithm.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 class SHA1 extends AbstractHashAlgorithm
 {

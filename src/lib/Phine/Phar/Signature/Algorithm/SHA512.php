@@ -6,6 +6,8 @@ namespace Phine\Phar\Signature\Algorithm;
  * Provides support for the SHA512 algorithm.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 class SHA512 extends AbstractHashAlgorithm
 {

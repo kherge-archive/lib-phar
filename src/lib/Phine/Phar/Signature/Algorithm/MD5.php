@@ -6,6 +6,8 @@ namespace Phine\Phar\Signature\Algorithm;
  * Provides support for the MD5 algorithm.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 class MD5 extends AbstractHashAlgorithm
 {

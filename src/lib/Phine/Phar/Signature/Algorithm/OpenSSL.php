@@ -11,6 +11,8 @@ use Phine\Phar\File\Reader;
  * Provides support for OpenSSL signed archives.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 class OpenSSL implements AlgorithmInterface
 {
@@ -18,6 +20,8 @@ class OpenSSL implements AlgorithmInterface
      * Throws an exception if the `openssl` extension is not available.
      *
      * @throws SignatureException If the extension is not available.
+     *
+     * @api
      */
     public function __construct()
     {
