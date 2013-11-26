@@ -19,136 +19,142 @@ use Phine\Phar\Builder\Subject\SetStub;
 /**
  * Manages an event-driven process for building a PHP archive.
  *
- * <h2>Summary</h2>
+ * Summary
+ * -------
  *
- * The Builder class wraps specific Phar instance methods so that they could
- * be made into observable events. When one of these methods is called, the
- * arguments passed to it are made available to all of the observers of that
- * method. Each observer will have the opportunity to change the values of the
- * arguments, prevent the event from completing (the actual Phar method would
- * not be called), or cause some other action to occur.
+ * The `Builder` class wraps specific `Phar` instance methods so that they
+ * could be made into observable events. When one of these methods is called,
+ * the arguments passed to it are made available to all of the observers of
+ * that method. Each observer will have the opportunity to change the values
+ * of the arguments, prevent the event from completing (the actual `Phar`
+ * method would not be called), or cause some other action to occur.
  *
- * <blockquote>
- *   You may want to read the documentation for the
- *   <a href="https://github.com/phine/lib-observer">phine/observer</a>
- *   library in order to have a much better understanding of how events
- *   are managed.
- * </blockquote>
+ * > You may want to read the documentation for the
+ * > [phine/observer](https://github.com/phine/lib-observer) library in order
+ * > to have a much better understanding of how events are managed.
  *
- * <h2>Starting</h2>
+ * Starting
+ * --------
  *
- * To start, you will need to create a new instance of Builder.
+ * To start, you will need to create a new instance of `Builder`.
  *
- * You can use an existing Phar instance:
+ * You can use an existing `Phar` instance:
  *
- * <pre><code>$builder = new Builder($phar);</code></pre>
+ *     $builder = new Builder($phar);
  *
  * Or you can create your own:
  *
- * <pre><code>$builder = Builder::create('example.phar');</code></pre>
+ *     $builder = Builder::create('example.phar');
  *
- * <h2>Events</h2>
+ * Events
+ * ------
  *
- * The Builder class provides the following events:
+ * The `Builder` class provides the following events:
  *
- * <ul>
- *   <li><code>Builder::ADD_DIR</code> - For addEmptyDir().</li>
- *   <li><code>Builder::ADD_FILE</code> - For addFile().</li>
- *   <li><code>Builder::ADD_STRING</code> - For addFromString().</li>
- *   <li><code>Builder::BUILD_DIR</code> - For buildFromDirectory().</li>
- *   <li><code>Builder::BUILD_ITERATOR</code> - For buildFromIterator().</li>
- *   <li><code>Builder::SET_STUB</code> - For setStub().</li>
- * </ul>
+ * - `Builder::ADD_DIR` - For addEmptyDir().
+ * - `Builder::ADD_FILE` - For addFile().
+ * - `Builder::ADD_STRING` - For addFromString().
+ * - `Builder::BUILD_DIR` - For buildFromDirectory().
+ * - `Builder::BUILD_ITERATOR` - For buildFromIterator().
+ * - `Builder::SET_STUB` - For setStub().
  *
- * <h2>Observing an Event</h2>
+ * ### Observing an Event
  *
- * To observe an event, you must create an observer class that implements
- * the interface, Phine\\Observer\\ObserverInterface. It is a part of the
- * observer library used to manage events.
+ * To observe an event, you must create an observer class that implements the
+ * interface, `Phine\Observer\ObserverInterface`. It is a part of the observer
+ * library used to manage events.
  *
- * <pre><code>
- * use Phine\\Observer\\ObserverInterface;
- * use Phine\\Observer\\SubjectInterface;
+ *     use Phine\Observer\ObserverInterface;
+ *     use Phine\Observer\SubjectInterface;
  *
- * class MyObserver implements ObserverInterface
- * {
- *     public function receiveUpdate(SubjectInterface $subject)
+ *     class MyObserver implements ObserverInterface
  *     {
+ *         public function receiveUpdate(SubjectInterface $subject)
+ *         {
+ *         }
  *     }
- * }
- * </code></pre>
  *
- * The $subject is an instance of a class that extends the AbstractSubject
- * class. This class provides you access to methods such as getArguments(),
+ * The `$subject` is an instance of a class that extends the `AbstractSubject`
+ * class. This class provides you access to methods such as `getArguments()`,
  * which allows you to retrieve and modify the arguments that will be passed
- * to the Phar class method. For example, if the observer is registered to
- * the Builder::ADD_STRING event, it will have access to the local name and
+ * to the `Phar` class method. For example, if the observer is registered to
+ * the `Builder::ADD_STRING` event, it will have access to the local name and
  * contents of the file that will be added to the archive.
  *
- * <pre><code>
- * use Phine\\Observer\\ObserverInterface;
- * use Phine\\Observer\\SubjectInterface;
+ *     use Phine\Observer\ObserverInterface;
+ *     use Phine\Observer\SubjectInterface;
  *
- * class Replace implements ObserverInterface
- * {
- *     public function receiveUpdate(SubjectInterface $subject)
+ *     class Replace implements ObserverInterface
  *     {
- *         $arguments = $subject->getArguments();
+ *         public function receiveUpdate(SubjectInterface $subject)
+ *         {
+ *             $arguments = $subject->getArguments();
  *
- *         $arguments['contents'] = str_replace(
- *             '{name}',
- *             'world',
- *             $arguments['contents']
- *         );
+ *             $arguments['contents'] = str_replace(
+ *                 '{name}',
+ *                 'world',
+ *                 $arguments['contents']
+ *             );
+ *         }
  *     }
- * }
- * </code></pre>
  *
- * The observer above will replace all occurrences of "{name}", in any string
- * added, with "world".
+ * The observer above will replace all occurrences of `{name}`, in any string
+ * added, with `world`.
  *
- * <blockquote>
- * It is important to note that each event will make available its own list
- * of method arguments, and accessing non-existent arguments will throw an
- * exception.
- * </blockquote>
+ * > It is important to note that each event will make available its own list
+ * > of method arguments, and accessing non-existent arguments will throw an
+ * > exception.
  *
- * To register the observer, you will need to call the observe() method with
- * the appropriate event identifier and an instance of your observer:
+ * To register the observer, you will need to call the `observe()` method
+ * with the appropriate event identifier and an instance of your observer:
  *
- * <pre><code>$builder->observe(Builder::ADD_STRING, new Replace());</code></pre>
+ *     $builder->observe(Builder::ADD_STRING, new Replace());
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 class Builder extends Collection
 {
     /**
      * The event ID for adding an empty directory.
+     *
+     * @api
      */
     const ADD_DIR = 'add.directory';
 
     /**
      * The event ID for adding a file from disk.
+     *
+     * @api
      */
     const ADD_FILE = 'add.file';
 
     /**
      * The event ID for adding a file from a string.
+     *
+     * @api
      */
     const ADD_STRING = 'add.string';
 
     /**
      * The event ID for building from a directory.
+     *
+     * @api
      */
     const BUILD_DIR = 'build.directory';
 
     /**
      * The event ID for building using an iterator.
+     *
+     * @api
      */
     const BUILD_ITERATOR = 'build.iterator';
 
     /**
      * The event ID for settings the stub.
+     *
+     * @api
      */
     const SET_STUB = 'set.stub';
 
@@ -163,13 +169,21 @@ class Builder extends Collection
      * Sets the PHP archive instance to build with.
      *
      * Once the archive instance has been set, the default event subjects are
-     * registered with the builder by calling `registerDefaultSubjects()`, a
-     * protected instance method. This method can be overridden to register new
-     * or different events.
+     * registered with this new builder by calling `registerDefaultSubjects()`,
+     * a protected instance method. This method can be overridden to register
+     * new or different events.
+     *
+     *     use Phine\Phar\Builder;
+     *
+     *     $phar = new Phar('example.phar');
+     *
+     *     $builder = new Builder($phar);
      *
      * @see Builder::registerDefaultSubjects
      *
      * @param Phar $phar The PHP archive.
+     *
+     * @api
      */
     public function __construct(Phar $phar)
     {
@@ -181,10 +195,15 @@ class Builder extends Collection
     /**
      * Adds an empty directory to the archive.
      *
-     * Triggers the Builder::ADD_DIR event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::ADD_DIR` event.
+     *
+     *     $builder->addEmptyDir('example');
+     *
+     * @see Phar::addEmptyDir
      *
      * @param string $name The name of the directory.
+     *
+     * @api
      */
     public function addEmptyDir($name)
     {
@@ -199,11 +218,16 @@ class Builder extends Collection
     /**
      * Adds a file from the disk to the archive.
      *
-     * Triggers the Builder::ADD_FILE event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::ADD_FILE` event.
      *
-     * @param string $file  The path to the file.
-     * @param string $local The path to the file in the archive.
+     *     $builder->addFile('/path/to/example.php', 'example.php');
+     *
+     * @see Phar::addFile
+     *
+     * @param string $file             The path to the file.
+     * @param string $local (optional) The path to the file in the archive.
+     *
+     * @api
      */
     public function addFile($file, $local = null)
     {
@@ -219,11 +243,16 @@ class Builder extends Collection
     /**
      * Adds a file from a string to the archive.
      *
-     * Triggers the Builder::ADD_STRING event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::ADD_STRING` event.
+     *
+     *     $builder->addFromString('example.php', '<?php echo "Hello!\n";');
+     *
+     * @see Phar::addFromString
      *
      * @param string $local    The path to the file in the archive.
      * @param string $contents The contents of the file.
+     *
+     * @api
      */
     public function addFromString($local, $contents)
     {
@@ -237,15 +266,18 @@ class Builder extends Collection
     }
 
     /**
-     * Builds the archive using a directory path.
+     * Builds the archive using the files in a directory path.
      *
-     * Triggers the Builder::BUILD_DIR event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::BUILD_DIR` event.
      *
-     * @param string $dir   The directory path.
-     * @param string $regex The regular expression filter.
+     *     $builder->buildFromDirectory('/path/to/example', '/(src|lib)/');
+     *
+     * @param string $dir              The directory path.
+     * @param string $regex (optional) The regular expression filter.
      *
      * @return array An array mapping internal paths to external files.
+     *
+     * @api
      */
     public function buildFromDirectory($dir, $regex = null)
     {
@@ -261,13 +293,23 @@ class Builder extends Collection
     /**
      * Builds the archive using an iterator.
      *
-     * Triggers the Builder::BUILD_ITERATOR event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::BUILD_ITERATOR` event.
      *
-     * @param Iterator $iterator An iterator.
-     * @param string   $base     The base directory path.
+     *     $iterator = new RecursiveIteratorIterator(
+     *         new RecursiveDirectoryIterator('/path/to/example')
+     *     );
+     *
+     *     $builder->buildFromIterator($iterator, '/path/to/example');
+     *
+     * > Note that if the iterator returns instances of `SplFileInfo`,
+     * > the `$base` argument becomes required.
+     *
+     * @param Iterator $iterator            An iterator.
+     * @param string   $base     (optional) The base directory path.
      *
      * @return array An array mapping internal paths to external files.
+     *
+     * @api
      */
     public function buildFromIterator(Iterator $iterator, $base = null)
     {
@@ -281,11 +323,28 @@ class Builder extends Collection
     }
 
     /**
-     * Creates a new PHP archive and Builder instance.
+     * Creates a new `Phar` and `Builder` instance.
+     *
+     * This method is a shorter version of first creating a new instance of
+     * `Phar`, and then a new instance of `Builder`. The following example:
+     *
+     *     use Phine\Phar\Builder;
+     *
+     *     $phar = new Phar('example.phar');
+     *
+     *     $builder = new Builder($phar);
+     *
+     * Is the same as this:
+     *
+     *     use Phine\Phar\Builder;
+     *
+     *     $builder = Builder::create('example.phar');
      *
      * @param string $file The PHP archive file path.
      *
-     * @return Builder A builder instance.
+     * @return Builder The new builder instance.
+     *
+     * @api
      */
     public static function create($file)
     {
@@ -293,9 +352,13 @@ class Builder extends Collection
     }
 
     /**
-     * Returns the PHP archive being built.
+     * Returns the `Phar` instance being built with.
      *
-     * @return Phar The PHP archive.
+     *     $phar = $builder->getPhar();
+     *
+     * @return Phar The `Phar` instance.
+     *
+     * @api
      */
     public function getPhar()
     {
@@ -305,9 +368,37 @@ class Builder extends Collection
     /**
      * Registers an event observer with a subject.
      *
-     * @param string            $id       The event subject identifier.
-     * @param ObserverInterface $observer The event subject observer.
-     * @param integer           $priority The priority of the observer.
+     * This method is a shortcut to the builder subject's `registerObserver()`
+     * method. Instead of doing the following example:
+     *
+     *     use Phine\Observer\SubjectInterface;
+     *     use Phine\Phar\Builder;
+     *
+     *     $builder
+     *         ->getSubject(Builder::ADD_STRING)
+     *         ->registerObserver(
+     *             new Observer(),
+     *             SubjectInterface::FIRST_PRIORITY
+     *         );
+     *
+     * You may instead do the following example:
+     *
+     *     use Phine\Observer\SubjectInterface;
+     *     use Phine\Phar\Builder;
+     *
+     *     $builder->observe(
+     *         Builder::ADD_STRING,
+     *         new Observer(),
+     *         SubjectInterface::FIRST_PRIORITY
+     *     );
+     *
+     * @see SubjectInterface::registerObserver
+     *
+     * @param string            $id                  The event subject identifier.
+     * @param ObserverInterface $observer            The event subject observer.
+     * @param integer           $priority (optional) The priority of the observer.
+     *
+     * @api
      */
     public function observe(
         $id,
@@ -320,10 +411,13 @@ class Builder extends Collection
     /**
      * Sets the stub used to bootstrap the archive.
      *
-     * Triggers the Builder::SET_STUB event, making the arguments of this
-     * method available to the observers.
+     * Triggers the `Builder::SET_STUB` event.
+     *
+     *     $builder->setStub($stub);
      *
      * @param string $stub The archive stub.
+     *
+     * @api
      */
     public function setStub($stub)
     {
@@ -337,6 +431,17 @@ class Builder extends Collection
 
     /**
      * Registers the default event subjects.
+     *
+     * The following is a list of events registered by this method:
+     *
+     * - `Builder::ADD_DIR` &mdash; `Phine\Phar\Builder\Subject\AddDirectory`
+     * - `Builder::ADD_FILE` &mdash; `Phine\Phar\Builder\Subject\AddFile`
+     * - `Builder::ADD_STRING` &mdash; `Phine\Phar\Builder\Subject\AddString`
+     * - `Builder::BUILD_DIR` &mdash; `Phine\Phar\Builder\Subject\BuildDirectory`
+     * - `Builder::BUILD_ITERATOR` &mdash; `Phine\Phar\Builder\Subject\BuildIterator`
+     * - `Builder::SET_STUB` &mdash; `Phine\Phar\Builder\Subject\SetStub`
+     *
+     * @api
      */
     protected function registerDefaultSubjects()
     {
