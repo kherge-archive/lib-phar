@@ -210,6 +210,37 @@ STUB
     }
 
     /**
+     * Make sure that we still check if `Phar` exists if using advanced funcs.
+     *
+     * If the developer decided to make sure of `phar`-extension specific
+     * functionality (e.g. `Phar::mount()`), we need to inform the end-user
+     * that the extension is required.
+     */
+    public function testGetStubAdvanced()
+    {
+        // inject a mapping alias
+        Property::set($this->stub, 'mapPhar', 'test.phar');
+
+        $this->assertEquals(
+            <<<STUB
+#!/usr/bin/env php
+<?php
+
+if (class_exists('Phar')) {
+\$include = 'phar://' . __FILE__;
+Phar::mapPhar('test.phar');
+} else {
+throw new Exception('The "phar" extension is required to run this archive.');
+}
+__HALT_COMPILER();
+STUB
+            ,
+            $this->stub->getStub(),
+            'The full stub should be generated.'
+        );
+    }
+
+    /**
      * Make sure we can get the intercept flag.
      */
     public function testInterceptFileFuncs()

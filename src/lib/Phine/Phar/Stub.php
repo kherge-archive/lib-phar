@@ -245,7 +245,14 @@ class Stub
             );
         }
 
-        if ($this->selfExtract) {
+        $extension = false;
+
+        if ($this->mapPhar
+            || $this->webPhar
+            || $this->interceptFileFuncs
+            || $this->mungServer
+            || $this->mount) {
+            $extension = true;
             $stub .= <<<STUB
 if (class_exists('Phar')) {
 \$include = 'phar://' . __FILE__;
@@ -305,6 +312,12 @@ STUB;
 set_include_path(\$include . PATH_SEPARATOR . get_include_path());
 }
 
+STUB;
+        } elseif ($extension) {
+            $stub .= <<<STUB
+} else {
+throw new Exception('The "phar" extension is required to run this archive.');
+}
 STUB;
         }
 
