@@ -45,7 +45,7 @@ class SHA1Test extends TestCase
     }
 
     /**
-     * Make sure that we get the expected name as returned by `Phar::getSignature()`.
+     * Make sure that we get the expected name as returned by `Phar::getHash()`.
      */
     public function testGetName()
     {

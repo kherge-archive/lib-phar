@@ -59,7 +59,7 @@ abstract class AbstractHashAlgorithm implements AlgorithmInterface
     abstract protected function getAlgorithm();
 
     /**
-     * Returns the name of the algorithm as returned by `Phar::getSignature()`.
+     * Returns the name of the algorithm as returned by `Phar::getHash()`.
      *
      * @return string The name of the algorithm.
      */

@@ -147,14 +147,14 @@ class SignatureTest extends TestCase
     /**
      * Make sure that we can read the signature from the archive.
      */
-    public function testGetSignature()
+    public function testGetHash()
     {
         $this->assertSame(
             array(
                 'hash' => $this->hash,
                 'hash_type' => 'CRC32'
             ),
-            $this->signature->getSignature(),
+            $this->signature->getHash(),
             'Make sure we can read the signature.'
         );
     }
@@ -162,10 +162,10 @@ class SignatureTest extends TestCase
     /**
      * Make sure that we can verify the signature of the archive.
      */
-    public function testVerifySignature()
+    public function testIsValid()
     {
         $this->assertTrue(
-            $this->signature->verifySignature(),
+            $this->signature->isValid(),
             'Make sure the archive is verified.'
         );
     }
