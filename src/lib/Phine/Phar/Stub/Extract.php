@@ -15,27 +15,29 @@ use RuntimeException;
  * information if an archive is corrupt.
  *
  * @author Kevin Herrera <kevin@herrera.io>
+ *
+ * @api
  */
 final class Extract
 {
     /**
      * The bzip2 compression flag.
      *
-     * @var integer
+     * @internal
      */
     const BZ2 = 0x2000;
 
     /**
      * The gzip compression flag.
      *
-     * @var integer
+     * @internal
      */
     const GZ = 0x1000;
 
     /**
      * The flag mask.
      *
-     * @var integer
+     * @internal
      */
     const MASK = 0x3000;
 
@@ -84,6 +86,8 @@ final class Extract
      * @param string $file The path of the file.
      *
      * @throws InvalidArgumentException If the file path is not valid.
+     *
+     * @internal
      */
     public function __construct($file)
     {
@@ -100,6 +104,8 @@ final class Extract
 
     /**
      * Closes the file if it's open.
+     *
+     * @internal
      */
     public function __destruct()
     {
@@ -114,6 +120,8 @@ final class Extract
      * @param string $file The archive file path.
      *
      * @return Extract The new instance.
+     *
+     * @internal
      */
     public static function from($file)
     {
@@ -123,9 +131,25 @@ final class Extract
     /**
      * Returns the embeddable source for this class.
      *
+     * This method will return the compacted source code of this class so
+     * that it can be embedded as part of the stub. Note that this is the
+     * only method in the class that is part of the public API.
+     *
+     *     use Phine\Phar\Builder;
+     *     use Phine\Phar\Stub;
+     *     use Phine\Phar\Stub\Extract;
+     *
+     *     Builder::create('example.phar')->setStub(
+     *         Stub::create()
+     *             ->addSource(Extract::getSource())
+     *             ->getStub()
+     *     );
+     *
      * @return string The source code.
      *
      * @throws RuntimeException If the file could not be read.
+     *
+     * @api
      */
     public static function getSource()
     {
@@ -159,6 +183,8 @@ final class Extract
      * @return string The output directory path.
      *
      * @throws RuntimeException If a file could not be extracted.
+     *
+     * @internal
      */
     public function to($dir = null)
     {
