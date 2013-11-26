@@ -5,7 +5,7 @@ namespace Phine\Phar;
 use Phine\Path\Path;
 use Phine\Phar\Exception\ArchiveException;
 use Phine\Phar\File\Reader;
-use Phine\Phar\Manifest\FileInfo;
+use Phine\Phar\Manifest\Entry;
 
 /**
  * Parses archives built using the phar archive format.
@@ -42,20 +42,6 @@ use Phine\Phar\Manifest\FileInfo;
  */
 class Archive
 {
-    /**
-     * The bzip2 compression flag.
-     *
-     * @api
-     */
-    const BZ2 = 0x2000;
-
-    /**
-     * The gzip compression flag.
-     *
-     * @api
-     */
-    const GZ = 0x1000;
-
     /**
      * The flag mask.
      */
@@ -263,37 +249,21 @@ class Archive
     }
 
     /**
-     * Returns the number of files listed in the archive for this archive.
+     * Returns the list of entries in manifest for this archive.
      *
-     *     $fileCount = $archive->getFileCount();
+     * This method will return the entries listed in the archive's manifest as
+     * instances of `Entry`.
      *
-     * @return integer The number of files in this archive.
+     *     $files = $archive->getEntries();
      *
-     * @api
-     */
-    public function getFileCount()
-    {
-        $this->reader->seek($this->offset + 4);
-
-        return $this->readLong();
-    }
-
-    /**
-     * Returns the list of files in manifest for this archive.
-     *
-     * This method will return the files listed in the archive's manifest as
-     * instances of `FileInfo`.
-     *
-     *     $files = $archive->getFileList();
-     *
-     * @return FileInfo[] The list of files in this archive.
+     * @return Entry[] The list of files in this archive.
      *
      * @api
      */
-    public function getFileList()
+    public function getEntries()
     {
 
-        $count = $this->getFileCount();
+        $count = $this->getEntryCount();
         $size = $this->getManifestSize() + 4;
 
         $this->reader->seek(
@@ -305,6 +275,22 @@ class Archive
         );
 
         return $this->readFileList($count, $size);
+    }
+
+    /**
+     * Returns the number of files listed in the archive for this archive.
+     *
+     *     $fileCount = $archive->getEntryCount();
+     *
+     * @return integer The number of files in this archive.
+     *
+     * @api
+     */
+    public function getEntryCount()
+    {
+        $this->reader->seek($this->offset + 4);
+
+        return $this->readLong();
     }
 
     /**
@@ -420,7 +406,7 @@ class Archive
      * @param integer $expected The expected number of files.
      * @param integer $size     The size of the archive.
      *
-     * @return FileInfo[] The list of files.
+     * @return Entry[] The list of files.
      */
     private function readFileList($expected, $size)
     {
@@ -466,7 +452,7 @@ class Archive
             $file['name']['data'] = join('/', $file['name']['data']);
 
             $offset += $file['size']['compressed'];
-            $files[] = new FileInfo(
+            $files[] = new Entry(
                 $this,
                 $file['offset'],
                 $file['name']['size'],

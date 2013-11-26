@@ -5,7 +5,7 @@ namespace Phine\Phar\Tests;
 use Exception;
 use Phine\Phar\Extract;
 use Phine\Phar\Archive;
-use Phine\Phar\Manifest\FileInfo;
+use Phine\Phar\Manifest\Entry;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
 use Phine\Test\Temp;
@@ -87,7 +87,7 @@ class ExtractTest extends TestCase
         $reader = new Reader($file);
         $manifest = new Archive($reader);
 
-        $files = $manifest->getFileList();
+        $files = $manifest->getEntries();
 
         $this->assertEquals(
             <<<CONTENTS
@@ -211,7 +211,7 @@ FILE
         $this->extract->extractTo(
             $this->dir,
             function ($file) use ($want) {
-                /** @var FileInfo $file */
+                /** @var Entry $file */
                 if ($file->getName() !== $want) {
                     return true;
                 }

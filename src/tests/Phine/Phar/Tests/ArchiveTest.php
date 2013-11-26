@@ -157,37 +157,15 @@ class ArchiveTest extends TestCase
     }
 
     /**
-     * Make sure we can retrieve the file count for an archive.
-     */
-    public function testGetFileCount()
-    {
-        $this->assertEquals(
-            2,
-            $this->archive->getFileCount(),
-            'There should be 2 files in example.phar.'
-        );
-
-        $manifest = new Archive(
-            new Reader(dirname($this->file) . '/no-alias.phar')
-        );
-
-        $this->assertEquals(
-            0,
-            $manifest->getFileCount(),
-            'There should be no files in no-alias.phar.'
-        );
-    }
-
-    /**
-     * Make sure we can retrieve the list of files.
+     * Make sure we can retrieve the list of manifest entries.
      *
-     * The list returned is an array of arrays. Each value of the list contains
-     * detailed information about the file in the archive. This information can
-     * be used to extract files.
+     * The list returned should be an array of Entry instances. Each instance
+     * of the list contains detailed information about the file in the archive.
+     * This information can be used to extract files.
      */
-    public function testGetFileList()
+    public function testGetEntries()
     {
-        $files = $this->archive->getFileList();
+        $files = $this->archive->getEntries();
 
         $this->assertEquals(4091535927, $files[0]->getCrc32());
         $this->assertEquals(0, $files[0]->getFlags());
@@ -211,6 +189,28 @@ class ArchiveTest extends TestCase
         $this->assertEquals(104, $files[1]->getCompressedSize());
         $this->assertEquals(104, $files[1]->getSize());
         $this->assertEquals(1383980172, $files[1]->getTimestamp());
+    }
+
+    /**
+     * Make sure we can retrieve the entry count for an archive.
+     */
+    public function testGetEntryCount()
+    {
+        $this->assertEquals(
+            2,
+            $this->archive->getEntryCount(),
+            'There should be 2 files in example.phar.'
+        );
+
+        $manifest = new Archive(
+            new Reader(dirname($this->file) . '/no-alias.phar')
+        );
+
+        $this->assertEquals(
+            0,
+            $manifest->getEntryCount(),
+            'There should be no files in no-alias.phar.'
+        );
     }
 
     /**

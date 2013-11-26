@@ -3,25 +3,25 @@
 namespace Phine\Phar\Tests\Manifest;
 
 use Phine\Path\Path;
-use Phine\Phar\Manifest\FileInfo;
+use Phine\Phar\Manifest\Entry;
 use Phine\Phar\Archive;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**
- * Performs unit tests on the `FileInfo` class.
+ * Performs unit tests on the `Entry` class.
  *
- * @see FileInfo
+ * @see Entry
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
-class FileInfoTest extends TestCase
+class EntryTest extends TestCase
 {
     /**
      * The file info instance being tested.
      *
-     * @var FileInfo
+     * @var Entry
      */
     private $file;
 
@@ -62,7 +62,7 @@ class FileInfoTest extends TestCase
     public function testGetFlags()
     {
         $this->assertEquals(
-            Archive::BZ2,
+            Entry::BZ2,
             $this->file->getFlags(),
             'The bitwise flags should be returned.'
         );
@@ -110,7 +110,7 @@ class FileInfoTest extends TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            Path::canonical('src/lib/test.php'),
+            'src/lib/test.php',
             $this->file->getName(),
             'The file name should be returned.'
         );
@@ -188,18 +188,48 @@ class FileInfoTest extends TestCase
     public function testIsCompressed()
     {
         $this->assertFalse(
-            $this->file->isCompressed(Archive::GZ),
+            $this->file->isCompressed(Entry::GZ),
             'The file should not be compressed using gzip.'
         );
 
         $this->assertTrue(
-            $this->file->isCompressed(Archive::BZ2),
+            $this->file->isCompressed(Entry::BZ2),
             'The file should be compressed using bzip2.'
         );
     }
 
     /**
-     * Creates a new instance of `FileInfo` for testing.
+     * Make sure we can check if a file is actually a directory.
+     */
+    public function testIsDirectory()
+    {
+        $this->assertFalse(
+            $this->file->isDirectory(),
+            'The file should not be a directory.'
+        );
+
+        $file = new Entry(
+            $this->manifest,
+            1,
+            2,
+            'src/lib/test/',
+            3,
+            4,
+            5,
+            6,
+            Entry::BZ2,
+            0,
+            'test'
+        );
+
+        $this->assertTrue(
+            $file->isDirectory(),
+            'This "file" should be a directory.'
+        );
+    }
+
+    /**
+     * Creates a new instance of `Entry` for testing.
      */
     protected function setUp()
     {
@@ -208,16 +238,16 @@ class FileInfoTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->file = new FileInfo(
+        $this->file = new Entry(
             $this->manifest,
             1,
             2,
-            Path::canonical('src/lib/test.php'),
+            'src/lib/test.php',
             3,
             4,
             5,
             6,
-            Archive::BZ2,
+            Entry::BZ2,
             0,
             'test'
         );
