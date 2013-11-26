@@ -61,14 +61,14 @@ final class Extract
     private $handle;
 
     /**
-     * The starting offset of the manifest.
+     * The starting offset of the archive.
      *
      * @var integer
      */
     private $offset;
 
     /**
-     * The sequence of characters that precedes the manifest.
+     * The sequence of characters that precedes the archive.
      *
      * @var array
      */
@@ -211,9 +211,9 @@ final class Extract
     }
 
     /**
-     * Returns the contents of a file from the manifest.
+     * Returns the contents of a file from the archive.
      *
-     * @param array $file The file information from the manifest.
+     * @param array $file The file information from the archive.
      *
      * @return string The decompressed file contents.
      *
@@ -247,10 +247,10 @@ final class Extract
     }
 
     /**
-     * Finds the manifest offset of an archive.
+     * Finds the archive offset of an archive.
      *
-     * @return integer If the manifest offset is found, it is returned. If a
-     *                 manifest offset is not found, `null` is returned.
+     * @return integer If the archive offset is found, it is returned. If a
+     *                 archive offset is not found, `null` is returned.
      */
     private function findOffset()
     {
@@ -298,9 +298,9 @@ final class Extract
     }
 
     /**
-     * Returns the number of files listed in the manifest.
+     * Returns the number of files listed in the archive.
      *
-     * @return integer The number of files in the manifest.
+     * @return integer The number of files in the archive.
      */
     private function getFileCount()
     {
@@ -310,9 +310,9 @@ final class Extract
     }
 
     /**
-     * Returns the list of files in the manifest.
+     * Returns the list of files in the archive.
      *
-     * @return array The list of files in the manifest.
+     * @return array The list of files in the archive.
      */
     private function getFileList()
     {
@@ -382,9 +382,9 @@ final class Extract
     }
 
     /**
-     * Returns the size of the manifest in bytes.
+     * Returns the size of the archive in bytes.
      *
-     * @return integer The size of the manifest in bytes.
+     * @return integer The size of the archive in bytes.
      */
     private function getSize()
     {
@@ -454,10 +454,10 @@ final class Extract
     }
 
     /**
-     * Reads the expected number of files from the manifest.
+     * Reads the expected number of files from the archive.
      *
      * @param integer $expected The expected number of files.
-     * @param integer $size     The size of the manifest.
+     * @param integer $size     The size of the archive.
      *
      * @return array The list of files.
      */

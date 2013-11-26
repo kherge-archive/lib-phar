@@ -2,17 +2,17 @@
 
 namespace Phine\Phar\Tests;
 
-use Phine\Phar\Manifest;
+use Phine\Phar\Archive;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * Tests the methods in the {@link Manifest} class.
+ * Tests the methods in the {@link Archive} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
-class ManifestTest extends TestCase
+class ArchiveTest extends TestCase
 {
     /**
      * The archive file being used for testing.
@@ -22,14 +22,14 @@ class ManifestTest extends TestCase
     private $file;
 
     /**
-     * The manifest instance being tested.
+     * The archive file reader instance being tested.
      *
-     * @var Manifest
+     * @var Archive
      */
-    private $manifest;
+    private $archive;
 
     /**
-     * The archive file reader.
+     * The file reader.
      *
      * @var Reader
      */
@@ -38,81 +38,81 @@ class ManifestTest extends TestCase
     /**
      * Make sure that the offset is found and the reader is set.
      *
-     * If the offset of the manifest is not provided, make sure that it is
-     * located in valid archives. If the manifest offset could not be found,
-     * an exception should be thrown. If the offset is provided, make sure
-     * that it is set along with the archive reader.
+     * If the offset of the data is not provided, make sure that it is located
+     * in valid archives. If the data offset could not be found, an exception
+     * should be thrown. If the offset is provided, make sure that it is set
+     * along with the archive file reader.
      */
     public function testConstruct()
     {
         $this->assertSame(
             $this->reader,
-            Property::get($this->manifest, 'reader'),
+            Property::get($this->archive, 'reader'),
             'The file reader should be set.'
         );
 
         $this->assertEquals(
             94,
-            Property::get($this->manifest, 'offset'),
-            'The manifest offset should be 94.'
+            Property::get($this->archive, 'offset'),
+            'The data offset should be 94.'
         );
 
-        $manifest = new Manifest($this->reader, 123);
+        $manifest = new Archive($this->reader, 123);
 
         $this->assertEquals(
             123,
             Property::get($manifest, 'offset'),
-            'The manifest offset should be 123.'
+            'The data offset should be 123.'
         );
 
         $this->setExpectedException(
-            'Phine\\Phar\\Exception\\ManifestException',
+            'Phine\\Phar\\Exception\\ArchiveException',
             sprintf(
-                'The manifest offset could not be found in the PHP archive file "%s".',
+                'The data offset could not be found in the PHP archive file "%s".',
                 __FILE__
             )
         );
 
-        new Manifest(new Reader(__FILE__));
+        new Archive(new Reader(__FILE__));
     }
 
     /**
-     * Make sure that we can retrieve the offset of a manifest, if possible.
+     * Make sure that we can find the data offset, if possible.
      */
     public function testFindOffset()
     {
         // using a custom stub
         $this->assertEquals(
             94,
-            Manifest::findOffset(new Reader($this->file)),
+            Archive::findOffset(new Reader($this->file)),
             'The offset returned should be 94.'
         );
 
         $this->assertNull(
-            Manifest::findOffset(new Reader(__FILE__)),
+            Archive::findOffset(new Reader(__FILE__)),
             'No offset should be found in non-archive files.'
         );
 
         // using the default stub
         $this->assertEquals(
             6683,
-            Manifest::findOffset(new Reader(dirname($this->file) . '/default.phar')),
+            Archive::findOffset(new Reader(dirname($this->file) . '/default.phar')),
             'The offset returned should be 6683.'
         );
     }
 
     /**
-     * Make sure we can read the alias of an archive.
+     * Make sure we can read the stream alias of an archive.
      */
     public function testGetAlias()
     {
         $this->assertEquals(
             'test.phar',
-            $this->manifest->getAlias(),
+            $this->archive->getAlias(),
             'The alias "test.phar" should be returned.'
         );
 
-        $manifest = new Manifest(
+        $manifest = new Archive(
             new Reader(dirname($this->file) . '/no-alias.phar')
         );
 
@@ -123,17 +123,17 @@ class ManifestTest extends TestCase
     }
 
     /**
-     * Make sure we can get the size of the alias.
+     * Make sure we can get the size of the stream alias.
      */
     public function testGetAliasSize()
     {
         $this->assertEquals(
             9,
-            $this->manifest->getAliasSize(),
+            $this->archive->getAliasSize(),
             'The size of the alias should be 9.'
         );
 
-        $manifest = new Manifest(
+        $manifest = new Archive(
             new Reader(dirname($this->file) . '/no-alias.phar')
         );
 
@@ -145,13 +145,13 @@ class ManifestTest extends TestCase
     }
 
     /**
-     * Make sure we can read the API version of an archive.
+     * Make sure we can read the file format version of an archive.
      */
     public function testGetApiVersion()
     {
         $this->assertEquals(
             '1.1.0',
-            $this->manifest->getApiVersion(),
+            $this->archive->getApiVersion(),
             'The version "1.1.0" should be returned.'
         );
     }
@@ -163,11 +163,11 @@ class ManifestTest extends TestCase
     {
         $this->assertEquals(
             2,
-            $this->manifest->getFileCount(),
+            $this->archive->getFileCount(),
             'There should be 2 files in example.phar.'
         );
 
-        $manifest = new Manifest(
+        $manifest = new Archive(
             new Reader(dirname($this->file) . '/no-alias.phar')
         );
 
@@ -187,7 +187,7 @@ class ManifestTest extends TestCase
      */
     public function testGetFileList()
     {
-        $files = $this->manifest->getFileList();
+        $files = $this->archive->getFileList();
 
         $this->assertEquals(4091535927, $files[0]->getCrc32());
         $this->assertEquals(0, $files[0]->getFlags());
@@ -220,25 +220,37 @@ class ManifestTest extends TestCase
     {
         $this->assertEquals(
             0,
-            $this->manifest->getGlobalFlags(),
+            $this->archive->getGlobalFlags(),
             'The global flags should be returned.'
         );
     }
 
     /**
-     * Make sure we can get the offset for the manifest.
+     * Make sure we can get the data offset for the archive.
      */
     public function testGetOffset()
     {
         $this->assertEquals(
             94,
-            $this->manifest->getOffset(),
-            'The offset for the manifest should be 94.'
+            $this->archive->getOffset(),
+            'The offset for the archive should be 94.'
         );
     }
 
     /**
-     * Make sure we can retrieve the metadata.
+     * Make sure we can get the size of the manifest for the archive.
+     */
+    public function testGetManifestSize()
+    {
+        $this->assertEquals(
+            166,
+            $this->archive->getManifestSize(),
+            'The archive size should be 166.'
+        );
+    }
+
+    /**
+     * Make sure we can retrieve the global metadata.
      */
     public function testGetMetadata()
     {
@@ -246,11 +258,11 @@ class ManifestTest extends TestCase
             array(
                 'who' => 'It was me!'
             ),
-            $this->manifest->getMetadata(),
+            $this->archive->getMetadata(),
             'The metadata should be returned.'
         );
 
-        $manifest = new Manifest(
+        $manifest = new Archive(
             new Reader(dirname($this->file) . '/no-alias.phar')
         );
 
@@ -261,17 +273,17 @@ class ManifestTest extends TestCase
     }
 
     /**
-     * Make sure we can get the size of the metadata.
+     * Make sure we can get the size of the global metadata.
      */
     public function testGetMetadataSize()
     {
         $this->assertEquals(
             34,
-            $this->manifest->getMetadataSize(),
+            $this->archive->getMetadataSize(),
             'The size of the metadata should be 30.'
         );
 
-        $manifest = new Manifest(
+        $manifest = new Archive(
             new Reader(dirname($this->file) . '/no-alias.phar')
         );
 
@@ -289,30 +301,18 @@ class ManifestTest extends TestCase
     {
         $this->assertSame(
             $this->reader,
-            $this->manifest->getReader(),
+            $this->archive->getReader(),
             'The reader should be returned.'
         );
     }
 
     /**
-     * Make sure we can get the size of the manifest.
-     */
-    public function testGetSize()
-    {
-        $this->assertEquals(
-            166,
-            $this->manifest->getSize(),
-            'The manifest size should be 166.'
-        );
-    }
-
-    /**
-     * Creates a new instance of `Manifest` for testing.
+     * Creates a new instance of `Archive` for testing.
      */
     protected function setUp()
     {
         $this->file = realpath(__DIR__ . '/../../../../../res/example.phar');
         $this->reader = new Reader($this->file);
-        $this->manifest = new Manifest($this->reader);
+        $this->archive = new Archive($this->reader);
     }
 }

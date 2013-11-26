@@ -4,7 +4,7 @@ namespace Phine\Phar\Tests;
 
 use Exception;
 use Phine\Phar\Extract;
-use Phine\Phar\Manifest;
+use Phine\Phar\Archive;
 use Phine\Phar\Manifest\FileInfo;
 use Phine\Phar\File\Reader;
 use Phine\Test\Property;
@@ -42,9 +42,9 @@ class ExtractTest extends TestCase
     private $file;
 
     /**
-     * The archive manifest.
+     * The archive archive.
      *
-     * @var Manifest
+     * @var Archive
      */
     private $manifest;
 
@@ -63,14 +63,14 @@ class ExtractTest extends TestCase
     private $temp;
 
     /**
-     * Make sure that the manifest is set.
+     * Make sure that the archive is set.
      */
     public function testConstruct()
     {
         $this->assertSame(
             $this->manifest,
-            Property::get($this->extract, 'manifest'),
-            'The manifest should be set.'
+            Property::get($this->extract, 'archive'),
+            'The archive should be set.'
         );
     }
 
@@ -85,7 +85,7 @@ class ExtractTest extends TestCase
     {
         $file = realpath(__DIR__ . '/../../../../../res/compressed.phar');
         $reader = new Reader($file);
-        $manifest = new Manifest($reader);
+        $manifest = new Archive($reader);
 
         $files = $manifest->getFileList();
 
@@ -238,14 +238,14 @@ FILE
     }
 
     /**
-     * Make sure we can get back the manifest.
+     * Make sure we can get back the archive.
      */
     public function testGetManifest()
     {
         $this->assertSame(
             $this->manifest,
-            $this->extract->getManifest(),
-            'The manifest should be returned.'
+            $this->extract->getArchive(),
+            'The archive should be returned.'
         );
     }
 
@@ -258,7 +258,7 @@ FILE
         $this->temp = new Temp();
         $this->dir = $this->temp->createDir();
         $this->reader = new Reader($this->file);
-        $this->manifest = new Manifest($this->reader);
+        $this->manifest = new Archive($this->reader);
         $this->extract = new Extract($this->manifest);
     }
 

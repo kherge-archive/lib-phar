@@ -2,7 +2,7 @@
 
 namespace Phine\Phar\Manifest;
 
-use Phine\Phar\Manifest;
+use Phine\Phar\Archive;
 
 /**
  * Manages the information of an individual manifest file entry.
@@ -11,6 +11,13 @@ use Phine\Phar\Manifest;
  */
 class FileInfo
 {
+    /**
+     * The archive the file was read from.
+     *
+     * @var Archive
+     */
+    private $archive;
+
     /**
      * The compressed byte size of the file.
      *
@@ -31,13 +38,6 @@ class FileInfo
      * @var integer
      */
     private $flags;
-
-    /**
-     * The manifest the file was read from.
-     *
-     * @var Manifest
-     */
-    private $manifest;
 
     /**
      * The metadata for the file.
@@ -91,7 +91,7 @@ class FileInfo
     /**
      * Sets the information for the file.
      *
-     * @param Manifest $manifest       The manifest the file was read from.
+     * @param Archive  $archive        The archive the file was read from.
      * @param integer  $offset         The offset for the file data.
      * @param integer  $nameSize       The byte size of the name.
      * @param string   $name           The name.
@@ -104,7 +104,7 @@ class FileInfo
      * @param mixed    $metadata       The metadata.
      */
     public function __construct(
-        Manifest $manifest,
+        Archive $archive,
         $offset,
         $nameSize,
         $name,
@@ -119,7 +119,7 @@ class FileInfo
         $this->compressedSize = $compressedSize;
         $this->crc32 = $crc32;
         $this->flags = $flags;
-        $this->manifest = $manifest;
+        $this->archive = $archive;
         $this->metadata = $metadata;
         $this->metadataSize = $metadataSize;
         $this->name = $name;
@@ -127,6 +127,16 @@ class FileInfo
         $this->offset = $offset;
         $this->size = $size;
         $this->timestamp = $timestamp;
+    }
+
+    /**
+     * Returns the archive file reader the file was read from.
+     *
+     * @return Archive The archive.
+     */
+    public function getArchive()
+    {
+        return $this->archive;
     }
 
     /**
@@ -157,16 +167,6 @@ class FileInfo
     public function getFlags()
     {
         return $this->flags;
-    }
-
-    /**
-     * Returns the manifest the file was read from.
-     *
-     * @return Manifest The manifest.
-     */
-    public function getManifest()
-    {
-        return $this->manifest;
     }
 
     /**

@@ -2,15 +2,15 @@
 
 namespace Phine\Phar\Tests\Exception;
 
-use Phine\Phar\Exception\ManifestException;
+use Phine\Phar\Exception\ArchiveException;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * Tests the methods in the {@link ManifestException} class.
+ * Tests the methods in the {@link ArchiveException} class.
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
-class ManifestExceptionTest extends TestCase
+class ArchiveExceptionTest extends TestCase
 {
     /**
      * Make sure that the method generates the expected message.
@@ -19,7 +19,7 @@ class ManifestExceptionTest extends TestCase
     {
         $this->assertEquals(
             'The PHP archive file "/test/file" has invalid metadata.',
-            ManifestException::invalidMetadata('/test/file')->getMessage(),
+            ArchiveException::invalidMetadata('/test/file')->getMessage(),
             'Make sure we get the expected message.'
         );
     }

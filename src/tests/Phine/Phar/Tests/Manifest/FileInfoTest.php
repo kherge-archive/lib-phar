@@ -4,7 +4,7 @@ namespace Phine\Phar\Tests\Manifest;
 
 use Phine\Path\Path;
 use Phine\Phar\Manifest\FileInfo;
-use Phine\Phar\Manifest;
+use Phine\Phar\Archive;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
@@ -26,9 +26,9 @@ class FileInfoTest extends TestCase
     private $file;
 
     /**
-     * The mock manifest.
+     * The mock archive.
      *
-     * @var Manifest|MockObject
+     * @var Archive|MockObject
      */
     private $manifest;
 
@@ -62,21 +62,21 @@ class FileInfoTest extends TestCase
     public function testGetFlags()
     {
         $this->assertEquals(
-            Manifest::BZ2,
+            Archive::BZ2,
             $this->file->getFlags(),
             'The bitwise flags should be returned.'
         );
     }
 
     /**
-     * Make sure we can get the manifest.
+     * Make sure we can get the archive.
      */
     public function testGetManifest()
     {
         $this->assertSame(
             $this->manifest,
-            $this->file->getManifest(),
-            'The manifest should be returned.'
+            $this->file->getArchive(),
+            'The archive should be returned.'
         );
     }
 
@@ -188,12 +188,12 @@ class FileInfoTest extends TestCase
     public function testIsCompressed()
     {
         $this->assertFalse(
-            $this->file->isCompressed(Manifest::GZ),
+            $this->file->isCompressed(Archive::GZ),
             'The file should not be compressed using gzip.'
         );
 
         $this->assertTrue(
-            $this->file->isCompressed(Manifest::BZ2),
+            $this->file->isCompressed(Archive::BZ2),
             'The file should be compressed using bzip2.'
         );
     }
@@ -204,7 +204,7 @@ class FileInfoTest extends TestCase
     protected function setUp()
     {
         $this->manifest = $this
-            ->getMockBuilder('Phine\\Phar\\Manifest')
+            ->getMockBuilder('Phine\\Phar\\Archive')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -217,7 +217,7 @@ class FileInfoTest extends TestCase
             4,
             5,
             6,
-            Manifest::BZ2,
+            Archive::BZ2,
             0,
             'test'
         );
