@@ -17,11 +17,11 @@
     "require": {
         "php": ">=5.3.3",
         "phine/exception": "~1.0",
-        "phine/observer": "~1.0.1"
+        "phine/observer": "~1.0.1",
+        "phine/path": "~1.0"
     },
     "require-dev": {
         "league/phpunit-coverage-listener": "~1.0",
-        "phine/path": "~1.0",
         "phine/test": "~1.0"
     },
     "autoload": {
