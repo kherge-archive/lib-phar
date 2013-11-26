@@ -354,6 +354,9 @@ class Builder extends Collection
     /**
      * Returns the `Phar` instance being built with.
      *
+     * This method will return the `Phar` instance that is being used to
+     * build the archive file.
+     *
      *     $phar = $builder->getPhar();
      *
      * @return Phar The `Phar` instance.

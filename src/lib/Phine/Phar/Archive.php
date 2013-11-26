@@ -310,6 +310,10 @@ class Archive
     /**
      * Returns the global bitmapped flags for this archive.
      *
+     * This method will return a bitmapped value for the global flags set for
+     * the archive. This value is not the same as the ones used on a per file
+     * basis.
+     *
      *     $flags = $archive->getFlags();
      *
      * @return integer The global bitmapped flags.

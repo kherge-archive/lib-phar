@@ -55,6 +55,9 @@ class Extract
     /**
      * Sets the archive file reader.
      *
+     * This method will set the archive file reader that will be used to
+     * extract one or more files.
+     *
      *     use Phine\Phar\Extract;
      *     use Phine\Phar\File\Reader;
      *     use Phine\Phar\Archive;
@@ -73,7 +76,7 @@ class Extract
     }
 
     /**
-     * Returns the contents of a file from the archive.
+     * Returns the contents of a file from an archive.
      *
      * Uses an instance of `FileInfo` to extract and decompress (if necessary)
      * the contents of a file from an archive. Note that an extension may be
@@ -189,6 +192,9 @@ class Extract
 
     /**
      * Returns the archive for the archive file.
+     *
+     * This method will return the archive file reader used to extract one or
+     * more files.
      *
      *     $archive = $extract->getArchive();
      *
