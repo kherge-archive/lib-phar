@@ -125,6 +125,8 @@ class Signature
      * @param Reader|string $file The archive file path or reader.
      *
      * @return Signature The new instance.
+     *
+     * @api
      */
     public static function create($file)
     {
@@ -160,6 +162,8 @@ class Signature
      *
      * @throws Exception
      * @throws SignatureException If the algorithm could not be found.
+     *
+     * @api
      */
     public function getAlgorithm()
     {
@@ -216,6 +220,8 @@ class Signature
      * > the archive data.
      *
      * @return array The signature.
+     *
+     * @api
      */
     public function getHash()
     {
@@ -232,6 +238,8 @@ class Signature
      *     }
      *
      * @return boolean Returns `true` if verified, `false` if not.
+     *
+     * @api
      */
     public function isValid()
     {
