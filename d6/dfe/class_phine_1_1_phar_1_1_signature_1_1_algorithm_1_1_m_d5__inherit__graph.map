@@ -1,4 +1,0 @@
-<map id="Phine\Phar\Signature\Algorithm\MD5" name="Phine\Phar\Signature\Algorithm\MD5">
-<area shape="rect" id="node2" href="$d2/dd2/class_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_abstract_hash_algorithm.html" title="Provides the basis for a hash() supported signature algorithm. " alt="" coords="5,193,224,365"/>
-<area shape="rect" id="node4" href="$db/d94/interface_phine_1_1_phar_1_1_signature_1_1_algorithm_1_1_algorithm_interface.html" title="Defines how a signature algorithm class must be implemented. " alt="" coords="20,6,209,143"/>
-</map>
