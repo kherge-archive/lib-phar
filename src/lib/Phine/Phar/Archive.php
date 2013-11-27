@@ -22,13 +22,19 @@ use Phine\Phar\Manifest\Entry;
  * Starting
  * --------
  *
- * To start, you will need to create a new instance of `Archive`:
+ * To start, you will need to create a new instance of `Archive`.
  *
  *     use Phine\Phar\File\Reader;
  *     use Phine\Phar\Archive;
  *
  *     $reader = new Reader('example.phar');
  *     $archive = new Archive($reader, 1234);
+ *
+ * You may also just want to use the `create()` method.
+ *
+ *     use Phine\Phar\Archive;
+ *
+ *     $archive = Archive::create('example.phar', 1234);
  *
  * The number `1234` is actually the offset of where the archive data will
  * actually begin. While this number is optional, I recommend that it be given
@@ -104,6 +110,26 @@ class Archive
 
         $this->offset = $offset;
         $this->reader = $reader;
+    }
+
+    /**
+     * Creates a new instance of this class.
+     *
+     * This method will create a new file reader and use it to create a new
+     * instance of this class.
+     *
+     *     use Phine\Phar\Archive;
+     *
+     *     $archive = Archive::create('example.phar', 1234);
+     *
+     * @param string  $file              The archive file path.
+     * @param integer $offset (optional) The data offset.
+     *
+     * @return Archive The new instance.
+     */
+    public static function create($file, $offset = null)
+    {
+        return new self(new Reader($file), $offset);
     }
 
     /**

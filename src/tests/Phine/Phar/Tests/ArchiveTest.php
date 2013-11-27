@@ -77,6 +77,31 @@ class ArchiveTest extends TestCase
     }
 
     /**
+     * Make sure that we can create a new instance of the file and archive reader.
+     */
+    public function testCreate()
+    {
+        $archive = Archive::create($this->file, 1234);
+
+        $this->assertInstanceOf(
+            'Phine\\Phar\\Archive',
+            $archive,
+            'An instance of Archive should be returned.'
+        );
+
+        $this->assertEquals(
+            1234,
+            Property::get($archive, 'offset'),
+            'The data offset should be set.'
+        );
+
+        $this->assertNotNull(
+            Property::get($archive, 'reader'),
+            'The file reader should be set.'
+        );
+    }
+
+    /**
      * Make sure that we can find the data offset, if possible.
      */
     public function testFindOffset()
