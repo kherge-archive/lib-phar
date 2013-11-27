@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-204154602"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-204154602" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-848373816"></a>
+                                <a href="../namespaces/Phine.html" style="margin-left: 30px; padding-left: 0">Phine</a>
+            </div>
+            <div id="namespace-848373816" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-218122042"></a>
+                                <a href="../namespaces/Phine.Phar.html" style="margin-left: 30px; padding-left: 0">Phar</a>
+            </div>
+            <div id="namespace-218122042" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-49203482"></a>
+                                <a href="../namespaces/Phine.Phar.Manifest.html" style="margin-left: 30px; padding-left: 0">Manifest</a>
+            </div>
+            <div id="namespace-49203482" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Manifest.Entry.html">Entry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1488133541"></a>
+                                <a href="../namespaces/Phine.Phar.File.html" style="margin-left: 30px; padding-left: 0">File</a>
+            </div>
+            <div id="namespace-1488133541" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.File.Writer.html">Writer</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.File.Reader.html">Reader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-226210568"></a>
+                                <a href="../namespaces/Phine.Phar.Stub.html" style="margin-left: 30px; padding-left: 0">Stub</a>
+            </div>
+            <div id="namespace-226210568" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.Extract.html">Extract</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-432468509"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.html" style="margin-left: 30px; padding-left: 0">Signature</a>
+            </div>
+            <div id="namespace-432468509" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1939186977"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.Algorithm.html" style="margin-left: 30px; padding-left: 0">Algorithm</a>
+            </div>
+            <div id="namespace-1939186977" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">AlgorithmInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.AbstractHashAlgorithm.html">AbstractHashAlgorithm</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA512.html">SHA512</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.MD5.html">MD5</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.OpenSSL.html">OpenSSL</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA1.html">SHA1</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA256.html">SHA256</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2111946959"></a>
+                                <a href="../namespaces/Phine.Phar.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-2111946959" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.BuilderException.html">BuilderException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.ArchiveException.html">ArchiveException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.FileException.html">FileException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.SignatureException.html">SignatureException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2129918775"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.html" style="margin-left: 30px; padding-left: 0">Subject</a>
+            </div>
+            <div id="namespace-2129918775" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-253119970"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.Builder.html" style="margin-left: 30px; padding-left: 0">Builder</a>
+            </div>
+            <div id="namespace-253119970" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildDirectory.html">BuildDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddDirectory.html">AddDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddFile.html">AddFile</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddString.html">AddString</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildIterator.html">BuildIterator</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.SetStub.html">SetStub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.AbstractSubject.html">AbstractSubject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Arguments.html">Arguments</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Extract.html">Extract</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Archive.html">Archive</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.html">Stub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1692930647"></a>
+                                <a href="../namespaces/Phine.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1692930647" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Exception.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1366188620"></a>
+                                <a href="../namespaces/Phine.Path.html" style="margin-left: 30px; padding-left: 0">Path</a>
+            </div>
+            <div id="namespace-1366188620" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1919993516"></a>
+                                <a href="../namespaces/Phine.Path.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1919993516" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Exception.PathException.html">PathException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-634819938"></a>
+                                <a href="../namespaces/Phine.Observer.html" style="margin-left: 30px; padding-left: 0">Observer</a>
+            </div>
+            <div id="namespace-634819938" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-713785620"></a>
+                                <a href="../namespaces/Phine.Observer.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-713785620" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.CollectionException.html">CollectionException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.ReasonException.html">ReasonException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.SubjectInterface.html">SubjectInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.CollectionInterface.html">CollectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ArrayCollectionInterface.html">ArrayCollectionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Subject.html">Subject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.ArrayCollection.html">ArrayCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phine.Phar.html">\Phine\Phar</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phine\Phar</small>Builder</h1>
+                    <p><em>Manages an event-driven process for building a PHP archive.</em></p>
+                    <h2>Summary</h2>
+
+<p>The <code>Builder</code> class wraps specific <code>Phar</code> instance methods so that they
+could be made into observable events. When one of these methods is called,
+the arguments passed to it are made available to all of the observers of
+that method. Each observer will have the opportunity to change the values
+of the arguments, prevent the event from completing (the actual <code>Phar</code>
+method would not be called), or cause some other action to occur.</p>
+
+<blockquote>
+  <p>You may want to read the documentation for the
+  <a href="https://github.com/phine/lib-observer">phine/observer</a> library in order
+  to have a much better understanding of how events are managed.</p>
+</blockquote>
+
+<h2>Starting</h2>
+
+<p>To start, you will need to create a new instance of <code>Builder</code>.</p>
+
+<p>You can use an existing <code>Phar</code> instance:</p>
+
+<pre><code>$builder = new Builder($phar);
+</code></pre>
+
+<p>Or you can create your own:</p>
+
+<pre><code>$builder = Builder::create('example.phar');
+</code></pre>
+
+<h2>Events</h2>
+
+<p>The <code>Builder</code> class provides the following events:</p>
+
+<ul>
+<li><code>Builder::ADD_DIR</code> - For addEmptyDir().</li>
+<li><code>Builder::ADD_FILE</code> - For addFile().</li>
+<li><code>Builder::ADD_STRING</code> - For addFromString().</li>
+<li><code>Builder::BUILD_DIR</code> - For buildFromDirectory().</li>
+<li><code>Builder::BUILD_ITERATOR</code> - For buildFromIterator().</li>
+<li><code>Builder::SET_STUB</code> - For setStub().</li>
+</ul>
+
+<h3>Observing an Event</h3>
+
+<p>To observe an event, you must create an observer class that implements the
+interface, <code>Phine\Observer\ObserverInterface</code>. It is a part of the observer
+library used to manage events.</p>
+
+<pre><code>use Phine\Observer\ObserverInterface;
+use Phine\Observer\SubjectInterface;
+
+class MyObserver implements ObserverInterface
+{
+    public function receiveUpdate(SubjectInterface $subject)
+    {
+    }
+}
+</code></pre>
+
+<p>The <code>$subject</code> is an instance of a class that extends the <code>AbstractSubject</code>
+class. This class provides you access to methods such as <code>getArguments()</code>,
+which allows you to retrieve and modify the arguments that will be passed
+to the <code>Phar</code> class method. For example, if the observer is registered to
+the <code>Builder::ADD_STRING</code> event, it will have access to the local name and
+contents of the file that will be added to the archive.</p>
+
+<pre><code>use Phine\Observer\ObserverInterface;
+use Phine\Observer\SubjectInterface;
+
+class Replace implements ObserverInterface
+{
+    public function receiveUpdate(SubjectInterface $subject)
+    {
+        $arguments = $subject-&gt;getArguments();
+
+        $arguments['contents'] = str_replace(
+            '{name}',
+            'world',
+            $arguments['contents']
+        );
+    }
+}
+</code></pre>
+
+<p>The observer above will replace all occurrences of <code>{name}</code>, in any string
+added, with <code>world</code>.</p>
+
+<blockquote>
+  <p>It is important to note that each event will make available its own list
+  of method arguments, and accessing non-existent arguments will throw an
+  exception.</p>
+</blockquote>
+
+<p>To register the observer, you will need to call the <code>observe()</code> method
+with the appropriate event identifier and an instance of your observer:</p>
+
+<pre><code>$builder-&gt;observe(Builder::ADD_STRING, new Replace());
+</code></pre>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_addEmptyDir" class="">addEmptyDir()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_addFile" class="">addFile()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_addFromString" class="">addFromString()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_buildFromDirectory" class="">buildFromDirectory()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_buildFromIterator" class="">buildFromIterator()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_getPhar" class="">getPhar()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_observe" class="">observe()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_setStub" class="">setStub()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_getSubject" class="">getSubject()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_isSubjectRegistered" class="">isSubjectRegistered()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_registerSubject" class="">registerSubject()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_replaceSubject" class="">replaceSubject()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_unregisterSubject" class="">unregisterSubject()</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#method_updateSubject" class="">updateSubject()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_ADD_DIR" class="">ADD_DIR</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_ADD_FILE" class="">ADD_FILE</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_ADD_STRING" class="">ADD_STRING</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_BUILD_DIR" class="">BUILD_DIR</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_BUILD_ITERATOR" class="">BUILD_ITERATOR</a><br />
+                                                                    <a href="../classes/Phine.Phar.Builder.html#constant_SET_STUB" class="">SET_STUB</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_registerDefaultSubjects" class="">registerDefaultSubjects()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Builder.html#method_invokeEvent" class="">invokeEvent()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Builder.html#property_phar" class="">$phar</a><br />
+                                                                    <a href="../classes/Phine.Observer.Collection.html#property_subjects" class="">$subjects</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/lib.Phine.Phar.Builder.php.html"><div class="path-wrapper">lib/Phine/Phar/Builder.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Phine.Observer.Collection.html">\Phine\Observer\Collection</a></div>
+                                                                                                    <div class="namespace-wrapper">\Phine\Phar\Builder</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Kevin Herrera <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o">&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o</a></p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                api
+                            </th>
+                            <td>
+                                                                    
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ADD_DIR" name="constant_ADD_DIR" class="anchor"></a>
+            <article id="constant_ADD_DIR" class="constant">
+                <h3 class="">ADD_DIR</h3>
+                <pre class="signature">ADD_DIR</pre>
+                <p><em>The event ID for adding an empty directory.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ADD_FILE" name="constant_ADD_FILE" class="anchor"></a>
+            <article id="constant_ADD_FILE" class="constant">
+                <h3 class="">ADD_FILE</h3>
+                <pre class="signature">ADD_FILE</pre>
+                <p><em>The event ID for adding a file from disk.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ADD_STRING" name="constant_ADD_STRING" class="anchor"></a>
+            <article id="constant_ADD_STRING" class="constant">
+                <h3 class="">ADD_STRING</h3>
+                <pre class="signature">ADD_STRING</pre>
+                <p><em>The event ID for adding a file from a string.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BUILD_DIR" name="constant_BUILD_DIR" class="anchor"></a>
+            <article id="constant_BUILD_DIR" class="constant">
+                <h3 class="">BUILD_DIR</h3>
+                <pre class="signature">BUILD_DIR</pre>
+                <p><em>The event ID for building from a directory.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BUILD_ITERATOR" name="constant_BUILD_ITERATOR" class="anchor"></a>
+            <article id="constant_BUILD_ITERATOR" class="constant">
+                <h3 class="">BUILD_ITERATOR</h3>
+                <pre class="signature">BUILD_ITERATOR</pre>
+                <p><em>The event ID for building using an iterator.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_STUB" name="constant_SET_STUB" class="anchor"></a>
+            <article id="constant_SET_STUB" class="constant">
+                <h3 class="">SET_STUB</h3>
+                <pre class="signature">SET_STUB</pre>
+                <p><em>The event ID for settings the stub.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_phar" name="property_phar" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$phar</h3>
+                <pre class="signature">$phar : \Phar</pre>
+                <p><em>The PHP archive being built.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                \Phar
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_subjects" name="property_subjects" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$subjects</h3>
+                <pre class="signature">$subjects : \Phine\Observer\SubjectInterface[]</pre>
+                <p><em>The registered subjects.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                \Phine\Observer\SubjectInterface[]
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Phar <span class="argument">$phar</span>)</pre>
+                <p><em>Sets the PHP archive instance to build with.</em></p>
+                <p>Once the archive instance has been set, the default event subjects are
+registered with this new builder by calling <code>registerDefaultSubjects()</code>,
+a protected instance method. This method can be overridden to register
+new or different events.</p>
+
+<pre><code>use Phine\Phar\Builder;
+
+$phar = new Phar('example.phar');
+
+$builder = new Builder($phar);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phar</td>
+                                <td>$phar</td>
+                                <td><p>The PHP archive.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addEmptyDir" name="method_addEmptyDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addEmptyDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addEmptyDir(string <span class="argument">$name</span>)</pre>
+                <p><em>Adds an empty directory to the archive.</em></p>
+                <p>Triggers the <code>Builder::ADD_DIR</code> event.</p>
+
+<pre><code>$builder-&gt;addEmptyDir('example');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name</td>
+                                <td><p>The name of the directory.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFile" name="method_addFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addFile(string <span class="argument">$file</span>, string <span class="argument">$local</span>)</pre>
+                <p><em>Adds a file from the disk to the archive.</em></p>
+                <p>Triggers the <code>Builder::ADD_FILE</code> event.</p>
+
+<pre><code>$builder-&gt;addFile('/path/to/example.php', 'example.php');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file</td>
+                                <td><p>The path to the file.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$local</td>
+                                <td><p>(optional) The path to the file in the archive.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFromString" name="method_addFromString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFromString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addFromString(string <span class="argument">$local</span>, string <span class="argument">$contents</span>)</pre>
+                <p><em>Adds a file from a string to the archive.</em></p>
+                <p>Triggers the <code>Builder::ADD_STRING</code> event.</p>
+
+<pre><code>$builder-&gt;addFromString('example.php', '&lt;?php echo "Hello!\n";');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$local</td>
+                                <td><p>The path to the file in the archive.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$contents</td>
+                                <td><p>The contents of the file.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildFromDirectory" name="method_buildFromDirectory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">buildFromDirectory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildFromDirectory(string <span class="argument">$dir</span>, string <span class="argument">$regex</span>) : array</pre>
+                <p><em>Builds the archive using the files in a directory path.</em></p>
+                <p>Triggers the <code>Builder::BUILD_DIR</code> event.</p>
+
+<pre><code>$builder-&gt;buildFromDirectory('/path/to/example', '/(src|lib)/');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$dir</td>
+                                <td><p>The directory path.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$regex</td>
+                                <td><p>(optional) The regular expression filter.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>An array mapping internal paths to external files.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildFromIterator" name="method_buildFromIterator" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">buildFromIterator()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildFromIterator(\Iterator <span class="argument">$iterator</span>, string <span class="argument">$base</span>) : array</pre>
+                <p><em>Builds the archive using an iterator.</em></p>
+                <p>Triggers the <code>Builder::BUILD_ITERATOR</code> event.</p>
+
+<pre><code>$iterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator('/path/to/example')
+);
+
+$builder-&gt;buildFromIterator($iterator, '/path/to/example');
+</code></pre>
+
+<blockquote>
+  <p>Note that if the iterator returns instances of <code>SplFileInfo</code>,
+  the <code>$base</code> argument becomes required.</p>
+</blockquote>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Iterator</td>
+                                <td>$iterator</td>
+                                <td><p>An iterator.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$base</td>
+                                <td><p>(optional) The base directory path.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>An array mapping internal paths to external files.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create(string <span class="argument">$file</span>) : \Phine\Phar\Builder</pre>
+                <p><em>Creates a new `Phar` and `Builder` instance.</em></p>
+                <p>This method is a shorter version of first creating a new instance of
+<code>Phar</code>, and then a new instance of <code>Builder</code>. The following example:</p>
+
+<pre><code>use Phine\Phar\Builder;
+
+$phar = new Phar('example.phar');
+
+$builder = new Builder($phar);
+</code></pre>
+
+<p>Is the same as this:</p>
+
+<pre><code>use Phine\Phar\Builder;
+
+$builder = Builder::create('example.phar');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file</td>
+                                <td><p>The PHP archive file path.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.Builder.html">\Phine\Phar\Builder</a>
+                                            &mdash; <p>The new builder instance.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPhar" name="method_getPhar" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPhar()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPhar() : \Phar</pre>
+                <p><em>Returns the `Phar` instance being built with.</em></p>
+                <p>This method will return the <code>Phar</code> instance that is being used to
+build the archive file.</p>
+
+<pre><code>$phar = $builder-&gt;getPhar();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Phar
+                                            &mdash; <p>The <code>Phar</code> instance.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_observe" name="method_observe" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">observe()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">observe(string <span class="argument">$id</span>, \Phine\Observer\ObserverInterface <span class="argument">$observer</span>, integer <span class="argument">$priority</span>)</pre>
+                <p><em>Registers an event observer with a subject.</em></p>
+                <p>This method is a shortcut to the builder subject's <code>registerObserver()</code>
+method. Instead of doing the following example:</p>
+
+<pre><code>use Phine\Observer\SubjectInterface;
+use Phine\Phar\Builder;
+
+$builder
+    -&gt;getSubject(Builder::ADD_STRING)
+    -&gt;registerObserver(
+        new Observer(),
+        SubjectInterface::FIRST_PRIORITY
+    );
+</code></pre>
+
+<p>You may instead do the following example:</p>
+
+<pre><code>use Phine\Observer\SubjectInterface;
+use Phine\Phar\Builder;
+
+$builder-&gt;observe(
+    Builder::ADD_STRING,
+    new Observer(),
+    SubjectInterface::FIRST_PRIORITY
+);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$id</td>
+                                <td><p>The event subject identifier.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.ObserverInterface.html">\Phine\Observer\ObserverInterface</a></td>
+                                <td>$observer</td>
+                                <td><p>The event subject observer.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>(optional) The priority of the observer.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setStub" name="method_setStub" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setStub()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setStub(string <span class="argument">$stub</span>)</pre>
+                <p><em>Sets the stub used to bootstrap the archive.</em></p>
+                <p>Triggers the <code>Builder::SET_STUB</code> event.</p>
+
+<pre><code>$builder-&gt;setStub($stub);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$stub</td>
+                                <td><p>The archive stub.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSubject" name="method_getSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSubject( <span class="argument">$id</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isSubjectRegistered" name="method_isSubjectRegistered" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isSubjectRegistered()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isSubjectRegistered( <span class="argument">$id</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerSubject" name="method_registerSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">registerSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerSubject( <span class="argument">$id</span>, \Phine\Observer\SubjectInterface <span class="argument">$subject</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.SubjectInterface.html">\Phine\Observer\SubjectInterface</a></td>
+                                <td>$subject</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_replaceSubject" name="method_replaceSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">replaceSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">replaceSubject( <span class="argument">$id</span>, \Phine\Observer\SubjectInterface <span class="argument">$subject</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.SubjectInterface.html">\Phine\Observer\SubjectInterface</a></td>
+                                <td>$subject</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unregisterSubject" name="method_unregisterSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unregisterSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">unregisterSubject( <span class="argument">$id</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateSubject" name="method_updateSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">updateSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateSubject( <span class="argument">$id</span>)</pre>
+                <p><em>{@inheritDoc}</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phine.Observer.Collection.html"><div class="path-wrapper">\Phine\Observer\Collection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerDefaultSubjects" name="method_registerDefaultSubjects" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">registerDefaultSubjects()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerDefaultSubjects()</pre>
+                <p><em>Registers the default event subjects.</em></p>
+                <p>The following is a list of events registered by this method:</p>
+
+<ul>
+<li><code>Builder::ADD_DIR</code> &mdash; <code>Phine\Phar\Subject\Builder\AddDirectory</code></li>
+<li><code>Builder::ADD_FILE</code> &mdash; <code>Phine\Phar\Subject\Builder\AddFile</code></li>
+<li><code>Builder::ADD_STRING</code> &mdash; <code>Phine\Phar\Subject\Builder\AddString</code></li>
+<li><code>Builder::BUILD_DIR</code> &mdash; <code>Phine\Phar\Subject\Builder\BuildDirectory</code></li>
+<li><code>Builder::BUILD_ITERATOR</code> &mdash; <code>Phine\Phar\Subject\Builder\BuildIterator</code></li>
+<li><code>Builder::SET_STUB</code> &mdash; <code>Phine\Phar\Subject\Builder\SetStub</code></li>
+</ul>
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_invokeEvent" name="method_invokeEvent" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">invokeEvent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">invokeEvent(string <span class="argument">$id</span>, array <span class="argument">$values</span>) : mixed</pre>
+                <p><em>Invokes an event after setting new method argument values.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$id</td>
+                                <td><p>The event subject identifier.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values</td>
+                                <td><p>The new method argument values.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>Any value, if available.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Builder.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/lib/Phine/Phar/Builder.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

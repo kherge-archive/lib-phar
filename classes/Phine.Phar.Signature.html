@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1539453678"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1539453678" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-797705037"></a>
+                                <a href="../namespaces/Phine.html" style="margin-left: 30px; padding-left: 0">Phine</a>
+            </div>
+            <div id="namespace-797705037" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-502009852"></a>
+                                <a href="../namespaces/Phine.Phar.html" style="margin-left: 30px; padding-left: 0">Phar</a>
+            </div>
+            <div id="namespace-502009852" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1435363828"></a>
+                                <a href="../namespaces/Phine.Phar.Manifest.html" style="margin-left: 30px; padding-left: 0">Manifest</a>
+            </div>
+            <div id="namespace-1435363828" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Manifest.Entry.html">Entry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1429241635"></a>
+                                <a href="../namespaces/Phine.Phar.File.html" style="margin-left: 30px; padding-left: 0">File</a>
+            </div>
+            <div id="namespace-1429241635" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.File.Writer.html">Writer</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.File.Reader.html">Reader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-20403578"></a>
+                                <a href="../namespaces/Phine.Phar.Stub.html" style="margin-left: 30px; padding-left: 0">Stub</a>
+            </div>
+            <div id="namespace-20403578" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.Extract.html">Extract</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-106931955"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.html" style="margin-left: 30px; padding-left: 0">Signature</a>
+            </div>
+            <div id="namespace-106931955" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1179216561"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.Algorithm.html" style="margin-left: 30px; padding-left: 0">Algorithm</a>
+            </div>
+            <div id="namespace-1179216561" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">AlgorithmInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.AbstractHashAlgorithm.html">AbstractHashAlgorithm</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA512.html">SHA512</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.MD5.html">MD5</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.OpenSSL.html">OpenSSL</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA1.html">SHA1</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA256.html">SHA256</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1034751869"></a>
+                                <a href="../namespaces/Phine.Phar.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1034751869" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.BuilderException.html">BuilderException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.ArchiveException.html">ArchiveException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.FileException.html">FileException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.SignatureException.html">SignatureException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-277564735"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.html" style="margin-left: 30px; padding-left: 0">Subject</a>
+            </div>
+            <div id="namespace-277564735" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1755201550"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.Builder.html" style="margin-left: 30px; padding-left: 0">Builder</a>
+            </div>
+            <div id="namespace-1755201550" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildDirectory.html">BuildDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddDirectory.html">AddDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddFile.html">AddFile</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddString.html">AddString</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildIterator.html">BuildIterator</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.SetStub.html">SetStub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.AbstractSubject.html">AbstractSubject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Arguments.html">Arguments</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Extract.html">Extract</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Archive.html">Archive</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.html">Stub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-178941764"></a>
+                                <a href="../namespaces/Phine.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-178941764" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Exception.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-74362944"></a>
+                                <a href="../namespaces/Phine.Path.html" style="margin-left: 30px; padding-left: 0">Path</a>
+            </div>
+            <div id="namespace-74362944" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-109973895"></a>
+                                <a href="../namespaces/Phine.Path.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-109973895" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Exception.PathException.html">PathException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1313446846"></a>
+                                <a href="../namespaces/Phine.Observer.html" style="margin-left: 30px; padding-left: 0">Observer</a>
+            </div>
+            <div id="namespace-1313446846" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2126737022"></a>
+                                <a href="../namespaces/Phine.Observer.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-2126737022" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.CollectionException.html">CollectionException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.ReasonException.html">ReasonException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.SubjectInterface.html">SubjectInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.CollectionInterface.html">CollectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ArrayCollectionInterface.html">ArrayCollectionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Subject.html">Subject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.ArrayCollection.html">ArrayCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phine.Phar.html">\Phine\Phar</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phine\Phar</small>Signature</h1>
+                    <p><em>Reads and verifies an archive&#039;s signature.</em></p>
+                    <h2>Summary</h2>
+
+<p>The <code>Signature</code> class uses algorithm classes to read and verify signatures
+of archive files, without using the <code>phar</code> extension. The library includes
+a class for each algorithm recognized by the <code>phar</code> extension: MD5, SHA1,
+SHA256, SHA512, and OpenSSL. If you are verifying an archive signed using
+a private key, you will need the <code>openssl</code> extension installed.</p>
+
+<h2>Starting</h2>
+
+<p>To start, you will need to create a new instance of <code>Signature</code>.</p>
+
+<pre><code>use Phine\Phar\Signature;
+
+$signature = Signature::create('example.phar');
+</code></pre>
+
+<p>The above example will create a reader for the file, create a new instance
+of the <code>Signature</code> class, and register all of the bundled algorithm classes
+with the instance. If you know that you will only need one algorithm class
+to verify a signature, you may manually create and register the instances
+yourself:</p>
+
+<pre><code>use Phine\Phar\File\Reader;
+use Phine\Phar\Signature;
+use Phine\Phar\Signature\Algorithm\SHA1;
+
+$reader = new Reader('example.phar');
+
+$signature = new Signature($reader);
+$signature-&gt;addAlgorithm(new SHA1());
+</code></pre>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method_addAlgorithm" class="">addAlgorithm()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method_getAlgorithm" class="">getAlgorithm()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method_getHash" class="">getHash()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#method_isValid" class="">isValid()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Signature.html#property_algorithm" class="">$algorithm</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#property_algorithms" class="">$algorithms</a><br />
+                                                                    <a href="../classes/Phine.Phar.Signature.html#property_reader" class="">$reader</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/lib.Phine.Phar.Signature.php.html"><div class="path-wrapper">lib/Phine/Phar/Signature.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Phine\Phar\Signature</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Kevin Herrera <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o">&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o</a></p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                api
+                            </th>
+                            <td>
+                                                                    
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_algorithm" name="property_algorithm" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$algorithm</h3>
+                <pre class="signature">$algorithm : \Phine\Phar\Signature\Algorithm\AlgorithmInterface</pre>
+                <p><em>The algorithm for the archive file.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">\Phine\Phar\Signature\Algorithm\AlgorithmInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_algorithms" name="property_algorithms" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$algorithms</h3>
+                <pre class="signature">$algorithms : \Phine\Phar\Signature\Algorithm\AlgorithmInterface[]</pre>
+                <p><em>The collection of recognized algorithms.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                \Phine\Phar\Signature\Algorithm\AlgorithmInterface[]
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_reader" name="property_reader" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$reader</h3>
+                <pre class="signature">$reader : \Phine\Phar\File\Reader</pre>
+                <p><em>The archive file reader.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Phine\Phar\File\Reader <span class="argument">$reader</span>)</pre>
+                <p><em>Sets the archive file reader.</em></p>
+                <p>This method will create a new instance of the class using the given
+file reader. On its own, the instance will not be able to extract or
+verify any signature of any archive file. You will need to register
+one or more algorithm classes with the new instance.</p>
+
+<pre><code>use Phine\Phar\File\Reader;
+use Phine\Phar\Signature;
+
+$reader = new Reader('example.phar');
+$signature = new Signature($reader);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a></td>
+                                <td>$reader</td>
+                                <td><p>The archive file reader.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addAlgorithm" name="method_addAlgorithm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addAlgorithm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addAlgorithm(\Phine\Phar\Signature\Algorithm\AlgorithmInterface <span class="argument">$algorithm</span>)</pre>
+                <p><em>Adds a signature algorithm to recognize.</em></p>
+                <p>use Phine\Phar\Signature\Algorithm\SHA1;</p>
+
+<pre><code>$signature-&gt;addAlgorithm(new SHA1());
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">\Phine\Phar\Signature\Algorithm\AlgorithmInterface</a></td>
+                                <td>$algorithm</td>
+                                <td><p>An algorithm.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create(\Phine\Phar\File\Reader|string <span class="argument">$file</span>) : \Phine\Phar\Signature</pre>
+                <p><em>Creates a new instance with default algorithms registered.</em></p>
+                <p>This method will create a new file reader (or use a given one) for use
+with a new <code>Signature</code> instance that will also be created. The bundled
+algorithm classes will then be registered with the new instance so that
+MD5, SHA1, and other signature types are recognized.</p>
+
+<pre><code>use Phine\Phar\Signature;
+
+$signature = Signature::create('example.phar');
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a>|string</td>
+                                <td>$file</td>
+                                <td><p>The archive file path or reader.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.Signature.html">\Phine\Phar\Signature</a>
+                                            &mdash; <p>The new instance.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAlgorithm" name="method_getAlgorithm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAlgorithm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAlgorithm() : \Phine\Phar\Signature\Algorithm\AlgorithmInterface</pre>
+                <p><em>Returns the algorithm used for the archive file.</em></p>
+                <p>This method will detect the algorithm used by the archive file and
+return one of the registered algorithm classes that will be used to
+extract and verify the signature.</p>
+
+<pre><code>// instance of Phine\Phar\Signature\Algorithm\SHA1
+$algorithm = $signature-&gt;getAlgorithm();
+</code></pre>
+
+<blockquote>
+  <p>Note that only registered algorithms can be recognized by the
+  instance. If an unrecognized algorithm is used by the archive
+  file, an exception will be thrown.</p>
+</blockquote>
+
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Exception\Exception</dt>
+                            <dd>
+</dd>
+                                                    <dt>\Phine\Phar\Exception\SignatureException</dt>
+                            <dd><p>If the algorithm could not be found.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">\Phine\Phar\Signature\Algorithm\AlgorithmInterface</a>
+                                            &mdash; <p>The algorithm.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHash" name="method_getHash" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHash()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHash() : array</pre>
+                <p><em>Returns the signature hash stored in the archive file.</em></p>
+                <p>This method will return a hex encoded string that represents the
+signature for the archive file. This hash can be used to compare
+against the current hash of the archive file in order to verify
+its integrity.</p>
+
+<pre><code>$hash = $signature-&gt;getHash();
+</code></pre>
+
+<p>The <code>$hash</code> value returned is identical to that of the one returned
+by the <code>Phar::getSignature()</code> instance method.</p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The signature.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">&gt; Note that the actual hash for the archive is not as simple as
+&gt; calling `sha1_file()`. You will need to know where the archive
+&gt; data ends and the signature begins, and then create a hash using
+&gt; the archive data.</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isValid" name="method_isValid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isValid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isValid() : boolean</pre>
+                <p><em>Verifies the signature of the archive file.</em></p>
+                <p>This method will check if the archive's signature is valid.</p>
+
+<pre><code>if ($signature-&gt;isValid()) {
+    // verified
+}
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Returns <code>true</code> if verified, <code>false</code> if not.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Signature.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/lib/Phine/Phar/Signature.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

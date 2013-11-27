@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                            <li><a href="#lib/Phine/Phar/Builder.php"><i class="icon-file"></i> lib/Phine/Phar/Builder.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Manifest/Entry.php"><i class="icon-file"></i> lib/Phine/Phar/Manifest/Entry.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Extract.php"><i class="icon-file"></i> lib/Phine/Phar/Extract.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature.php"><i class="icon-file"></i> lib/Phine/Phar/Signature.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/File/Writer.php"><i class="icon-file"></i> lib/Phine/Phar/File/Writer.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/File/Reader.php"><i class="icon-file"></i> lib/Phine/Phar/File/Reader.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Stub/Extract.php"><i class="icon-file"></i> lib/Phine/Phar/Stub/Extract.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/AbstractHashAlgorithm.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/AbstractHashAlgorithm.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/SHA512.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/SHA512.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/AlgorithmInterface.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/AlgorithmInterface.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/MD5.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/MD5.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/OpenSSL.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/OpenSSL.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/SHA1.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/SHA1.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Signature/Algorithm/SHA256.php"><i class="icon-file"></i> lib/Phine/Phar/Signature/Algorithm/SHA256.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Archive.php"><i class="icon-file"></i> lib/Phine/Phar/Archive.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Stub.php"><i class="icon-file"></i> lib/Phine/Phar/Stub.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Exception/BuilderException.php"><i class="icon-file"></i> lib/Phine/Phar/Exception/BuilderException.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Exception/ArchiveException.php"><i class="icon-file"></i> lib/Phine/Phar/Exception/ArchiveException.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Exception/FileException.php"><i class="icon-file"></i> lib/Phine/Phar/Exception/FileException.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Exception/SignatureException.php"><i class="icon-file"></i> lib/Phine/Phar/Exception/SignatureException.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/AbstractSubject.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/AbstractSubject.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/BuildDirectory.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/BuildDirectory.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/AddDirectory.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/AddDirectory.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/AddFile.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/AddFile.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/AddString.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/AddString.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/BuildIterator.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/BuildIterator.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Builder/SetStub.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Builder/SetStub.php</a></li>
+                                                                                                    <li><a href="#lib/Phine/Phar/Subject/Arguments.php"><i class="icon-file"></i> lib/Phine/Phar/Subject/Arguments.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/exception/src/lib/Phine/Exception/Exception.php"><i class="icon-file"></i> vendors/phine/exception/src/lib/Phine/Exception/Exception.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/path/sami.php"><i class="icon-file"></i> vendors/phine/path/sami.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/path/src/lib/Phine/Path/Path.php"><i class="icon-file"></i> vendors/phine/path/src/lib/Phine/Path/Path.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/path/src/lib/Phine/Path/Exception/PathException.php"><i class="icon-file"></i> vendors/phine/path/src/lib/Phine/Path/Exception/PathException.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/sami.php"><i class="icon-file"></i> vendors/phine/observer/sami.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/Subject.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/Subject.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/Collection.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/Collection.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/ObserverInterface.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/ObserverInterface.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/ArrayCollection.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/ArrayCollection.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/Exception/CollectionException.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/Exception/CollectionException.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/Exception/ReasonException.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/Exception/ReasonException.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/CollectionInterface.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/CollectionInterface.php</a></li>
+                                                                                                    <li><a href="#vendors/phine/observer/src/lib/Phine/Observer/ArrayCollectionInterface.php"><i class="icon-file"></i> vendors/phine/observer/src/lib/Phine/Observer/ArrayCollectionInterface.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Builder.php" id="lib/Phine/Phar/Builder.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Builder.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Manifest/Entry.php" id="lib/Phine/Phar/Manifest/Entry.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Manifest/Entry.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Extract.php" id="lib/Phine/Phar/Extract.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Extract.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature.php" id="lib/Phine/Phar/Signature.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/File/Writer.php" id="lib/Phine/Phar/File/Writer.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/File/Writer.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/File/Reader.php" id="lib/Phine/Phar/File/Reader.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/File/Reader.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Stub/Extract.php" id="lib/Phine/Phar/Stub/Extract.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Stub/Extract.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/AbstractHashAlgorithm.php" id="lib/Phine/Phar/Signature/Algorithm/AbstractHashAlgorithm.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/AbstractHashAlgorithm.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/SHA512.php" id="lib/Phine/Phar/Signature/Algorithm/SHA512.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/SHA512.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method getAlgorithm()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method getName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>No summary for method getSize()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/AlgorithmInterface.php" id="lib/Phine/Phar/Signature/Algorithm/AlgorithmInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/AlgorithmInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/MD5.php" id="lib/Phine/Phar/Signature/Algorithm/MD5.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/MD5.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method getAlgorithm()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method getName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>No summary for method getSize()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/OpenSSL.php" id="lib/Phine/Phar/Signature/Algorithm/OpenSSL.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/OpenSSL.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/SHA1.php" id="lib/Phine/Phar/Signature/Algorithm/SHA1.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/SHA1.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method getAlgorithm()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method getName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>No summary for method getSize()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Signature/Algorithm/SHA256.php" id="lib/Phine/Phar/Signature/Algorithm/SHA256.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Signature/Algorithm/SHA256.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method getAlgorithm()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method getName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>No summary for method getSize()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Archive.php" id="lib/Phine/Phar/Archive.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Archive.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Stub.php" id="lib/Phine/Phar/Stub.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Stub.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Exception/BuilderException.php" id="lib/Phine/Phar/Exception/BuilderException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Exception/BuilderException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Exception/ArchiveException.php" id="lib/Phine/Phar/Exception/ArchiveException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Exception/ArchiveException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Exception/FileException.php" id="lib/Phine/Phar/Exception/FileException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Exception/FileException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Exception/SignatureException.php" id="lib/Phine/Phar/Exception/SignatureException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Exception/SignatureException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/AbstractSubject.php" id="lib/Phine/Phar/Subject/AbstractSubject.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/AbstractSubject.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/BuildDirectory.php" id="lib/Phine/Phar/Subject/Builder/BuildDirectory.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/BuildDirectory.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/AddDirectory.php" id="lib/Phine/Phar/Subject/Builder/AddDirectory.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/AddDirectory.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/AddFile.php" id="lib/Phine/Phar/Subject/Builder/AddFile.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/AddFile.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/AddString.php" id="lib/Phine/Phar/Subject/Builder/AddString.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/AddString.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/BuildIterator.php" id="lib/Phine/Phar/Subject/Builder/BuildIterator.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/BuildIterator.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Builder/SetStub.php" id="lib/Phine/Phar/Subject/Builder/SetStub.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Builder/SetStub.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method doLastStep()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib/Phine/Phar/Subject/Arguments.php" id="lib/Phine/Phar/Subject/Arguments.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib/Phine/Phar/Subject/Arguments.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/exception/src/lib/Phine/Exception/Exception.php" id="vendors/phine/exception/src/lib/Phine/Exception/Exception.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/exception/src/lib/Phine/Exception/Exception.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/path/sami.php" id="vendors/phine/path/sami.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/path/sami.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/path/src/lib/Phine/Path/Path.php" id="vendors/phine/path/src/lib/Phine/Path/Path.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/path/src/lib/Phine/Path/Path.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/path/src/lib/Phine/Path/Exception/PathException.php" id="vendors/phine/path/src/lib/Phine/Path/Exception/PathException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/path/src/lib/Phine/Path/Exception/PathException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/sami.php" id="vendors/phine/observer/sami.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/sami.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/Subject.php" id="vendors/phine/observer/src/lib/Phine/Observer/Subject.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/Subject.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $priority is missing from the Docblock of hasObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>49</td>
+                                        <td>Argument $priority is missing from the Docblock of hasObservers()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>99</td>
+                                        <td>Argument $priority is missing from the Docblock of registerObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>113</td>
+                                        <td>Argument $priority is missing from the Docblock of unregisterAllObservers()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>139</td>
+                                        <td>Argument $priority is missing from the Docblock of unregisterObserver()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/Collection.php" id="vendors/phine/observer/src/lib/Phine/Observer/Collection.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/Collection.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>Argument $id is missing from the Docblock of getSubject()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>36</td>
+                                        <td>Argument $id is missing from the Docblock of isSubjectRegistered()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $id is missing from the Docblock of registerSubject()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>56</td>
+                                        <td>Argument $id is missing from the Docblock of replaceSubject()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>68</td>
+                                        <td>Argument $id is missing from the Docblock of unregisterSubject()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>80</td>
+                                        <td>Argument $id is missing from the Docblock of updateSubject()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/ObserverInterface.php" id="vendors/phine/observer/src/lib/Phine/Observer/ObserverInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/ObserverInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php" id="vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/ArrayCollection.php" id="vendors/phine/observer/src/lib/Phine/Observer/ArrayCollection.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/ArrayCollection.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $id is missing from the Docblock of offsetExists()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $id is missing from the Docblock of offsetGet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $id is missing from the Docblock of offsetSet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $subject is missing from the Docblock of offsetSet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>43</td>
+                                        <td>Argument $id is missing from the Docblock of offsetUnset()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/Exception/CollectionException.php" id="vendors/phine/observer/src/lib/Phine/Observer/Exception/CollectionException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/Exception/CollectionException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/Exception/ReasonException.php" id="vendors/phine/observer/src/lib/Phine/Observer/Exception/ReasonException.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/Exception/ReasonException.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/CollectionInterface.php" id="vendors/phine/observer/src/lib/Phine/Observer/CollectionInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/CollectionInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="vendors/phine/observer/src/lib/Phine/Observer/ArrayCollectionInterface.php" id="vendors/phine/observer/src/lib/Phine/Observer/ArrayCollectionInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            vendors/phine/observer/src/lib/Phine/Observer/ArrayCollectionInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

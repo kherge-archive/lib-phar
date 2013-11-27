@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1798693605"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1798693605" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1146118601"></a>
+                                <a href="../namespaces/Phine.html" style="margin-left: 30px; padding-left: 0">Phine</a>
+            </div>
+            <div id="namespace-1146118601" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1192257660"></a>
+                                <a href="../namespaces/Phine.Phar.html" style="margin-left: 30px; padding-left: 0">Phar</a>
+            </div>
+            <div id="namespace-1192257660" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1424635091"></a>
+                                <a href="../namespaces/Phine.Phar.Manifest.html" style="margin-left: 30px; padding-left: 0">Manifest</a>
+            </div>
+            <div id="namespace-1424635091" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Manifest.Entry.html">Entry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1522501649"></a>
+                                <a href="../namespaces/Phine.Phar.File.html" style="margin-left: 30px; padding-left: 0">File</a>
+            </div>
+            <div id="namespace-1522501649" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.File.Writer.html">Writer</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.File.Reader.html">Reader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-107374532"></a>
+                                <a href="../namespaces/Phine.Phar.Stub.html" style="margin-left: 30px; padding-left: 0">Stub</a>
+            </div>
+            <div id="namespace-107374532" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.Extract.html">Extract</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2141929935"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.html" style="margin-left: 30px; padding-left: 0">Signature</a>
+            </div>
+            <div id="namespace-2141929935" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-451154607"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.Algorithm.html" style="margin-left: 30px; padding-left: 0">Algorithm</a>
+            </div>
+            <div id="namespace-451154607" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">AlgorithmInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.AbstractHashAlgorithm.html">AbstractHashAlgorithm</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA512.html">SHA512</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.MD5.html">MD5</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.OpenSSL.html">OpenSSL</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA1.html">SHA1</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA256.html">SHA256</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-705024757"></a>
+                                <a href="../namespaces/Phine.Phar.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-705024757" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.BuilderException.html">BuilderException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.ArchiveException.html">ArchiveException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.FileException.html">FileException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.SignatureException.html">SignatureException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-842496106"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.html" style="margin-left: 30px; padding-left: 0">Subject</a>
+            </div>
+            <div id="namespace-842496106" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1521384273"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.Builder.html" style="margin-left: 30px; padding-left: 0">Builder</a>
+            </div>
+            <div id="namespace-1521384273" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildDirectory.html">BuildDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddDirectory.html">AddDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddFile.html">AddFile</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddString.html">AddString</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildIterator.html">BuildIterator</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.SetStub.html">SetStub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.AbstractSubject.html">AbstractSubject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Arguments.html">Arguments</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Extract.html">Extract</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Archive.html">Archive</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.html">Stub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1270956159"></a>
+                                <a href="../namespaces/Phine.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1270956159" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Exception.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1797019609"></a>
+                                <a href="../namespaces/Phine.Path.html" style="margin-left: 30px; padding-left: 0">Path</a>
+            </div>
+            <div id="namespace-1797019609" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-298104968"></a>
+                                <a href="../namespaces/Phine.Path.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-298104968" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Exception.PathException.html">PathException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1397073701"></a>
+                                <a href="../namespaces/Phine.Observer.html" style="margin-left: 30px; padding-left: 0">Observer</a>
+            </div>
+            <div id="namespace-1397073701" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-149394840"></a>
+                                <a href="../namespaces/Phine.Observer.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-149394840" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.CollectionException.html">CollectionException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.ReasonException.html">ReasonException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.SubjectInterface.html">SubjectInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.CollectionInterface.html">CollectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ArrayCollectionInterface.html">ArrayCollectionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Subject.html">Subject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.ArrayCollection.html">ArrayCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phine.Observer.html">\Phine\Observer</a>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phine\Observer</small>SubjectInterface</h1>
+                    <p><em>Defines how a subject class must be implemented.</em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span6">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span6">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span6">
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_hasObserver">hasObserver()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_hasObservers">hasObservers()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_interruptUpdate">interruptUpdate()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_notifyObservers">notifyObservers()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_registerObserver">registerObserver()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_unregisterAllObservers">unregisterAllObservers()</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#method_unregisterObserver">unregisterObserver()</a><br />
+                                                            </section>
+                            <section class="span6">
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#constant_FIRST_PRIORITY">FIRST_PRIORITY</a><br />
+                                                                    <a href="../classes/Phine.Observer.SubjectInterface.html#constant_LAST_PRIORITY">LAST_PRIORITY</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span6">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span6">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        <dl>
+                        <dt>File</dt>
+                            <dd>
+                                <a href="../files/vendors.phine.observer.src.lib.Phine.Observer.SubjectInterface.php.html"><div class="path-wrapper">vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php</div></a>
+                            </dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                
+                                            </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>author</th>
+                            <td>
+                                                                    <p>Kevin Herrera <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o">&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o</a></p>
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                            <a id="constants" name="constants"></a>
+                <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FIRST_PRIORITY" name="constant_FIRST_PRIORITY" class="anchor"></a>
+            <article id="constant_FIRST_PRIORITY" class="constant">
+                <h3 class="">FIRST_PRIORITY</h3>
+                <pre class="signature">FIRST_PRIORITY</pre>
+                <p><em>The first priority of an observer.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LAST_PRIORITY" name="constant_LAST_PRIORITY" class="anchor"></a>
+            <article id="constant_LAST_PRIORITY" class="constant">
+                <h3 class="">LAST_PRIORITY</h3>
+                <pre class="signature">LAST_PRIORITY</pre>
+                <p><em>The last priority of an observer.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                        <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Methods</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasObserver" name="method_hasObserver" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasObserver()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasObserver(\Phine\Observer\ObserverInterface <span class="argument">$observer</span>, integer <span class="argument">$priority</span>) : boolean</pre>
+                <p><em>Checks if a specific observer is registered with this subject.</em></p>
+                <p>By default, if the <code>$observer</code> is registered with any priority, <code>true</code>
+will be returned. However, if a <code>$priority</code> is specified, registrations
+for only that priority will be checked. For example, if <code>$observer</code> was
+originally registered with a priority of <code>4</code>, but the <code>$priority</code> to
+check is <code>5</code>, <code>false</code> will be returned since the <code>$observer</code> was not
+registered using that priority.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.ObserverInterface.html">\Phine\Observer\ObserverInterface</a></td>
+                                <td>$observer</td>
+                                <td><p>The observer to check for.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>The priority to limit the check to.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Returns <code>true</code> if the observer is registered with
+                this subject (and priority, if specified). If the
+                observer is not registered, <code>false</code> is returned.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasObservers" name="method_hasObservers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasObservers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasObservers(integer <span class="argument">$priority</span>) : boolean</pre>
+                <p><em>Checks if this subject has any observers registered.</em></p>
+                <p>By default, if any observer is registered with any priority, <code>true</code> will
+be returned. However, if a <code>$priority</code> is specified, only registrations
+for that priority will be checked. For example, if observers have only
+been registered with a priority of <code>4</code>, but the <code>$priority</code> to check is
+<code>5</code>, <code>false</code> will be returned.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>The priority to limit the check to.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Returns <code>true</code> if there is at least one observer
+                registered. If no observers are registered, <code>false</code>
+                will be returned.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_interruptUpdate" name="method_interruptUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">interruptUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">interruptUpdate(\Phine\Observer\Exception\ReasonException <span class="argument">$reason</span>)</pre>
+                <p><em>Interrupts the observer update process.</em></p>
+                <p>When an update is interrupted, the given reason is saved to be later
+thrown after the current observer has completed. If a reason is not
+provided, the default "(no reason specified)" message will be used.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.Exception.ReasonException.html">\Phine\Observer\Exception\ReasonException</a></td>
+                                <td>$reason</td>
+                                <td><p>A reason for the interruption.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_notifyObservers" name="method_notifyObservers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">notifyObservers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">notifyObservers() : mixed</pre>
+                <p><em>Notifies all observers of an update from this subject.</em></p>
+                <p>Observers are notified in the priority and order they are registered in.
+Note that any single observer may interrupt the update process. When an
+update is interrupted, the observer that initiated the interrupt may
+finish, and then an exception is thrown stating the reason for the
+interruption.</p>
+
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Observer\Exception\ReasonException</dt>
+                            <dd><p>If the update is interrupted.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>While not required, a subject may return a value once
+              all of the observers have been notified. If no value is
+              available, <code>null</code> is always returned.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerObserver" name="method_registerObserver" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">registerObserver()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerObserver(\Phine\Observer\ObserverInterface <span class="argument">$observer</span>, integer <span class="argument">$priority</span>)</pre>
+                <p><em>Registers an observer with this subject.</em></p>
+                <p>By default, an observer will be registered with a priority of <code>0</code> (zero).
+The lower the number for the priority, the sooner it will be called when
+an update is made by the subject. A priority of <code>0</code> (zero) is the earliest
+priority possible, while <code>PHP_INT_MAX</code> is the latest priority possible.</p>
+
+<p>For convenience, the following constants are made available:</p>
+
+<ul>
+<li><code>SubjectInterface::FIRST_PRIORITY</code> &mdash; Priority <code>0</code> (zero).</li>
+<li><code>SubjectInterface::LAST_PRIORITY</code> &mdash; Priority <code>PHP_INT_MAX</code>.</li>
+</ul>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.ObserverInterface.html">\Phine\Observer\ObserverInterface</a></td>
+                                <td>$observer</td>
+                                <td><p>The observer to register.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>The priority of the observer.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unregisterAllObservers" name="method_unregisterAllObservers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unregisterAllObservers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">unregisterAllObservers(\Phine\Observer\ObserverInterface <span class="argument">$observer</span>, integer <span class="argument">$priority</span>)</pre>
+                <p><em>Unregisters all observers from this subject.</em></p>
+                <p>By default, all observer registrations will be removed, regardless of
+their priorities. If an <code>$observer</code> is provided, all registrations of
+only that observer will be removed. If <code>$priority</code> is provided, only
+registrations of that priority will be removed.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.ObserverInterface.html">\Phine\Observer\ObserverInterface</a></td>
+                                <td>$observer</td>
+                                <td><p>The observer to unregister.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>The priority to limit to.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unregisterObserver" name="method_unregisterObserver" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unregisterObserver()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">unregisterObserver(\Phine\Observer\ObserverInterface <span class="argument">$observer</span>, integer <span class="argument">$priority</span>)</pre>
+                <p><em>Unregisters an observer from this subject.</em></p>
+                <p>By default, only one instance of the observer's registration will be
+removed, regardless of its priority. If <code>$priority</code> is set, only the
+first occurrence for that priority will be removed. To remove all
+occurrences of the <code>$observer</code> being registered, you will need to use
+the {@link unregisterAllObservers} method.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Observer.ObserverInterface.html">\Phine\Observer\ObserverInterface</a></td>
+                                <td>$observer</td>
+                                <td><p>The observer to unregister.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$priority</td>
+                                <td><p>The priority to limit to.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">SubjectInterface.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/vendors/phine/observer/src/lib/Phine/Observer/SubjectInterface.php.txt" class="language-php"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

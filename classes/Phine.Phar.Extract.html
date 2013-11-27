@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1400188132"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1400188132" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-915852889"></a>
+                                <a href="../namespaces/Phine.html" style="margin-left: 30px; padding-left: 0">Phine</a>
+            </div>
+            <div id="namespace-915852889" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1771017721"></a>
+                                <a href="../namespaces/Phine.Phar.html" style="margin-left: 30px; padding-left: 0">Phar</a>
+            </div>
+            <div id="namespace-1771017721" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2045214614"></a>
+                                <a href="../namespaces/Phine.Phar.Manifest.html" style="margin-left: 30px; padding-left: 0">Manifest</a>
+            </div>
+            <div id="namespace-2045214614" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Manifest.Entry.html">Entry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-771357188"></a>
+                                <a href="../namespaces/Phine.Phar.File.html" style="margin-left: 30px; padding-left: 0">File</a>
+            </div>
+            <div id="namespace-771357188" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.File.Writer.html">Writer</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.File.Reader.html">Reader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-781890414"></a>
+                                <a href="../namespaces/Phine.Phar.Stub.html" style="margin-left: 30px; padding-left: 0">Stub</a>
+            </div>
+            <div id="namespace-781890414" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.Extract.html">Extract</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1776191687"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.html" style="margin-left: 30px; padding-left: 0">Signature</a>
+            </div>
+            <div id="namespace-1776191687" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1786314949"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.Algorithm.html" style="margin-left: 30px; padding-left: 0">Algorithm</a>
+            </div>
+            <div id="namespace-1786314949" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">AlgorithmInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.AbstractHashAlgorithm.html">AbstractHashAlgorithm</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA512.html">SHA512</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.MD5.html">MD5</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.OpenSSL.html">OpenSSL</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA1.html">SHA1</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA256.html">SHA256</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2064145066"></a>
+                                <a href="../namespaces/Phine.Phar.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-2064145066" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.BuilderException.html">BuilderException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.ArchiveException.html">ArchiveException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.FileException.html">FileException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.SignatureException.html">SignatureException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-331709241"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.html" style="margin-left: 30px; padding-left: 0">Subject</a>
+            </div>
+            <div id="namespace-331709241" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-871467350"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.Builder.html" style="margin-left: 30px; padding-left: 0">Builder</a>
+            </div>
+            <div id="namespace-871467350" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildDirectory.html">BuildDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddDirectory.html">AddDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddFile.html">AddFile</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddString.html">AddString</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildIterator.html">BuildIterator</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.SetStub.html">SetStub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.AbstractSubject.html">AbstractSubject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Arguments.html">Arguments</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Extract.html">Extract</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Archive.html">Archive</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.html">Stub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-138065680"></a>
+                                <a href="../namespaces/Phine.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-138065680" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Exception.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-56818734"></a>
+                                <a href="../namespaces/Phine.Path.html" style="margin-left: 30px; padding-left: 0">Path</a>
+            </div>
+            <div id="namespace-56818734" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1715429498"></a>
+                                <a href="../namespaces/Phine.Path.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1715429498" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Exception.PathException.html">PathException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1288727625"></a>
+                                <a href="../namespaces/Phine.Observer.html" style="margin-left: 30px; padding-left: 0">Observer</a>
+            </div>
+            <div id="namespace-1288727625" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1936307544"></a>
+                                <a href="../namespaces/Phine.Observer.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1936307544" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.CollectionException.html">CollectionException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.ReasonException.html">ReasonException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.SubjectInterface.html">SubjectInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.CollectionInterface.html">CollectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ArrayCollectionInterface.html">ArrayCollectionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Subject.html">Subject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.ArrayCollection.html">ArrayCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phine.Phar.html">\Phine\Phar</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phine\Phar</small>Extract</h1>
+                    <p><em>Extracts the contents of an archive.</em></p>
+                    <h2>Summary</h2>
+
+<p>The <code>Extract</code> class utilizes the <code>Archive</code> and <code>Entry</code> class to extract
+one or more files from an archive file, without using the <code>phar</code> extension.
+Unlike the extraction class that is bundled with the default archive stub
+generated by the extension, heavy error checking is performed in order to
+prevent memory exhaustion when a corrupted archive is used.</p>
+
+<h2>Starting</h2>
+
+<p>To create a new instance of this class, you will need to provide a archive:</p>
+
+<pre><code>use Phine\Phar\Extract;
+use Phine\Phar\File\Reader;
+use Phine\Phar\Archive;
+
+$reader = new Reader('example.phar');
+$archive = new Archive($reader);
+$extract = new Extract($archive);
+</code></pre>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Extract.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Extract.html#method_extractFile" class="">extractFile()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Extract.html#method_extractTo" class="">extractTo()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Extract.html#method_getArchive" class="">getArchive()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Extract.html#property_archive" class="">$archive</a><br />
+                                                                    <a href="../classes/Phine.Phar.Extract.html#property_compression" class="">$compression</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/lib.Phine.Phar.Extract.php.html"><div class="path-wrapper">lib/Phine/Phar/Extract.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Phine\Phar\Extract</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Kevin Herrera <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o">&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o</a></p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                api
+                            </th>
+                            <td>
+                                                                    
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_archive" name="property_archive" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$archive</h3>
+                <pre class="signature">$archive : \Phine\Phar\Archive</pre>
+                <p><em>The archive file reader.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Phine.Phar.Archive.html">\Phine\Phar\Archive</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_compression" name="property_compression" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$compression</h3>
+                <pre class="signature">$compression : array</pre>
+                <p><em>The list of support compression algorithms.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Phine\Phar\Archive <span class="argument">$archive</span>)</pre>
+                <p><em>Sets the archive file reader.</em></p>
+                <p>This method will set the archive file reader that will be used to
+extract one or more files.</p>
+
+<pre><code>use Phine\Phar\Extract;
+use Phine\Phar\File\Reader;
+use Phine\Phar\Archive;
+
+$reader = new Reader('example.phar');
+$archive = new Archive($reader);
+$extract = new Extract($archive);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.Archive.html">\Phine\Phar\Archive</a></td>
+                                <td>$archive</td>
+                                <td><p>The archive file reader.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_extractFile" name="method_extractFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">extractFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">extractFile(\Phine\Phar\Manifest\Entry <span class="argument">$entry</span>) : string</pre>
+                <p><em>Returns the contents of a file from an archive.</em></p>
+                <p>Uses an instance of <code>Entry</code> to extract and decompress (if necessary)
+the contents of a file from an archive. Note that an extension may be
+required (<code>bz2</code> or <code>zlib</code>) to extract the file.</p>
+
+<pre><code>use Phine\Phar\Extract;
+
+$contents = Extract::extractFile($entry);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.Manifest.Entry.html">\Phine\Phar\Manifest\Entry</a></td>
+                                <td>$entry</td>
+                                <td><p>The file information from the archive.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Exception\Exception</dt>
+                            <dd>
+</dd>
+                                                    <dt>\Phine\Phar\Exception\FileException</dt>
+                            <dd><p>If the file could not be decompressed.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The decompressed file contents.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_extractTo" name="method_extractTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">extractTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">extractTo(string <span class="argument">$dir</span>, callable <span class="argument">$filter</span>) : integer</pre>
+                <p><em>Extracts one or more files to an output directory.</em></p>
+                <p>If a <code>$filter</code> callable is provided, it will be called with each file
+found in the archive.  If <code>true</code> is returned by the filter, the file
+will not be extracted. If any other value is returned, the file will
+be extracted.</p>
+
+<pre><code>use Phine\Phar\Archive\Entry;
+
+$fileCount = $extract-&gt;extractTo(
+    '/path/to/output/dir',
+    function (Entry $entry) {
+        if (!preg_match('/Test/', $entry-&gt;getName()) {
+            return true; // skip this file
+        }
+    }
+);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$dir</td>
+                                <td><p>The output directory path.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$filter</td>
+                                <td><p>(optional) The callable used to filter files.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Exception\Exception</dt>
+                            <dd>
+</dd>
+                                                    <dt>\Phine\Phar\Exception\FileException</dt>
+                            <dd><p>If a file could not be extracted.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The number of files extracted.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getArchive" name="method_getArchive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getArchive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getArchive() : \Phine\Phar\Archive</pre>
+                <p><em>Returns the archive for the archive file.</em></p>
+                <p>This method will return the archive file reader used to extract one or
+more files.</p>
+
+<pre><code>$archive = $extract-&gt;getArchive();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.Archive.html">\Phine\Phar\Archive</a>
+                                            &mdash; <p>The archive for the archive file.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Extract.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/lib/Phine/Phar/Extract.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

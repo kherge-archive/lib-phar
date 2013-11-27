@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-929260554"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-929260554" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-983049422"></a>
+                                <a href="../namespaces/Phine.html" style="margin-left: 30px; padding-left: 0">Phine</a>
+            </div>
+            <div id="namespace-983049422" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-228306091"></a>
+                                <a href="../namespaces/Phine.Phar.html" style="margin-left: 30px; padding-left: 0">Phar</a>
+            </div>
+            <div id="namespace-228306091" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1835346979"></a>
+                                <a href="../namespaces/Phine.Phar.Manifest.html" style="margin-left: 30px; padding-left: 0">Manifest</a>
+            </div>
+            <div id="namespace-1835346979" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Manifest.Entry.html">Entry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2118601461"></a>
+                                <a href="../namespaces/Phine.Phar.File.html" style="margin-left: 30px; padding-left: 0">File</a>
+            </div>
+            <div id="namespace-2118601461" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.File.Writer.html">Writer</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.File.Reader.html">Reader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1924366587"></a>
+                                <a href="../namespaces/Phine.Phar.Stub.html" style="margin-left: 30px; padding-left: 0">Stub</a>
+            </div>
+            <div id="namespace-1924366587" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.Extract.html">Extract</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-516626973"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.html" style="margin-left: 30px; padding-left: 0">Signature</a>
+            </div>
+            <div id="namespace-516626973" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-53448987"></a>
+                                <a href="../namespaces/Phine.Phar.Signature.Algorithm.html" style="margin-left: 30px; padding-left: 0">Algorithm</a>
+            </div>
+            <div id="namespace-53448987" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Phar.Signature.Algorithm.AlgorithmInterface.html">AlgorithmInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.AbstractHashAlgorithm.html">AbstractHashAlgorithm</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA512.html">SHA512</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.MD5.html">MD5</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.OpenSSL.html">OpenSSL</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA1.html">SHA1</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.Algorithm.SHA256.html">SHA256</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-714667635"></a>
+                                <a href="../namespaces/Phine.Phar.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-714667635" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.BuilderException.html">BuilderException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.ArchiveException.html">ArchiveException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.FileException.html">FileException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Exception.SignatureException.html">SignatureException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1043894737"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.html" style="margin-left: 30px; padding-left: 0">Subject</a>
+            </div>
+            <div id="namespace-1043894737" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-879962023"></a>
+                                <a href="../namespaces/Phine.Phar.Subject.Builder.html" style="margin-left: 30px; padding-left: 0">Builder</a>
+            </div>
+            <div id="namespace-879962023" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildDirectory.html">BuildDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddDirectory.html">AddDirectory</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddFile.html">AddFile</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.AddString.html">AddString</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.BuildIterator.html">BuildIterator</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Builder.SetStub.html">SetStub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.AbstractSubject.html">AbstractSubject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Subject.Arguments.html">Arguments</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Phar.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Extract.html">Extract</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Archive.html">Archive</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Phar.Stub.html">Stub</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1673024730"></a>
+                                <a href="../namespaces/Phine.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1673024730" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Exception.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-610781699"></a>
+                                <a href="../namespaces/Phine.Path.html" style="margin-left: 30px; padding-left: 0">Path</a>
+            </div>
+            <div id="namespace-610781699" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-72029685"></a>
+                                <a href="../namespaces/Phine.Path.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-72029685" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Exception.PathException.html">PathException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Path.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2136421567"></a>
+                                <a href="../namespaces/Phine.Observer.html" style="margin-left: 30px; padding-left: 0">Observer</a>
+            </div>
+            <div id="namespace-2136421567" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-810403083"></a>
+                                <a href="../namespaces/Phine.Observer.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-810403083" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.CollectionException.html">CollectionException</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Exception.ReasonException.html">ReasonException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.SubjectInterface.html">SubjectInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.CollectionInterface.html">CollectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phine.Observer.ArrayCollectionInterface.html">ArrayCollectionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phine.Observer.Subject.html">Subject</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Phine.Observer.ArrayCollection.html">ArrayCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phine.Phar.html">\Phine\Phar</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phine\Phar</small>Archive</h1>
+                    <p><em>Parses archives built using the phar archive format.</em></p>
+                    <h2>Summary</h2>
+
+<p>The <code>Archive</code> class parses parts of an archive file that uses the <a href="http://us3.php.net/manual/en/phar.fileformat.phar.php">phar
+file format</a>. It
+extracts information such as the archive alias, metadata, and
+<a href="http://us3.php.net/manual/en/phar.fileformat.manifestfile.php">archive</a>
+without using the <code>phar</code> extension.</p>
+
+<h2>Starting</h2>
+
+<p>To start, you will need to create a new instance of <code>Archive</code>.</p>
+
+<pre><code>use Phine\Phar\File\Reader;
+use Phine\Phar\Archive;
+
+$reader = new Reader('example.phar');
+$archive = new Archive($reader, 1234);
+</code></pre>
+
+<p>You may also just want to use the <code>create()</code> method.</p>
+
+<pre><code>use Phine\Phar\Archive;
+
+$archive = Archive::create('example.phar', 1234);
+</code></pre>
+
+<p>The number <code>1234</code> is actually the offset of where the archive data will
+actually begin. While this number is optional, I recommend that it be given
+if it is known. If the offset is not provided, the class will scan the whole
+archive to find it. This process can be expensive, depending on the size of
+archive file.</p>
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_findOffset" class="">findOffset()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getAlias" class="">getAlias()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getAliasSize" class="">getAliasSize()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getApiVersion" class="">getApiVersion()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getEntries" class="">getEntries()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getEntryCount" class="">getEntryCount()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getGlobalFlags" class="">getGlobalFlags()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getOffset" class="">getOffset()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getManifestSize" class="">getManifestSize()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getMetadata" class="">getMetadata()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getMetadataSize" class="">getMetadataSize()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_getReader" class="">getReader()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_hasMetadata" class="">hasMetadata()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Archive.html#constant_MASK" class="">MASK</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_readData" class="">readData()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_readFileList" class="">readFileList()</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#method_readLong" class="">readLong()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phine.Phar.Archive.html#property_offset" class="">$offset</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#property_reader" class="">$reader</a><br />
+                                                                    <a href="../classes/Phine.Phar.Archive.html#property_sequence" class="">$sequence</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/lib.Phine.Phar.Archive.php.html"><div class="path-wrapper">lib/Phine/Phar/Archive.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Phine\Phar\Archive</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Kevin Herrera <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o">&#x6b;&#101;&#118;&#x69;&#110;&#64;&#x68;&#101;&#x72;&#x72;&#101;&#x72;&#x61;&#46;&#x69;o</a></p>
+
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                api
+                            </th>
+                            <td>
+                                                                    
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MASK" name="constant_MASK" class="anchor"></a>
+            <article id="constant_MASK" class="constant">
+                <h3 class="">MASK</h3>
+                <pre class="signature">MASK</pre>
+                <p><em>The flag mask.</em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_offset" name="property_offset" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$offset</h3>
+                <pre class="signature">$offset : integer</pre>
+                <p><em>The data offset for this archive.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_reader" name="property_reader" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$reader</h3>
+                <pre class="signature">$reader : \Phine\Phar\File\Reader</pre>
+                <p><em>The file reader for this archive.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                <a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sequence" name="property_sequence" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$sequence</h3>
+                <pre class="signature">$sequence : array</pre>
+                <p><em>The sequence of characters that precedes the data.</em></p>
+                
+
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Phine\Phar\File\Reader <span class="argument">$reader</span>, integer <span class="argument">$offset</span>)</pre>
+                <p><em>Sets the PHP archive file reader and data offset.</em></p>
+                <p>If an offset is not provided <code>findOffset()</code> is called to discover the
+offset. Since <code>findOffset()</code> can be expensive to call when using large
+archive files, it is recommended that the offset be provided if it is
+known.</p>
+
+<pre><code>use Phine\Phar\Archive;
+use Phine\Phar\File\Reader;
+
+$reader = new Reader('example.phar');
+$archive = new Archive($reader, 1234);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a></td>
+                                <td>$reader</td>
+                                <td><p>The archive file reader.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$offset</td>
+                                <td><p>(optional) The data offset.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Phar\Exception\ArchiveException</dt>
+                            <dd><p>If the offset is not set and no offset could
+                         be found using the given archive reader.</p>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create(string <span class="argument">$file</span>, integer <span class="argument">$offset</span>) : \Phine\Phar\Archive</pre>
+                <p><em>Creates a new instance of this class.</em></p>
+                <p>This method will create a new file reader and use it to create a new
+instance of this class.</p>
+
+<pre><code>use Phine\Phar\Archive;
+
+$archive = Archive::create('example.phar', 1234);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file</td>
+                                <td><p>The archive file path.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$offset</td>
+                                <td><p>(optional) The data offset.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.Archive.html">\Phine\Phar\Archive</a>
+                                            &mdash; <p>The new instance.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findOffset" name="method_findOffset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findOffset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findOffset(\Phine\Phar\File\Reader <span class="argument">$reader</span>) : integer</pre>
+                <p><em>Finds the data offset of an archive.</em></p>
+                <p>This method will scan the entire archive for a specific sequence of
+characters that denotes the end of the archive's stub. In an archive
+file using the phar file format, the data follows the end of the stub.
+If the sequence is located, the offset for the data will be returned.
+If the sequence could not be found, nothing (<code>null</code>) is returned.</p>
+
+<pre><code>use Phine\Phar\File\Reader;
+use Phine\Phar\Archive;
+
+$reader = new Reader('example.phar');
+$offset = Archive::findOffset($reader);
+</code></pre>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a></td>
+                                <td>$reader</td>
+                                <td><p>The archive file reader.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>If the archive offset is found, it is returned. If a
+                archive offset is not found, <code>null</code> is returned.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">File Format</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAlias" name="method_getAlias" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAlias()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAlias() : string</pre>
+                <p><em>Returns the stream alias for this archive.</em></p>
+                <p>This method will return the stream alias that was set for the archive
+when it was created. This alias can be used to stream files from the
+archive using functions such as <code>file_get_contents()</code>.</p>
+
+<pre><code>$alias = $archive-&gt;getAlias();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The stream alias for the archive.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAliasSize" name="method_getAliasSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAliasSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAliasSize() : integer</pre>
+                <p><em>Returns the size of the stream alias in bytes.</em></p>
+                <p>This method will return the size of the archive's stream alias.</p>
+
+<pre><code>$aliasSize = $archive-&gt;getAliasSize();
+</code></pre>
+
+<blockquote>
+  <p>It may be interesting to note that the size returned and the actual
+  data for the stream alias are two separate bits of data. It may be
+  possible for an archive to be corrupted, reporting the wrong size
+  for the alias.</p>
+</blockquote>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The size of the alias in bytes.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getApiVersion" name="method_getApiVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getApiVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getApiVersion() : string</pre>
+                <p><em>Returns the version of the archive file format.</em></p>
+                <p>This method will return the version of the file format used for this
+archive file.</p>
+
+<pre><code>$version = $archive-&gt;getApiVersion();
+</code></pre>
+
+<blockquote>
+  <p>Note that this version number is not to be confused with the version
+  number returned by <code>Phar::apiVersion()</code>, as that version number is
+  used for new archives.</p>
+</blockquote>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The version of the archive file formats.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getEntries" name="method_getEntries" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getEntries()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getEntries() : \Phine\Phar\Manifest\Entry[]</pre>
+                <p><em>Returns the list of entries in manifest for this archive.</em></p>
+                <p>This method will return the entries listed in the archive's manifest as
+instances of <code>Entry</code>.</p>
+
+<pre><code>$files = $archive-&gt;getEntries();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Phine\Phar\Manifest\Entry[]
+                                            &mdash; <p>The list of files in this archive.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getEntryCount" name="method_getEntryCount" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getEntryCount()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getEntryCount() : integer</pre>
+                <p><em>Returns the number of files listed in the archive for this archive.</em></p>
+                <p>$fileCount = $archive->getEntryCount();</p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The number of files in this archive.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getGlobalFlags" name="method_getGlobalFlags" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getGlobalFlags()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getGlobalFlags() : integer</pre>
+                <p><em>Returns the global bitmapped flags for this archive.</em></p>
+                <p>This method will return a bitmapped value for the global flags set for
+the archive. This value is not the same as the ones used on a per file
+basis.</p>
+
+<pre><code>$flags = $archive-&gt;getFlags();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The global bitmapped flags.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getOffset" name="method_getOffset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getOffset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getOffset() : integer</pre>
+                <p><em>Returns the byte offset for the data of this archive.</em></p>
+                <p>This method will return the offset in the archive file of where the
+raw data begins.</p>
+
+<pre><code>$offset = $archive-&gt;getOffset();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The byte offset.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getManifestSize" name="method_getManifestSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getManifestSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getManifestSize() : integer</pre>
+                <p><em>Returns the size of the manifest for this archive in bytes.</em></p>
+                <p>This method will return the size of the manifest file in the archive
+as bytes.</p>
+
+<pre><code>$size = $archive-&gt;getManifestSize();
+</code></pre>
+
+<blockquote>
+  <p>It may be important to know what the manifest contains. It is simply
+  a list of files and empty directories in the archive file, along with
+  other information specific to each list entry. It does not contain
+  data such as the global bitmapped flags or the archive stream alias.</p>
+</blockquote>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The size of the manifest in bytes.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMetadata" name="method_getMetadata" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMetadata()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMetadata() : mixed</pre>
+                <p><em>Return the unserialized global metadata for this archive.</em></p>
+                <p>This method will return the unserialized global metadata for the archive.</p>
+
+<pre><code>$metadata = $archive-&gt;getMetadata();
+</code></pre>
+
+<p>If no metadata has been set, <code>null</code> is returned. Note, however, that
+this is may not be true since it could have been a serialized <code>null</code>
+value. To confirm that no data was provided, you will want to use the
+<code>hasMetadata()</code> method.</p>
+
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phine\Phar\Exception\ArchiveException</dt>
+                            <dd><p>If the global metadata is corrupt or invalid.</p>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The unserialized global metadata.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMetadataSize" name="method_getMetadataSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMetadataSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMetadataSize() : integer</pre>
+                <p><em>Returns the size of metadata in this archive in bytes.</em></p>
+                <p>This method will return the size of the global metadata for the archive.</p>
+
+<pre><code>$size = $archive-&gt;getMetadataSize();
+</code></pre>
+
+<p>If the size is <code>0</code> (zero), no metadata was set.</p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The size of the metadata in bytes.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getReader" name="method_getReader" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getReader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getReader() : \Phine\Phar\File\Reader</pre>
+                <p><em>Returns the file reader for this archive.</em></p>
+                <p>This method will return the file reader used for reading the archive.</p>
+
+<pre><code>$reader = $archive-&gt;getReader();
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Phine.Phar.File.Reader.html">\Phine\Phar\File\Reader</a>
+                                            &mdash; <p>The file reader for this archive.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasMetadata" name="method_hasMetadata" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasMetadata()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasMetadata() : boolean</pre>
+                <p><em>Checks if the archive has global metadata.</em></p>
+                <p>This method will check to see if the archive actually has metadata.</p>
+
+<pre><code>if ($archive-&gt;hasMetadata()) {
+    // has metadata
+}
+</code></pre>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>If the archive has metadata, <code>true</code> is returned. If the
+                archive does not have metadata, <code>false</code> is returned.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_readData" name="method_readData" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">readData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">readData(integer <span class="argument">$size</span>) : mixed</pre>
+                <p><em>Reads and unserializes data.</em></p>
+                <p>This method will read that has been serialized and stored in the
+archive file. The read data will then be returned unserialized.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$size</td>
+                                <td><p>The size of the metadata.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The unserialized data.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_readFileList" name="method_readFileList" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">readFileList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">readFileList(integer <span class="argument">$expected</span>, integer <span class="argument">$size</span>) : \Phine\Phar\Manifest\Entry[]</pre>
+                <p><em>Reads the expected number of files from the archive.</em></p>
+                <p>This method will parse the given number of files from the archive's
+manifest. Each entry in the manifest will be added to an array as an
+instance of <code>Entry</code>. The <code>$expected</code> and <code>$size</code> parameters are not
+precise, garbage data may be read which would result in the reader
+throwing an exception.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$expected</td>
+                                <td><p>The expected number of files.</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$size</td>
+                                <td><p>The size of the archive.</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phine\Phar\Manifest\Entry[]
+                                            &mdash; <p>The list of files.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_readLong" name="method_readLong" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">readLong()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">readLong() : integer</pre>
+                <p><em>Reads and unpacks an unsigned long.</em></p>
+                <p>This method will read an unsigned long (little-endian byte order) from
+the file and return the unpacked value.</p>
+
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The unsigned long.</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Archive.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/lib/Phine/Phar/Archive.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phine.html">\Phine</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 27th, 2013 at 19:39.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
