@@ -7,6 +7,14 @@ use Phine\Exception\Exception;
 /**
  * Exception thrown for archive related errors.
  *
+ * Summary
+ * -------
+ *
+ * The `ArchiveException` class is thrown for errors inside the `Archive`
+ * class. An example of this exception being used is when the data offset
+ * for the archive is not valid (or could not be found). Another example
+ * is if
+ *
  * @author Kevin Herrera <kevin@herrera.io>
  */
 class ArchiveException extends Exception
@@ -22,20 +30,6 @@ class ArchiveException extends Exception
     {
         return new self(
             "The data offset could not be found in the PHP archive file \"$file\"."
-        );
-    }
-
-    /**
-     * Creates a new exception for an archive with invalid metadata.
-     *
-     * @param string $file The archive file path.
-     *
-     * @return ArchiveException The new exception.
-     */
-    public static function invalidMetadata($file)
-    {
-        return new self(
-            "The PHP archive file \"$file\" has invalid metadata."
         );
     }
 }

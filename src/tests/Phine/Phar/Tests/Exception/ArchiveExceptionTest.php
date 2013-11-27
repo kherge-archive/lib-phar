@@ -18,8 +18,8 @@ class ArchiveExceptionTest extends TestCase
     public function testInvalidMetadata()
     {
         $this->assertEquals(
-            'The PHP archive file "/test/file" has invalid metadata.',
-            ArchiveException::invalidMetadata('/test/file')->getMessage(),
+            'The data offset could not be found in the PHP archive file "/test/file".',
+            ArchiveException::offsetNotFound('/test/file')->getMessage(),
             'Make sure we get the expected message.'
         );
     }
