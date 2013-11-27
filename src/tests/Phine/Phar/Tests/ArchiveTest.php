@@ -307,6 +307,25 @@ class ArchiveTest extends TestCase
     }
 
     /**
+     * Make sure we can check if an archive has metadata.
+     */
+    public function testHasMetadata()
+    {
+        $this->assertTrue(
+            $this->archive->hasMetadata(),
+            'The archive should have metadata.'
+        );
+
+        $reader = new Reader(dirname($this->file) . '/default.phar');
+        $archive = new Archive($reader);
+
+        $this->assertFalse(
+            $archive->hasMetadata(),
+            'The archive should not have metadata.'
+        );
+    }
+
+    /**
      * Creates a new instance of `Archive` for testing.
      */
     protected function setUp()

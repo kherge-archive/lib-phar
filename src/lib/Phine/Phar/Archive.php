@@ -333,6 +333,16 @@ class Archive
     /**
      * Returns the size of the manifest for this archive in bytes.
      *
+     * This method will return the size of the manifest file in the archive
+     * as bytes.
+     *
+     *     $size = $archive->getManifestSize();
+     *
+     * > It may be important to know what the manifest contains. It is simply
+     * > a list of files and empty directories in the archive file, along with
+     * > other information specific to each list entry. It does not contain
+     * > data such as the global bitmapped flags or the archive stream alias.
+     *
      * @return integer The size of the manifest in bytes.
      *
      * @api
@@ -346,6 +356,15 @@ class Archive
 
     /**
      * Return the unserialized global metadata for this archive.
+     *
+     * This method will return the unserialized global metadata for the archive.
+     *
+     *     $metadata = $archive->getMetadata();
+     *
+     * If no metadata has been set, `null` is returned. Note, however, that
+     * this is may not be true since it could have been a serialized `null`
+     * value. To confirm that no data was provided, you will want to use the
+     * `hasMetadata()` method.
      *
      * @return mixed The unserialized global metadata.
      *
@@ -365,6 +384,12 @@ class Archive
     /**
      * Returns the size of metadata in this archive in bytes.
      *
+     * This method will return the size of the global metadata for the archive.
+     *
+     *     $size = $archive->getMetadataSize();
+     *
+     * If the size is `0` (zero), no metadata was set.
+     *
      * @return integer The size of the metadata in bytes.
      *
      * @api
@@ -379,6 +404,10 @@ class Archive
     /**
      * Returns the file reader for this archive.
      *
+     * This method will return the file reader used for reading the archive.
+     *
+     *     $reader = $archive->getReader();
+     *
      * @return Reader The file reader for this archive.
      *
      * @api
@@ -389,7 +418,29 @@ class Archive
     }
 
     /**
+     * Checks if the archive has global metadata.
+     *
+     * This method will check to see if the archive actually has metadata.
+     *
+     *     if ($archive->hasMetadata()) {
+     *         // has metadata
+     *     }
+     *
+     * @return boolean If the archive has metadata, `true` is returned. If the
+     *                 archive does not have metadata, `false` is returned.
+     *
+     * @api
+     */
+    public function hasMetadata()
+    {
+        return (0 < $this->getMetadataSize());
+    }
+
+    /**
      * Reads and unserializes data.
+     *
+     * This method will read that has been serialized and stored in the
+     * archive file. The read data will then be returned unserialized.
      *
      * @param integer $size The size of the metadata.
      *
@@ -402,6 +453,12 @@ class Archive
 
     /**
      * Reads the expected number of files from the archive.
+     *
+     * This method will parse the given number of files from the archive's
+     * manifest. Each entry in the manifest will be added to an array as an
+     * instance of `Entry`. The `$expected` and `$size` parameters are not
+     * precise, garbage data may be read which would result in the reader
+     * throwing an exception.
      *
      * @param integer $expected The expected number of files.
      * @param integer $size     The size of the archive.
@@ -472,6 +529,9 @@ class Archive
 
     /**
      * Reads and unpacks an unsigned long.
+     *
+     * This method will read an unsigned long (little-endian byte order) from
+     * the file and return the unpacked value.
      *
      * @return integer The unsigned long.
      */
