@@ -3,7 +3,7 @@
 namespace Phine\Phar\Tests\Builder;
 
 use DateTime;
-use Phine\Phar\Builder\Arguments;
+use Phine\Phar\Subject\Arguments;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
 

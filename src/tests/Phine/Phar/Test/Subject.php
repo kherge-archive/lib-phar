@@ -2,7 +2,7 @@
 
 namespace Phine\Phar\Test;
 
-use Phine\Phar\Builder\Subject\AbstractSubject;
+use Phine\Phar\Subject\AbstractSubject;
 
 /**
  * A test builder event subject.

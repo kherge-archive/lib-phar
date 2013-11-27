@@ -1,10 +1,10 @@
 <?php
 
-namespace Phine\Phar\Tests\Builder\Subject;
+namespace Phine\Phar\Tests\Subject;
 
 use Phine\Observer\Exception\ReasonException;
 use Phine\Phar\Builder;
-use Phine\Phar\Builder\Arguments;
+use Phine\Phar\Subject\Arguments;
 use Phine\Phar\Test\Observer;
 use Phine\Phar\Test\Subject;
 use Phine\Test\Property;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Phine\Phar\Tests\Builder\Subject;
+namespace Phine\Phar\Tests\Subject;
 
 use Phar;
 use Phine\Phar\Builder;
-use Phine\Phar\Builder\Arguments;
-use Phine\Phar\Builder\Subject\AbstractSubject;
+use Phine\Phar\Subject\Arguments;
+use Phine\Phar\Subject\AbstractSubject;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -46,6 +46,8 @@ abstract class AbstractTestCase extends TestCase
      * Sets the arguments and and updates the subject's observers.
      *
      * @param array $args The method arguments.
+     *
+     * @return mixed Any resulting value.
      */
     protected function invokeSubject(array $args)
     {

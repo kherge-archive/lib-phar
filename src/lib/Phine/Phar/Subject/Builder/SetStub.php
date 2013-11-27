@@ -1,6 +1,8 @@
 <?php
 
-namespace Phine\Phar\Builder\Subject;
+namespace Phine\Phar\Subject\Builder;
+
+use Phine\Phar\Subject\AbstractSubject;
 
 /**
  * Sets the stub for the archive.

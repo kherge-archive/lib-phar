@@ -1,8 +1,9 @@
 <?php
 
-namespace Phine\Phar\Tests\Builder\Subject;
+namespace Phine\Phar\Tests\Subject\Builder;
 
 use Phine\Phar\Builder;
+use Phine\Phar\Tests\Subject\AbstractTestCase;
 
 /**
  * Tests the methods in the {@link SetStub} class.

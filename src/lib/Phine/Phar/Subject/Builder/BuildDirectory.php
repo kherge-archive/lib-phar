@@ -1,6 +1,8 @@
 <?php
 
-namespace Phine\Phar\Builder\Subject;
+namespace Phine\Phar\Subject\Builder;
+
+use Phine\Phar\Subject\AbstractSubject;
 
 /**
  * Builds the archive using a directory path.
@@ -10,7 +12,7 @@ namespace Phine\Phar\Builder\Subject;
 class BuildDirectory extends AbstractSubject
 {
     /**
-     * {@inheritDoc}
+     * @override
      */
     protected function doLastStep()
     {

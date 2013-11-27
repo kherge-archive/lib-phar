@@ -1,6 +1,8 @@
 <?php
 
-namespace Phine\Phar\Builder\Subject;
+namespace Phine\Phar\Subject\Builder;
+
+use Phine\Phar\Subject\AbstractSubject;
 
 /**
  * Adds a file from a string to the archive.
@@ -10,7 +12,7 @@ namespace Phine\Phar\Builder\Subject;
 class AddString extends AbstractSubject
 {
     /**
-     * {@inheritDoc}
+     * @override
      */
     protected function doLastStep()
     {

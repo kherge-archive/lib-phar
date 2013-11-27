@@ -4,7 +4,7 @@ namespace Phine\Phar\Tests;
 
 use ArrayIterator;
 use Phine\Phar\Builder;
-use Phine\Phar\Builder\Subject\AbstractSubject;
+use Phine\Phar\Subject\AbstractSubject;
 use Phine\Phar\Test\Observer;
 use Phine\Test\Property;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
@@ -43,12 +43,12 @@ class BuilderTest extends TestCase
         );
 
         $subjects = array(
-            Builder::ADD_DIR => 'Phine\\Phar\\Builder\\Subject\\AddDirectory',
-            Builder::ADD_FILE => 'Phine\\Phar\\Builder\\Subject\\AddFile',
-            Builder::ADD_STRING => 'Phine\\Phar\\Builder\\Subject\\AddString',
-            Builder::BUILD_DIR => 'Phine\\Phar\\Builder\\Subject\\BuildDirectory',
-            Builder::BUILD_ITERATOR => 'Phine\\Phar\\Builder\\Subject\\BuildIterator',
-            Builder::SET_STUB => 'Phine\\Phar\\Builder\\Subject\\SetStub'
+            Builder::ADD_DIR => 'Phine\\Phar\\Subject\\Builder\\AddDirectory',
+            Builder::ADD_FILE => 'Phine\\Phar\\Subject\\Builder\\AddFile',
+            Builder::ADD_STRING => 'Phine\\Phar\\Subject\\Builder\\AddString',
+            Builder::BUILD_DIR => 'Phine\\Phar\\Subject\\Builder\\BuildDirectory',
+            Builder::BUILD_ITERATOR => 'Phine\\Phar\\Subject\\Builder\\BuildIterator',
+            Builder::SET_STUB => 'Phine\\Phar\\Subject\\Builder\\SetStub'
         );
 
         foreach ($subjects as $id => $class) {

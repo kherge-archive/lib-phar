@@ -7,14 +7,9 @@ use Phar;
 use Phine\Observer\Collection;
 use Phine\Observer\ObserverInterface;
 use Phine\Observer\SubjectInterface;
-use Phine\Phar\Builder\Arguments;
-use Phine\Phar\Builder\Subject\AbstractSubject;
-use Phine\Phar\Builder\Subject\AddDirectory;
-use Phine\Phar\Builder\Subject\AddFile;
-use Phine\Phar\Builder\Subject\AddString;
-use Phine\Phar\Builder\Subject\BuildDirectory;
-use Phine\Phar\Builder\Subject\BuildIterator;
-use Phine\Phar\Builder\Subject\SetStub;
+use Phine\Phar\Subject\Builder as Subject;
+use Phine\Phar\Subject\Arguments;
+use Phine\Phar\Subject\AbstractSubject;
 
 /**
  * Manages an event-driven process for building a PHP archive.
@@ -437,23 +432,23 @@ class Builder extends Collection
      *
      * The following is a list of events registered by this method:
      *
-     * - `Builder::ADD_DIR` &mdash; `Phine\Phar\Builder\Subject\AddDirectory`
-     * - `Builder::ADD_FILE` &mdash; `Phine\Phar\Builder\Subject\AddFile`
-     * - `Builder::ADD_STRING` &mdash; `Phine\Phar\Builder\Subject\AddString`
-     * - `Builder::BUILD_DIR` &mdash; `Phine\Phar\Builder\Subject\BuildDirectory`
-     * - `Builder::BUILD_ITERATOR` &mdash; `Phine\Phar\Builder\Subject\BuildIterator`
-     * - `Builder::SET_STUB` &mdash; `Phine\Phar\Builder\Subject\SetStub`
+     * - `Builder::ADD_DIR` &mdash; `Phine\Phar\Subject\Builder\AddDirectory`
+     * - `Builder::ADD_FILE` &mdash; `Phine\Phar\Subject\Builder\AddFile`
+     * - `Builder::ADD_STRING` &mdash; `Phine\Phar\Subject\Builder\AddString`
+     * - `Builder::BUILD_DIR` &mdash; `Phine\Phar\Subject\Builder\BuildDirectory`
+     * - `Builder::BUILD_ITERATOR` &mdash; `Phine\Phar\Subject\Builder\BuildIterator`
+     * - `Builder::SET_STUB` &mdash; `Phine\Phar\Subject\Builder\SetStub`
      *
      * @api
      */
     protected function registerDefaultSubjects()
     {
-        $this->registerSubject(self::ADD_DIR, new AddDirectory($this));
-        $this->registerSubject(self::ADD_FILE, new AddFile($this));
-        $this->registerSubject(self::ADD_STRING, new AddString($this));
-        $this->registerSubject(self::BUILD_DIR, new BuildDirectory($this));
-        $this->registerSubject(self::BUILD_ITERATOR, new BuildIterator($this));
-        $this->registerSubject(self::SET_STUB, new SetStub($this));
+        $this->registerSubject(self::ADD_DIR, new Subject\AddDirectory($this));
+        $this->registerSubject(self::ADD_FILE, new Subject\AddFile($this));
+        $this->registerSubject(self::ADD_STRING, new Subject\AddString($this));
+        $this->registerSubject(self::BUILD_DIR, new Subject\BuildDirectory($this));
+        $this->registerSubject(self::BUILD_ITERATOR, new Subject\BuildIterator($this));
+        $this->registerSubject(self::SET_STUB, new Subject\SetStub($this));
     }
 
     /**
