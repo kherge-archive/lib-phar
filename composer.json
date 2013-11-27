@@ -1,6 +1,6 @@
 {
     "name": "phine/phar",
-    "description": "A PHP library for accessing and creating PHP archives.",
+    "description": "A PHP library for creating and reading (without the phar extension) PHP archives.",
     "keywords": ["phar"],
     "homepage": "https://github.com/phine/lib-phar",
     "license": "MIT",
