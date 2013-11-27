@@ -7,6 +7,14 @@ use Phine\Exception\Exception;
 /**
  * Exception thrown for build errors.
  *
+ * Summary
+ * -------
+ *
+ * The `BuilderException` class is thrown for errors relating to the `Builder`
+ * class and its processes. An example of this exception being thrown is when
+ * the arguments of a builder subject are being changed while an update is in
+ * progress.
+ *
  * @author Kevin Herrera <kevin@herrera.io>
  */
 class BuilderException extends Exception
