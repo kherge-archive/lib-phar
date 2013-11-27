@@ -77,7 +77,7 @@ Requirement
 
 - PHP >= 5.3.3
 - [Phine Exception] >= 1.0.0
-- [Phine Observer] >= 1.0.0
+- [Phine Observer] >= 1.0.1
 - [Phine Path] >= 1.0.0
 
 Installation

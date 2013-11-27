@@ -24,6 +24,9 @@
         "league/phpunit-coverage-listener": "~1.0",
         "phine/test": "~1.0"
     },
+    "suggest": {
+        "ext-phar": "For creating PHP archives."
+    },
     "autoload": {
         "psr-0": {
             "Phine\\Phar": "src/lib"
