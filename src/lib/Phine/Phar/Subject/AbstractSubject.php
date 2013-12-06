@@ -61,13 +61,6 @@ abstract class AbstractSubject extends Subject
     protected $builder;
 
     /**
-     * The flag used to determine if an observer update is in process.
-     *
-     * @var boolean
-     */
-    private $updating = false;
-
-    /**
      * Sets the PHP archive builder.
      *
      * This method will create a new subject instances and set the builder.
@@ -106,39 +99,11 @@ abstract class AbstractSubject extends Subject
     }
 
     /**
-     * Checks if an observer update is in process.
-     *
-     * This method will check if this subject is currently being updated.
-     *
-     *     if ($subject->isUpdating()) {
-     *         // the subject is being updated
-     *     }
-     *
-     * @return boolean Returns `true` if in process, `false` if not.
-     *
-     * @api
-     */
-    public function isUpdating()
-    {
-        return $this->updating;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function notifyObservers()
     {
-        $this->updating = true;
-
-        try {
-            parent::notifyObservers();
-        } catch (Exception $exception) {
-            $this->updating = false;
-
-            throw $exception;
-        }
-
-        $this->updating = false;
+        parent::notifyObservers();
 
         return $this->doLastStep();
     }
@@ -163,7 +128,7 @@ abstract class AbstractSubject extends Subject
      */
     public function setArguments(Arguments $args)
     {
-        if ($this->updating) {
+        if ($this->isUpdating()) {
             throw BuilderException::isUpdating();
         }
 

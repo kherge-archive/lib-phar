@@ -5,7 +5,6 @@ namespace Phine\Phar\Tests\Subject;
 use Phine\Observer\Exception\ReasonException;
 use Phine\Phar\Builder;
 use Phine\Phar\Subject\Arguments;
-use Phine\Phar\Test\Observer;
 use Phine\Phar\Test\Subject;
 use Phine\Test\Property;
 use PHPUnit_Framework_TestCase as TestCase;
@@ -48,24 +47,6 @@ class AbstractSubjectTest extends TestCase
     }
 
     /**
-     * Make sure we can check if an update is in progress.
-     */
-    public function testIsUpdating()
-    {
-        $this->assertFalse(
-            $this->subject->isUpdating(),
-            'Make sure that no update is in progress.'
-        );
-
-        Property::set($this->subject, 'updating', true);
-
-        $this->assertTrue(
-            $this->subject->isUpdating(),
-            'Make sure that an update is in progress.'
-        );
-    }
-
-    /**
      * Make sure the last step is called after a successful update.
      */
     public function testNotifyObservers()
@@ -75,29 +56,6 @@ class AbstractSubjectTest extends TestCase
         $this->assertTrue(
             $this->subject->done,
             'Make sure the last step method is called.'
-        );
-
-        $this->assertFalse(
-            Property::get($this->subject, 'updating'),
-            'Make sure the updating flag is reset.'
-        );
-    }
-
-    /**
-     * Make sure the updating flag is reset on interrupt.
-     */
-    public function testNotifyObserversInterrupted()
-    {
-        $this->subject->registerObserver(new Observer());
-
-        try {
-            $this->subject->notifyObservers();
-        } catch (ReasonException $exception) {
-        }
-
-        $this->assertFalse(
-            Property::get($this->subject, 'updating'),
-            'Make sure the updating flag is reset.'
         );
     }
 
