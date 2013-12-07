@@ -141,7 +141,7 @@ class Extract
      * will not be extracted. If any other value is returned, the file will
      * be extracted.
      *
-     *     use Phine\Phar\Archive\Entry;
+     *     use Phine\Phar\Manifest\Entry;
      *
      *     $fileCount = $extract->extractTo(
      *         '/path/to/output/dir',
