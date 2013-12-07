@@ -12,8 +12,7 @@ use Phine\Exception\Exception;
  *
  * The `ArchiveException` class is thrown for errors inside the `Archive`
  * class. An example of this exception being used is when the data offset
- * for the archive is not valid (or could not be found). Another example
- * is if
+ * for the archive is not valid (or could not be found).
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
