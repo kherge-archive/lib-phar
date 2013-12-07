@@ -50,13 +50,13 @@ that appear to be identical to that of the `Phar` class:
 - `addFromString()`
 - `buildFromDirectory()`
 - `buildFromIterator()`
+- `setStub()`
 
-Truth be told, they both have the exact same end result as their `Phar`
-counterparts. The difference being that each method can be observed, and the
-arguments passed to each method can be altered before the actual action (adding
-an empty directory, adding a file from disk, etc) is performed. The simplest
-example is performing a search and replace to all content added using the
-`addFromString()` method.
+Truth be told, they have the exact same end result as their `Phar` counterparts.
+The difference being that each method can be observed, and the arguments passed
+to each method can be altered before the actual action (adding an empty directory,
+adding a file from disk, etc) is performed. The simplest example is performing a
+search and replace to all content added using the `addFromString()` method.
 
 #### Observing an Action
 
@@ -93,8 +93,8 @@ class Replace implements ObserverInterface
 ```
 
 Now that we have our observer, we will need to register an instance of it with
-the builder. In particular, we are interested in the `Builder::ADD_STRING`
-event.
+a builder event. In particular, we are interested in the `Builder::ADD_STRING`
+event, which is the event used by the builder for the `addFromString()` method.
 
 ```php
 // register our observer
@@ -102,7 +102,7 @@ $builder->observe(Builder::ADD_STRING, new Replace());
 ```
 
 With the observer registered to the `addFromString()` method, whenever we call
-it, all occurrences of `{name}` will be replaced with the string `world`. So,
+it all occurrences of `{name}` will be replaced with the string `world`. So,
 if we add the following:
 
 ```php
@@ -130,9 +130,9 @@ There is one event for each archive related method:
 - `Builder::SET_STUB` - For `setStub()`.
 
 As demonstrated in the example observer above, you can retrieve the arguments
-for each of these methods by calling the `getArguments()` method on the subject
-that is provided. The name of each argument is the same as the parameters that
-are in the API documentation for each method.
+for each of these methods by calling the `getArguments()` method on the `$subject`
+that is provided. The name of the arguments are the same as the parameter names
+for the methods. You can find a complete list by viewing the API documentation.
 
 #### Generating a Stub
 
@@ -238,8 +238,8 @@ other value returned will be ignored by the `Extract` class.
 
 If you need to verify the signature of an archive on a machine that does not
 have the `phar` extension installed, you will want to use the `Signature` class.
-If you need to test archives that have been signed using a private key, you will
-still need the `openssl` extension.
+If you need to verify archives that have been signed using a private key, you
+will still need the `openssl` extension.
 
 ```php
 use Phine\Phar\Signature;
