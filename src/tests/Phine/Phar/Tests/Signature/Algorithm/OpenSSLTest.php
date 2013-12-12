@@ -143,6 +143,10 @@ KEY;
      */
     protected function setUp()
     {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The "openssl" extension is not available.');
+        }
+
         $this->algorithm = new OpenSSL();
         $this->temp = new Temp();
         $this->file = $this->temp->createDir() . '/test';
