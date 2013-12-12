@@ -191,6 +191,10 @@ KEY;
      */
     protected function tearDown()
     {
+        if (!is_object($this->temp)) {
+            var_export($this->temp);
+        }
+
         $this->temp->purgePaths();
     }
 }
