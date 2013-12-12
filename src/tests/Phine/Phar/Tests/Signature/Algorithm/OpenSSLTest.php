@@ -191,10 +191,9 @@ KEY;
      */
     protected function tearDown()
     {
-        if (!is_object($this->temp)) {
-            var_export($this->temp);
+        // working around weird bug on PHP 5.3.3
+        if ($this->temp) {
+            $this->temp->purgePaths();
         }
-
-        $this->temp->purgePaths();
     }
 }
