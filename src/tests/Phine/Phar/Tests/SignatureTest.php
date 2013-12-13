@@ -90,8 +90,11 @@ class SignatureTest extends TestCase
             'Phine\\Phar\\Signature\\Algorithm\\SHA1',
             'Phine\\Phar\\Signature\\Algorithm\\SHA256',
             'Phine\\Phar\\Signature\\Algorithm\\SHA512',
-            'Phine\\Phar\\Signature\\Algorithm\\OpenSSL',
         );
+
+        if (extension_loaded('openssl')) {
+            $expected[] = 'Phine\\Phar\\Signature\\Algorithm\\OpenSSL';
+        }
 
         foreach ($expected as $algorithm) {
             $this->assertInstanceOf(
