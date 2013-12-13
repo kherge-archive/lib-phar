@@ -139,7 +139,10 @@ class Signature
         $signature->addAlgorithm(new Algorithm\SHA1());
         $signature->addAlgorithm(new Algorithm\SHA256());
         $signature->addAlgorithm(new Algorithm\SHA512());
-        $signature->addAlgorithm(new Algorithm\OpenSSL());
+
+        if (extension_loaded('openssl')) {
+            $signature->addAlgorithm(new Algorithm\OpenSSL());
+        }
 
         return $signature;
     }
