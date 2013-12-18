@@ -11,7 +11,7 @@ A PHP library for creating and reading (without the phar extension) PHP archives
 Requirement
 -----------
 
-- PHP >= 5.3.3
+- PHP >= 5.3.9
 - [Phine Exception] >= 1.0.0
 - [Phine Observer] >= 2.0.0
 - [Phine Path] >= 1.0.0
