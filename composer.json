@@ -15,7 +15,7 @@
         "issues": "https://github.com/phine/lib-phar/issues"
     },
     "require": {
-        "php": ">=5.3.9",
+        "php": ">=5.3.3",
         "phine/exception": "~1.0",
         "phine/observer": "~2.0.0",
         "phine/path": "~1.0"
