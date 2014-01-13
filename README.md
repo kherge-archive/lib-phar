@@ -1,8 +1,6 @@
 Phar
 ====
 
-> This library will eventually be deprecated in favor of [phine/phar](https://github.com/phine/lib-phar). Please consider switching now and submitting issues or feature requests if necessary.
-
 [![Build Status][]](https://travis-ci.org/phine/lib-phar)
 [![Coverage Status][]](https://coveralls.io/r/phine/lib-phar)
 [![Latest Stable Version][]](https://packagist.org/packages/phine/phar)
