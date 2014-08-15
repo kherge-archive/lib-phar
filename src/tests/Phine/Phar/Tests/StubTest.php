@@ -98,6 +98,12 @@ BANNER
         // inject a mapping alias
         Property::set($this->stub, 'mapPhar', 'test.phar');
 
+        // inject web phar rewrite function
+        Property::set($this->stub, 'rewriteFunction',
+        "function rewrite(\$path) {
+            return 'index.php';
+        }");
+
         // inject web phar settings
         Property::set(
             $this->stub,
@@ -178,6 +184,9 @@ BANNER
 if (class_exists('Phar')) {
 \$include = 'phar://' . __FILE__;
 Phar::mapPhar('test.phar');
+function rewrite(\$path) {
+            return 'index.php';
+        }
 Phar::webPhar('web.phar', 'index.php', '404.php', array (
   'phps' => 1,
 ), 'rewrite');
@@ -397,6 +406,66 @@ STUB
             '#!test',
             Property::get($this->stub, 'shebang'),
             'The shebang line should be set.'
+        );
+    }
+
+    /**
+     * Make sure we can set the rewrite function.
+     */
+    public function testSetRewriteFunction()
+    {
+        $rewriteFunction = "function rewrite(\$path) {
+            return 'index.php';
+        }";
+
+        $this->assertSame(
+            $this->stub,
+            $this->stub->setRewriteFunction('rewrite',
+            $rewriteFunction),
+            'The method should return its object.'
+        );
+
+        $this->assertEquals(
+            $rewriteFunction,
+            Property::get($this->stub, 'rewriteFunction'),
+            'The rewrite function should be set.'
+        );
+    }
+
+    /**
+     * Make sure setRewriteFunction overwrites wrong function parameter.
+     */
+    public function testSetRewriteFunctionParameterOverride()
+    {
+        $this->stub->webPhar('alias', 'index.php', null, array(), 'wrong');
+
+        $this->assertSame(
+            array(
+                 'alias',
+                 'index.php',
+                 null,
+                 array(),
+                 'wrong'
+            ),
+            Property::get($this->stub, 'webPhar'),
+            'The web phar settings are incorrect.'
+        );
+
+        $this->stub->setRewriteFunction('rewrite',
+            "function rewrite(\$path) {
+                return 'index.php';
+            }");
+
+        $this->assertSame(
+            array(
+                 'alias',
+                 'index.php',
+                 null,
+                 array(),
+                 'rewrite'
+            ),
+            Property::get($this->stub, 'webPhar'),
+            'The setRewriteFunction method should change rewrite function.'
         );
     }
 
