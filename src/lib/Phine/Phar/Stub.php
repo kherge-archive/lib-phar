@@ -105,6 +105,13 @@ class Stub
     private $require = array();
 
     /**
+     * The rewrite function.
+     *
+     * @var string
+     */
+    private $rewriteFunction = '';
+
+    /**
      * The "self extracting" flag.
      *
      * @var boolean
@@ -268,6 +275,11 @@ STUB;
         }
 
         if ($this->webPhar) {
+
+            if ('' !== $this->rewriteFunction) {
+                $stub .= $this->rewriteFunction . "\n";
+            }
+
             $stub .= sprintf(
                 "Phar::webPhar(%s, %s, %s, %s, %s);\n",
                 $export($this->webPhar[0]),
@@ -564,6 +576,37 @@ STUB;
     public function setBanner($banner)
     {
         $this->banner = $banner;
+
+        return $this;
+    }
+
+    /**
+     * Sets the rewrite function.
+     *
+     * This method will set the rewrite function that is used for the
+     * `Phar::webPhar()` method.
+     *
+     *     $stub->setRewriteFunction('rewrite', "function rewrite(\$path) {
+     *         return 'index.php';
+     *     }");
+     *
+     * @param string $name The function name.
+     * @param string $function The function itself.
+     *
+     * @return Stub The stub generator.
+     *
+     * @api
+     */
+    public function setRewriteFunction($name, $function)
+    {
+        // Make sure the webPhar values are correct
+        if (null === $this->webPhar) {
+            $this->webPhar(null, 'index.php', null, array(), $name);
+        }
+
+        $this->webPhar[4] = $name;
+
+        $this->rewriteFunction = $function;
 
         return $this;
     }
